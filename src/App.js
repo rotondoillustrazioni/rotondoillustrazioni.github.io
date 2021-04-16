@@ -1,23 +1,16 @@
-import './App.css';
-import logo from './images/LOGO.jpg';
+import "antd/lib/style/index.less";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+import "./App.css";
+import Homepage from "./pages/homepage";
 
 function App() {
+  const { path } = useRouteMatch();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Switch>
+        <Route exact path={`${path}/`} component={Homepage} />
+      </Switch>
     </div>
   );
 }
