@@ -1,0 +1,53 @@
+:global(.ant-card-body) {
+  padding: 0px 24px 24px 24px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 10px;
+  height: 100%;
+}
+
+.pageContainer {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+@font-face {
+  font-family: Circular-Black;
+  src: url("../../styles/fonts/Circular-Black.otf") format("opentype");
+}
+
+.menu {
+  font-family: Circular-Black;
+}
+
+@font-face {
+  font-family: Circular-Medium;
+  src: url("../../styles/fonts/Circular-Medium.otf") format("opentype");
+}
+
+.aboutMe1 {
+  font-family: Circular-Black;
+  text-align: left;
+  font-size: 20px;
+  padding-left: 100px;
+  padding-top: 100px;
+  padding-right: 100px;
+}
+.aboutMe2 {
+  font-family: Circular-Black;
+  text-align: left;
+  font-size: 20px;
+  padding-left: 100px;
+  padding-right: 130px;
+  padding-bottom: 100px;
+}
+
+.uni {
+  font-family: Circular-Black;
+  text-align: left;
+  font-size: 20px;
+  padding-left: 100px;
+}
