@@ -12,33 +12,41 @@ function Projects() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <Row>
+      <Row justify="space-between" align="middle">
         <Col md={6} sm={24}>
-          <Image src={logo} alt="logo" />
+          <Image src={logo} preview={false} alt="logo" />
           <div className={style.miniBioContainer}>
-            <div className={style.miniBio}>{t("miniBio")}</div>
-            <a href="mailto:progetti.rotondo@gmail.com">
-              progetti.rotondo@gmail.com
-            </a>
+            <div>
+              <div className={style.miniBio}>{t("miniBio")}</div>
+              <a href="mailto:progetti.rotondo@gmail.com">
+                progetti.rotondo@gmail.com
+              </a>
+            </div>
           </div>
         </Col>
-        <Col md={6} sm={24}>
-          <div className={style.image}>
-            <Image
-              style={{ border: "2px solid black" }}
-              alt={"Occhio, ranocchio, scarabocchio! (Eye, frog, doodle!)"}
-              src={project1_cover}
-            />
-          </div>
-        </Col>
-        <Col md={6} sm={24}>
-          <div className={style.image}>
-            <Image
-              style={{ border: "2px solid black" }}
-              alt={'Lucca Junior 2020 "Livio Sossi"'}
-              src={project2_cover}
-            />
-          </div>
+        <Col md={16} sm={24}>
+          <Row>
+            <Col md={8} sm={24}>
+              <div className={style.image}>
+                <Image
+                  preview={false}
+                  style={{ border: "2px solid black" }}
+                  alt={"Occhio, ranocchio, scarabocchio! (Eye, frog, doodle!)"}
+                  src={project1_cover}
+                />
+              </div>
+            </Col>
+            <Col md={8} sm={24}>
+              <div className={style.image}>
+                <Image
+                  preview={false}
+                  style={{ border: "2px solid black" }}
+                  alt={'Lucca Junior 2020 "Livio Sossi"'}
+                  src={project2_cover}
+                />
+              </div>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </div>
