@@ -1,17 +1,11 @@
 :global(.ant-card-body) {
-  padding: 0px 24px 24px 24px;
+  padding: 24px 24px 24px 24px;
 }
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 10px;
-  height: 100%;
-}
-
-.pageContainer {
-  padding-left: 30px;
-  padding-right: 30px;
 }
 
 @font-face {
@@ -28,26 +22,52 @@
   src: url("../../styles/fonts/Circular-Medium.otf") format("opentype");
 }
 
-.aboutMe1 {
-  font-family: Circular-Black;
-  text-align: left;
-  font-size: 20px;
-  padding-left: 100px;
-  padding-top: 100px;
-  padding-right: 100px;
+.contact {
+  margin: auto;
+  width: 50%;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 10px;
+    font-size: 17px;
+    text-align: left;
+  }
 }
-.aboutMe2 {
+
+.about {
+  margin: auto;
+  width: 60%;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    font-size: 14px;
+  }
+}
+
+.aboutTxt {
   font-family: Circular-Black;
-  text-align: left;
   font-size: 20px;
-  padding-left: 100px;
-  padding-right: 130px;
-  padding-bottom: 100px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 }
 
 .uni {
+  width: 60%;
   font-family: Circular-Black;
-  text-align: left;
   font-size: 20px;
-  padding-left: 100px;
+  padding-top: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 10px;
+  font-size: 20px;
 }
