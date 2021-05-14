@@ -1,10 +1,16 @@
 {
-  "miniBio": "llustrators collective comfortable 4-handed drawings Based in Italy",
+  "miniBio1": "llustrators collective",
+  "miniBio2": "comfortable 4-handed drawings",
+  "miniBio3": "based in Italy",
   "home": "HOME",
   "about": "ABOUT",
   "contact": "CONTACT",
   "aboutMe1": "Hi! We are Giada Franceschelli and Luca Tellurio two illustrators based in Romagna between Cervia and Rimini. ",
   "aboutMe2": "After studying Image Graphics and Illustration at the ISIA in Urbino, we started working on \"comfortable\" four-handed drawings as an authors couple. Together we are Rotondo. The project was born at the end of 2019 with the intent to find new solutions that would stimulate us on a formal and narrative level, combining our individual languages.",
   "uniBA": "BA in ABA Academy of fine Arts, Urbino",
-  "uniMA": "MA in Graphic Design-Illustration at ISIA, Urbino"
+  "uniMA": "MA in Graphic Design-Illustration at ISIA, Urbino",
+  "occhio_title": "Occhio, ranocchio, scarabocchio! (Eye, frog, doodle!)",
+  "occhio_desc": "Idea for a picture book project Drawings selected for 2021 Bologna Children's Book Fair Ilustrators Exhibition.",
+  "lucca_title": "Lucca Junior 2020 \"Livio Sossi\"",
+  "lucca_desc": " editorial award in collaboration with KITE Edizioni. Illustrations created starting from the text by Pierdomenico Baccalario."
 }

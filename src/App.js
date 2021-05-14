@@ -3,17 +3,18 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import "./App.css";
-import translationIT from "./locales/it";
+import translationIT from "./locales/en";
 import Homepage from "./pages/homepage";
+import ProjectImage from "./pages/projectImage";
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     resources: {
-      it: { translation: translationIT },
+      en: { translation: translationIT },
     },
-    lng: "it",
-    fallbackLng: "it",
+    lng: "en",
+    fallbackLng: "en",
     interpolation: {
       escapeValue: false,
     },
@@ -26,6 +27,7 @@ function App() {
     <div>
       <Switch>
         <Route exact path={`${path}/`} component={Homepage} />
+        <Route exact path={`${path}project/:name`} component={ProjectImage} />
       </Switch>
     </div>
   );

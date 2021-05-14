@@ -1,0 +1,22 @@
+@font-face {
+  font-family: Circular-Medium;
+  src: url("../../styles/fonts/Circular-Medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Circular-Black;
+  src: url("../../styles/fonts/Circular-Black.otf") format("opentype");
+}
+
+.container {
+  padding: 30px;
+}
+
+.title {
+  font-family: Circular-Black;
+  padding-bottom: 10px;
+}
+
+.description {
+  font-family: Circular-Medium;
+}
