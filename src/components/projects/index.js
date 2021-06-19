@@ -1,18 +1,35 @@
 import { Col, Image, Row } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 // @ts-ignore
 import logo from "../../images/LOGO.jpg";
-import project1_cover from "../../images/progetto1/occhio.jpg";
-import project2_cover from "../../images/progetto2/lucca.jpg";
+import { projectsThunk } from "../../redux/actions";
 import style from "./style.module.scss";
 
 function Projects() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const history = useHistory();
+  const projectsData = useSelector((state) => state.projects.projects);
+  const isReady = useSelector((state) => state.projects.isReady);
+  const error = useSelector((state) => state.projects.error);
+  const loading = useSelector((state) => state.projects.loading);
+
   const occhioProject = "occhio_ranocchio_scarabocchio";
   const luccaProject = "lucca";
+
+  if (loading === false) {
+    console.log(projectsData[0].images[0]);
+  }
+
+  useEffect(() => {
+    const projects = async () => {
+      await dispatch(projectsThunk());
+    };
+    projects();
+  }, [dispatch]);
 
   return (
     <div className={style.mainContainer}>
@@ -32,24 +49,47 @@ function Projects() {
         </Col>
         <Col md={18} sm={24}>
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-            <Col md={8} sm={24}>
-              <div
-                className={style.image}
-                onClick={() => {
-                  history.push(`/project/${occhioProject}`);
-                }}
-              >
-                <Image
-                  preview={false}
-                  alt={"Occhio, ranocchio, scarabocchio! (Eye, frog, doodle!)"}
-                  src={project1_cover}
-                />
-                <div className={style.imageDescription}>
-                  <div>{t("occhio_title")}</div>
+            {/* {loading === false &&
+              projectsData.map((project) => {
+                <Col md={8} sm={24}>
+                  <div
+                    className={style.image}
+                    onClick={() => {
+                      history.push(`/project/${occhioProject}`);
+                    }}
+                  >
+                    <Image
+                      preview={false}
+                      alt={project.title}
+                      src={project1_cover}
+                    />
+                    ;
+                    <div className={style.imageDescription}>
+                      <div>{t("occhio_title")}</div>
+                    </div>
+                  </div>
+                </Col>;
+              })} */}
+            {loading === false && (
+              <Col md={8} sm={24}>
+                <div
+                  className={style.image}
+                  onClick={() => {
+                    history.push(`/project/${occhioProject}`);
+                  }}
+                >
+                  <Image
+                    preview={false}
+                    alt={projectsData[0].title}
+                    src={projectsData[0].images[0]}
+                  />
+                  <div className={style.imageDescription}>
+                    <div>{projectsData[0].title}</div>
+                  </div>
                 </div>
-              </div>
-            </Col>
-            <Col md={8} sm={24}>
+              </Col>
+            )}
+            {/* <Col md={8} sm={24}>
               <div
                 className={style.image}
                 onClick={() => {
@@ -65,7 +105,7 @@ function Projects() {
                   <div>{t("lucca_title")}</div>
                 </div>
               </div>
-            </Col>
+            </Col> */}
           </Row>
         </Col>
       </Row>

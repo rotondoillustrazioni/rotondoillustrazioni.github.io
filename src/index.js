@@ -1,15 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import App from './App';
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { load, save } from "redux-localstorage-simple";
+import App from "./App";
 import ScrollToTop from "./components/routerScrollToTop";
+import reducers from "./redux/reducers";
+
+const store = configureStore({
+  reducer: reducers,
+  middleware: [save(), ...getDefaultMiddleware()],
+  preloadedState: load(),
+});
 
 ReactDOM.render(
-  <Router>
-  <ScrollToTop />
-  <Switch>
-      <Route path="/" component={App} />
-  </Switch>
-</Router>,
-  document.getElementById('root')
+  <Provider store={store}>
+    <Router>
+      <ScrollToTop />
+      <Switch>
+        <Route path="/" component={App} />
+      </Switch>
+    </Router>
+  </Provider>,
+  document.getElementById("root")
 );
