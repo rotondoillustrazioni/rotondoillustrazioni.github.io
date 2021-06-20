@@ -13,8 +13,6 @@ function Projects() {
   const dispatch = useDispatch();
   const history = useHistory();
   const projectsData = useSelector((state) => state.projects.projects);
-  const isReady = useSelector((state) => state.projects.isReady);
-  const error = useSelector((state) => state.projects.error);
   const loading = useSelector((state) => state.projects.loading);
   // if (loading === false) {
   // for (var key in projectsData) {
