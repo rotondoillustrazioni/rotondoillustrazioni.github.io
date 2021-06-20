@@ -109,12 +109,14 @@ function ProjectImage() {
                       projectData.images.map((e) => (
                         <div className={style.images}>
                           <Row key={e}>
-                            <Image
-                              key={e}
-                              preview={true}
-                              alt={projectData.title}
-                              src={e}
-                            />
+                            <Card loading={loading} bordered={false}>
+                              <Image
+                                key={e}
+                                preview={true}
+                                alt={projectData.title}
+                                src={e}
+                              />
+                            </Card>
                           </Row>
                         </div>
                       ))}

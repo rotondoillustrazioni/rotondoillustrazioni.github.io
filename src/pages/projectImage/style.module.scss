@@ -12,11 +12,18 @@
   padding-left: 150px;
   padding-right: 300px;
   padding-top: 100px;
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 }
 
 .images {
   padding-left: 50px;
   padding-bottom: 50px;
+  @media (max-width: 768px) {
+    padding-left: 0px;
+    padding-bottom: 50px;
+  }
 }
 
 .title {
@@ -30,6 +37,7 @@
 .description {
   font-size: 15px;
   font-family: Circular-Medium;
+  padding-bottom: 30px;
 }
 
 :global(.ant-card-body) {
@@ -72,6 +80,10 @@
 .menuContainer {
   padding-top: 30px;
   padding-right: 100px;
+  @media (max-width: 768px) {
+    padding-top: 0px;
+    padding-right: 10px;
+  }
 }
 
 @font-face {
