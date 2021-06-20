@@ -29,7 +29,11 @@ function Projects() {
 
   const prova = () => {
     let a;
-    if (loading === false && projectsData !== undefined) {
+    if (
+      loading === false &&
+      projectsData !== undefined &&
+      projectsData !== null
+    ) {
       const proj = Object.keys(projectsData).map((key) => [projectsData[key]]);
       a = proj.map((e) =>
         e.map((l) => (
