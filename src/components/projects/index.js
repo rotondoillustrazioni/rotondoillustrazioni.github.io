@@ -27,7 +27,7 @@ function Projects() {
   // projectsData.map((e) => e.images.map((p) => console.log(p)));
   // }
 
-  const prova = () => {
+  const showProjects = () => {
     let a;
     if (
       loading === false &&
@@ -89,7 +89,9 @@ function Projects() {
         </Col>
         <Col md={18} sm={24}>
           <Card loading={loading} bordered={false}>
-            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>{prova()}</Row>
+            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+              {showProjects()}
+            </Row>
           </Card>
         </Col>
       </Row>
