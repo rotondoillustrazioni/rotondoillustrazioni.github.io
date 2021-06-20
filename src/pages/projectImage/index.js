@@ -33,6 +33,9 @@ function ProjectImage() {
     }
   };
 
+  const condition =
+    loading === false || projectData !== null || projectData !== undefined;
+
   const showContent = () => {
     switch (menuSelected) {
       case "home":
@@ -105,7 +108,7 @@ function ProjectImage() {
                     </div>
                   </Col>
                   <Col md={16} sm={24}>
-                    {loading === false &&
+                    {condition &&
                       projectData.images.map((e) => (
                         <div className={style.images}>
                           <Row key={e}>
