@@ -1,127 +1,158 @@
-import { Col, Image, Row } from "antd";
-import React from "react";
+import { Card, Col, Image, Menu, Row } from "antd";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router";
-import project1_2 from "../../images/progetto1/2.jpg";
-import project1_3 from "../../images/progetto1/3.jpg";
-import project1_4 from "../../images/progetto1/4.jpg";
-import project1_5 from "../../images/progetto1/5.jpg";
-import project1_cover from "../../images/progetto1/occhio.jpg";
-import project2_2 from "../../images/progetto2/2.jpg";
-import project2_3 from "../../images/progetto2/3.jpg";
-import project2_4 from "../../images/progetto2/4.jpg";
-import project2_5 from "../../images/progetto2/5.png";
-import project2_6 from "../../images/progetto2/6.png";
-import project2_cover from "../../images/progetto2/lucca.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router";
+import { projectThunk } from "../../redux/actions";
 import style from "./style.module.scss";
 
 function ProjectImage() {
   const { t } = useTranslation();
-  const { name } = useParams();
+  const { id } = useParams();
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const [menuSelected, setMenuSelected] = useState();
+
+  const projectData = useSelector((state) => state.project.project);
+  const loading = useSelector((state) => state.project.loading);
+
+  useEffect(() => {
+    if (id !== undefined) {
+      const projects = async () => {
+        await dispatch(projectThunk({ id }));
+      };
+      projects();
+    }
+  }, [dispatch, id]);
+
+  const handleClick = (e) => {
+    if (e.key === "home") {
+      history.push("/");
+    } else {
+      setMenuSelected(e.key);
+    }
+  };
 
   const showContent = () => {
-    switch (name) {
-      case "occhio_ranocchio_scarabocchio":
+    switch (menuSelected) {
+      case "home":
+        return <></>;
+      case "about":
         return (
-          <div>
-            <Image preview={true} src={project1_cover} />
+          <div className={style.about}>
+            <Card className={style.card}>
+              <div className={style.aboutTxt}>{t("aboutMe1")}</div>
+              <div className={style.aboutTxt}>{t("aboutMe2")}</div>
+              <div className={style.uni}>
+                <div>{t("uniBA")}</div>
+                <div>{t("uniMA")}</div>
+              </div>
+            </Card>
           </div>
         );
-      case "lucca":
+      case "contact":
         return (
-          <div>
-            <Image preview={true} src={project2_cover} />
+          <div className={style.contact}>
+            <Card className={style.card}>
+              <div>
+                <div>Mail:</div>
+                <ul>
+                  <li>
+                    <a href="mailto:progetti.rotondo@gmail.com">
+                      {" "}
+                      progetti.rotondo@gmail.com
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <div>Instagram:</div>
+                <ul>
+                  <li>
+                    <a href="https://www.instagram.com/rotondo___/">
+                      {" "}
+                      rotondo___
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <div>Behance:</div>
+                <ul>
+                  <li>
+                    <a href="https://www.behance.net/rotondostudio/info">
+                      {" "}
+                      rotondostudio
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </Card>
           </div>
         );
       default:
-        return <div />;
-    }
-  };
-
-  const showOtherImages = () => {
-    switch (name) {
-      case "occhio_ranocchio_scarabocchio":
         return (
           <>
-            <Col md={6} sm={24}>
-              <Image preview={true} src={project1_2} />
-            </Col>
-            <Col md={6} sm={24}>
-              {" "}
-              <Image preview={true} src={project1_3} />
-            </Col>
-            <Col md={6} sm={24}>
-              {" "}
-              <Image preview={true} src={project1_4} />
-            </Col>
-            <Col md={6} sm={24}>
-              {" "}
-              <Image preview={true} src={project1_5} />
-            </Col>
+            {
+              <div className={style.container}>
+                <Row align="top" gutter={16}>
+                  <Col md={8} sm={24}>
+                    <div>
+                      <div className={style.title}>{projectData.title}</div>
+                      <div className={style.description}>
+                        {projectData.description}
+                      </div>
+                    </div>
+                  </Col>
+                  <Col md={16} sm={24}>
+                    {loading === false &&
+                      projectData.images.map((e) => (
+                        <div className={style.images}>
+                          <Row key={e}>
+                            <Image
+                              key={e}
+                              preview={true}
+                              alt={projectData.title}
+                              src={e}
+                            />
+                          </Row>
+                        </div>
+                      ))}
+                  </Col>
+                </Row>
+              </div>
+            }
           </>
         );
-      case "lucca":
-        return (
-          <>
-            <Col md={6} sm={24}>
-              <Image preview={true} src={project2_2} />
-            </Col>
-            <Col md={6} sm={24}>
-              {" "}
-              <Image preview={true} src={project2_3} />
-            </Col>
-            <Col md={6} sm={24}>
-              {" "}
-              <Image preview={true} src={project2_4} />
-            </Col>
-            <Col md={6} sm={24}>
-              {" "}
-              <Image preview={true} src={project2_5} />
-            </Col>
-            <Col md={6} sm={24}>
-              {" "}
-              <Image preview={true} src={project2_6} />
-            </Col>
-          </>
-        );
-      default:
-        return <div />;
-    }
-  };
-
-  const showDesc = () => {
-    switch (name) {
-      case "occhio_ranocchio_scarabocchio":
-        return (
-          <div>
-            <div className={style.title}>{t("occhio_title")}</div>
-            <div className={style.description}>{t("occhio_desc")}</div>
-          </div>
-        );
-      case "lucca":
-        return (
-          <div>
-            <div className={style.title}>{t("lucca_title")}</div>
-            <div className={style.description}>{t("lucca_desc")}</div>
-          </div>
-        );
-      default:
-        return <div />;
     }
   };
 
   return (
-    <div className={style.container}>
-      <Row justify="space-between" align="middle" gutter={16}>
-        <Col md={8} sm={24}>
-          {showDesc()}
+    <>
+      <Row>
+        <Col span={24}>
+          <div className={style.menuContainer}>
+            <Menu
+              onClick={handleClick}
+              mode="horizontal"
+              style={{ textAlign: "right" }}
+              selectedKeys={[menuSelected]}
+            >
+              <Menu.Item className={style.menu} key="home">
+                {t("home")}
+              </Menu.Item>
+              <Menu.Item className={style.menu} key="about">
+                {t("about")}
+              </Menu.Item>
+              <Menu.Item className={style.menu} key="contact">
+                {t("contact")}
+              </Menu.Item>
+            </Menu>
+          </div>
         </Col>
-        <Col md={14} sm={24}>
-          {showContent()}
-        </Col>
-        {showOtherImages()}
       </Row>
-    </div>
+      {showContent()}
+    </>
   );
 }
 export default ProjectImage;

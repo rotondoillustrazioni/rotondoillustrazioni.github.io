@@ -27,7 +27,7 @@ function App() {
     <div>
       <Switch>
         <Route exact path={`${path}/`} component={Homepage} />
-        <Route exact path={`${path}project/:name`} component={ProjectImage} />
+        <Route exact path={`${path}project/:id`} component={ProjectImage} />
       </Switch>
     </div>
   );

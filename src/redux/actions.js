@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getProjects } from "../api";
+import { getProject, getProjects } from "../api";
 
 export const projectsThunk = createAsyncThunk("projects", getProjects);
+export const projectThunk = createAsyncThunk("project", getProject);

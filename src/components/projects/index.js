@@ -1,4 +1,4 @@
-import { Col, Image, Row } from "antd";
+import { Card, Col, Image, Row } from "antd";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,13 +16,41 @@ function Projects() {
   const isReady = useSelector((state) => state.projects.isReady);
   const error = useSelector((state) => state.projects.error);
   const loading = useSelector((state) => state.projects.loading);
+  // if (loading === false) {
+  // for (var key in projectsData) {
+  //   if (projectsData.hasOwnProperty(key)) {
+  //     console.log(key + " -> " + projectsData[key].title);
+  //   }
+  // }
+  // const a = Object.keys(projectsData).map((key) => [projectsData[key]]);
+  // console.log(a.map((e) => e.map((l) => l.title)));
+  // projectsData.map((e) => e.images.map((p) => console.log(p)));
+  // }
 
-  const occhioProject = "occhio_ranocchio_scarabocchio";
-  const luccaProject = "lucca";
-
-  if (loading === false) {
-    console.log(projectsData[0].images[0]);
-  }
+  const prova = () => {
+    let a;
+    if (loading === false && projectsData !== undefined) {
+      const proj = Object.keys(projectsData).map((key) => [projectsData[key]]);
+      a = proj.map((e) =>
+        e.map((l) => (
+          <Col md={8} sm={24} key={l._id}>
+            <div
+              className={style.image}
+              onClick={() => {
+                history.push(`/project/${l._id}`);
+              }}
+            >
+              <Image preview={false} alt={l.title} src={l.images[0]} />
+              <div className={style.imageDescription}>
+                <div>{l.title}</div>
+              </div>
+            </div>
+          </Col>
+        ))
+      );
+    }
+    return a;
+  };
 
   useEffect(() => {
     const projects = async () => {
@@ -30,6 +58,14 @@ function Projects() {
     };
     projects();
   }, [dispatch]);
+
+  // let proj = [];
+  // useEffect(() => {
+  //   if (loading === false) {
+  //     proj = Object.keys(projectsData).map((key) => [projectsData[key]]);
+  //     console.log(proj.map((e) => e.map((l) => l.title)));
+  //   }
+  // }, [projectsData]);
 
   return (
     <div className={style.mainContainer}>
@@ -48,65 +84,9 @@ function Projects() {
           </div>
         </Col>
         <Col md={18} sm={24}>
-          <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-            {/* {loading === false &&
-              projectsData.map((project) => {
-                <Col md={8} sm={24}>
-                  <div
-                    className={style.image}
-                    onClick={() => {
-                      history.push(`/project/${occhioProject}`);
-                    }}
-                  >
-                    <Image
-                      preview={false}
-                      alt={project.title}
-                      src={project1_cover}
-                    />
-                    ;
-                    <div className={style.imageDescription}>
-                      <div>{t("occhio_title")}</div>
-                    </div>
-                  </div>
-                </Col>;
-              })} */}
-            {loading === false && (
-              <Col md={8} sm={24}>
-                <div
-                  className={style.image}
-                  onClick={() => {
-                    history.push(`/project/${occhioProject}`);
-                  }}
-                >
-                  <Image
-                    preview={false}
-                    alt={projectsData[0].title}
-                    src={projectsData[0].images[0]}
-                  />
-                  <div className={style.imageDescription}>
-                    <div>{projectsData[0].title}</div>
-                  </div>
-                </div>
-              </Col>
-            )}
-            {/* <Col md={8} sm={24}>
-              <div
-                className={style.image}
-                onClick={() => {
-                  history.push(`/project/${luccaProject}`);
-                }}
-              >
-                <Image
-                  preview={false}
-                  alt={'Lucca Junior 2020 "Livio Sossi"'}
-                  src={project2_cover}
-                />
-                <div className={style.imageDescription}>
-                  <div>{t("lucca_title")}</div>
-                </div>
-              </div>
-            </Col> */}
-          </Row>
+          <Card loading={loading} bordered={false}>
+            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>{prova()}</Row>
+          </Card>
         </Col>
       </Row>
     </div>

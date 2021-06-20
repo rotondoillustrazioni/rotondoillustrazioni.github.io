@@ -9,16 +9,121 @@
 }
 
 .container {
-  padding: 30px;
+  padding-left: 150px;
+  padding-right: 300px;
+  padding-top: 100px;
+}
+
+.images {
+  padding-left: 50px;
+  padding-bottom: 50px;
 }
 
 .title {
   font-family: Peace-Sans;
   font-size: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid black;
+  margin-bottom: 30px;
 }
 
 .description {
   font-size: 15px;
   font-family: Circular-Medium;
+}
+
+:global(.ant-card-body) {
+  padding: 24px 24px 24px 24px;
+}
+
+:global(.ant-menu-horizontal) {
+  border-bottom: 0px;
+}
+
+:global(.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item) {
+  font-size: 13px;
+}
+
+:global(.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item) {
+  padding: 0 !important;
+  margin: 5px !important;
+  color: gray;
+}
+
+:global(.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected) {
+  color: black !important;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 10px;
+}
+
+@font-face {
+  font-family: Circular-Black;
+  src: url("../../styles/fonts/Circular-Black.otf") format("opentype");
+}
+
+.menu {
+  font-family: Circular-Black;
+}
+
+.menuContainer {
+  padding-top: 30px;
+  padding-right: 100px;
+}
+
+@font-face {
+  font-family: Circular-Medium;
+  src: url("../../styles/fonts/Circular-Medium.otf") format("opentype");
+}
+
+.contact {
+  margin: auto;
+  width: 50%;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 10px;
+    font-size: 17px;
+    text-align: left;
+  }
+}
+
+.about {
+  margin: auto;
+  width: 60%;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    font-size: 14px;
+  }
+}
+
+.aboutTxt {
+  font-family: Circular-Black;
+  font-size: 20px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+.uni {
+  font-family: Circular-Black;
+  font-size: 20px;
+  padding-top: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 10px;
+  font-size: 20px;
 }

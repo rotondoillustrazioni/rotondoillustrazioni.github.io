@@ -6,3 +6,10 @@ export const getProjects = async () => {
   );
   return response.data;
 };
+
+export const getProject = async ({ id }) => {
+  const response = await axios.get(
+    `https://rotondo-server.herokuapp.com/project/${id}`
+  );
+  return response.data;
+};
