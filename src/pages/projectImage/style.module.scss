@@ -62,6 +62,10 @@
   color: black !important;
   border-bottom: 2px solid black !important;
 }
+:global(.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover) {
+  color: black !important;
+  border-bottom: 2px solid black !important;
+}
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
