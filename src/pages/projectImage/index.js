@@ -108,12 +108,14 @@ function ProjectImage() {
               <div className={style.container}>
                 <Row align="top" gutter={16}>
                   <Col md={8} sm={24}>
-                    <div>
-                      <div className={style.title}>{projectData.title}</div>
-                      <div className={style.description}>
-                        {projectData.description}
+                    {condition && (
+                      <div>
+                        <div className={style.title}>{projectData.title}</div>
+                        <div className={style.description}>
+                          {projectData.description}
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </Col>
                   <Col md={16} sm={24}>
                     {condition &&

@@ -58,8 +58,9 @@
   color: gray;
 }
 
-:global(.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected) {
+:global(.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected) {
   color: black !important;
+  border-bottom: 2px solid black !important;
 }
 
 .card {
