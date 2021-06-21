@@ -37,7 +37,9 @@ function ProjectImage() {
     loading === false &&
     projectData !== null &&
     projectData !== undefined &&
-    projectData.images !== undefined;
+    projectData.images !== undefined &&
+    projectData.description !== undefined &&
+    projectData.title !== undefined;
 
   const showContent = () => {
     switch (menuSelected) {
