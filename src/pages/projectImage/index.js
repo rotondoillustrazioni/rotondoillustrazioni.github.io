@@ -110,10 +110,12 @@ function ProjectImage() {
                   <Col md={8} sm={24}>
                     {condition && (
                       <div>
-                        <div className={style.title}>{projectData.title}</div>
-                        <div className={style.description}>
-                          {projectData.description}
-                        </div>
+                        <Card loading={loading} bordered={false}>
+                          <div className={style.title}>{projectData.title}</div>
+                          <div className={style.description}>
+                            {projectData.description}
+                          </div>
+                        </Card>
                       </div>
                     )}
                   </Col>
