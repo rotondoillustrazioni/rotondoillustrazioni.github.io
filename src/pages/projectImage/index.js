@@ -38,7 +38,10 @@ function ProjectImage() {
     projectData !== null &&
     projectData !== undefined &&
     projectData.images !== undefined &&
+    projectData.images !== null &&
     projectData.description !== undefined &&
+    projectData.description !== null &&
+    projectData.title !== null &&
     projectData.title !== undefined;
 
   const showContent = () => {
