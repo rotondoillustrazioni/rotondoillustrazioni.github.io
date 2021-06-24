@@ -67,6 +67,14 @@
   border-bottom: 2px solid black !important;
 }
 
+:global(.anticon-rotate-right) {
+  display: none;
+}
+
+:global(.anticon-rotate-left) {
+  display: none;
+}
+
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
