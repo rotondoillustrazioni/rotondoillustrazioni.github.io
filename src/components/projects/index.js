@@ -57,7 +57,11 @@ function Projects() {
     <div className={style.mainContainer}>
       <Row style={{ justifyContent: "center" }}>
         <Col md={6} sm={24}>
-          <Avatar shape="square" size={264} src={<Image src={logo} />} />
+          <Avatar
+            shape="square"
+            size={264}
+            src={<Image preview={false} src={logo} />}
+          />
           <div className={style.miniBioContainer}>
             <div>
               <div className={style.miniBio}>{t("miniBio1")}</div>
