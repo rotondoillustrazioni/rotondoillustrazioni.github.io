@@ -44,6 +44,13 @@ function ProjectImage() {
     projectData.title !== null &&
     projectData.title !== undefined;
 
+  const condition2 =
+    loading === false &&
+    projectData !== null &&
+    projectData !== undefined &&
+    projectData.videos !== undefined &&
+    projectData.videos !== null;
+
   const showContent = () => {
     switch (menuSelected) {
       case "home":
@@ -108,33 +115,46 @@ function ProjectImage() {
               <div className={style.container}>
                 <Row align="top" gutter={16}>
                   <Col md={8} sm={24}>
-                    {condition && (
-                      <div>
-                        <Card loading={loading} bordered={false}>
+                    <Card loading={loading} bordered={false}>
+                      {condition && (
+                        <div>
                           <div className={style.title}>{projectData.title}</div>
                           <div className={style.description}>
                             {projectData.description}
                           </div>
-                        </Card>
-                      </div>
-                    )}
+                        </div>
+                      )}
+                    </Card>
                   </Col>
                   <Col md={16} sm={24}>
-                    {condition &&
-                      projectData.images.map((e) => (
-                        <div className={style.images}>
-                          <Row key={e}>
-                            <Card loading={loading} bordered={false}>
-                              <Image
-                                key={e}
-                                preview={true}
-                                alt={projectData.title}
-                                src={e}
-                              />
-                            </Card>
-                          </Row>
-                        </div>
-                      ))}
+                    <Image.PreviewGroup>
+                      <Card loading={loading} bordered={false}>
+                        {condition &&
+                          projectData.images.map((e) => (
+                            <div className={style.images}>
+                              <Row key={e}>
+                                <Image
+                                  key={e}
+                                  preview={true}
+                                  alt={projectData.title}
+                                  src={e}
+                                />
+                              </Row>
+                            </div>
+                          ))}
+                        {condition2 &&
+                          projectData.videos.map((e) => (
+                            <div className={style.images}>
+                              <Row key={e}>
+                                <video width="100%" controls>
+                                  <source src={e} type="video/mp4" />
+                                  <source src={e} type="video/mov" />
+                                </video>
+                              </Row>
+                            </div>
+                          ))}
+                      </Card>
+                    </Image.PreviewGroup>
                   </Col>
                 </Row>
               </div>

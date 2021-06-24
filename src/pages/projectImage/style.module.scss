@@ -9,10 +9,10 @@
 }
 
 .container {
-  padding-left: 150px;
-  padding-right: 300px;
+  padding-left: 195px;
+  padding-right: 240px;
   padding-top: 100px;
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     padding: 20px;
   }
 }
