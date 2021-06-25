@@ -35,7 +35,13 @@ function Projects() {
               >
                 <Image preview={false} alt={l.title} src={l.images[0]} />
                 <div className={style.imageDescription}>
-                  <div>{`${l.title} ${l.subtitle}`}</div>
+                  <div>
+                    {l.subtitle !== "" ? (
+                      <div>{`${l.title} - ${l.subtitle}`}</div>
+                    ) : (
+                      <div>{l.title}</div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
