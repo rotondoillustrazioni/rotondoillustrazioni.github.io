@@ -9,6 +9,17 @@
   @media (max-width: 768px) {
     padding: 10px;
   }
+  @media (max-width: 600px) {
+    padding: 10px;
+  }
+  @media (max-width: 1024px) {
+    padding: 10px;
+  }
+}
+
+.rowC {
+  text-align: "center" !important;
+  justify-content: center;
 }
 
 .miniBio {
@@ -20,6 +31,9 @@
   width: 100%;
   font-size: 16px;
   @media (max-width: 768px) {
+    justify-content: center;
+  }
+  @media (max-width: 600px) {
     justify-content: center;
   }
 }
