@@ -65,11 +65,10 @@ function Projects() {
         <Col sm={24} md={24} lg={6}>
           <Row className={style.rowC}>
             <div className={style.rowC}>
-              <Col xs={24} sm={24} md={24}>
+              <Col xs={24} sm={24} md={24} style={{ textAlign: "center" }}>
                 <Avatar
-                  style={{ textAlign: "center" }}
                   shape="square"
-                  size={264}
+                  size={164}
                   src={<Image preview={false} src={logo} />}
                 />
               </Col>
