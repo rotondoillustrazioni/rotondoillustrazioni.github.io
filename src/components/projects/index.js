@@ -33,7 +33,7 @@ function Projects() {
                   history.push(`/project/${l._id}`);
                 }}
               >
-                <Image preview={false} alt={l.title} src={l.images[0]} />
+                <Image preview={false} alt={l.title} src={l.images[0]}></Image>
                 <div className={style.imageDescription}>
                   <div>
                     {l.subtitle !== "" ? (
@@ -93,7 +93,7 @@ function Projects() {
         <Col sm={24} md={24} lg={18}>
           <div className={style.projectsContainer}>
             <Card loading={loading} bordered={false}>
-              <Row>{showProjects()}</Row>
+              <Row align="middle">{showProjects()}</Row>
             </Card>
           </div>
         </Col>
