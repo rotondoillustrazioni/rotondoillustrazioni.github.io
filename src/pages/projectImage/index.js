@@ -118,7 +118,10 @@ function ProjectImage() {
                     <Card loading={loading} bordered={false}>
                       {condition && (
                         <div>
-                          <div className={style.title}>{projectData.title}</div>
+                          <div className={style.title}>
+                            <div> {projectData.title} </div>
+                            <div> {projectData.subtitle}</div>
+                          </div>
                           <div className={style.description}>
                             {projectData.description}
                           </div>
