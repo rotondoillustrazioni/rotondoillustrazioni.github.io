@@ -23,7 +23,7 @@ function Header() {
             <Card className={style.card}>
               <Row>
                 <Col>
-                  <Row style={{ justifyContent: "center", padding: "5px" }}>
+                  <Row style={{ justifyContent: "center" }}>
                     <Avatar shape="square" size={164} alt="gif" src={gif} />
                   </Row>
                   <Row>
