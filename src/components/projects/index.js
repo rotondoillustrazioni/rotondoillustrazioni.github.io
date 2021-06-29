@@ -33,7 +33,7 @@ function Projects() {
                   history.push(`/project/${l._id}`);
                 }}
               >
-                <Image preview={false} alt={l.title} src={l.images[0]}></Image>
+                <Image preview={false} alt={l.title} src={l.images[0]} />
                 <div className={style.imageDescription}>
                   <div>
                     {l.subtitle !== "" ? (

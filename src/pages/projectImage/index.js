@@ -1,8 +1,9 @@
-import { Card, Col, Image, Menu, Row } from "antd";
+import { Avatar, Card, Col, Image, Menu, Row } from "antd";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
+import gif from "../../images/gif.gif";
 import { projectThunk } from "../../redux/actions";
 import style from "./style.module.scss";
 
@@ -59,12 +60,21 @@ function ProjectImage() {
         return (
           <div className={style.about}>
             <Card className={style.card}>
-              <div className={style.aboutTxt}>{t("aboutMe1")}</div>
-              <div className={style.aboutTxt}>{t("aboutMe2")}</div>
-              <div className={style.uni}>
-                <div>{t("uniBA")}</div>
-                <div>{t("uniMA")}</div>
-              </div>
+              <Row>
+                <Col>
+                  <Row style={{ justifyContent: "center" }}>
+                    <Avatar shape="square" size={164} alt="gif" src={gif} />
+                  </Row>
+                  <Row>
+                    <div className={style.aboutTxt}>{t("aboutMe1")}</div>
+                    <div className={style.aboutTxt}>{t("aboutMe2")}</div>
+                    <div className={style.uni}>
+                      <div>{t("uniBA")}</div>
+                      <div>{t("uniMA")}</div>
+                    </div>
+                  </Row>
+                </Col>
+              </Row>
             </Card>
           </div>
         );
