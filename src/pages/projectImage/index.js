@@ -133,7 +133,7 @@ function ProjectImage() {
                     <Image.PreviewGroup>
                       <Card loading={loading} bordered={false}>
                         {condition &&
-                          projectData.images.map((e) => (
+                          projectData.images.slice(1).map((e) => (
                             <div className={style.images}>
                               <Row key={e}>
                                 <Image
