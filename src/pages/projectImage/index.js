@@ -1,12 +1,11 @@
 import { Avatar, Card, Col, Image, Menu, Row } from "antd";
-import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
 import gif from "../../images/gif.gif";
+import { projectThunk } from "../../redux/actions";
 import style from "./style.module.scss";
 
 function ProjectImage() {
@@ -15,28 +14,18 @@ function ProjectImage() {
   const history = useHistory();
   const dispatch = useDispatch();
   const [menuSelected, setMenuSelected] = useState();
-  const [projectImages, setProjectImages] = useState([]);
 
   const projectData = useSelector((state) => state.project.project);
   const loading = useSelector((state) => state.project.loading);
 
-  const getImages = () => {
-    Axios.get(`https://rotondo-server.herokuapp.com/project/${id}`).then(
-      (res) => {
-        setProjectImages(res.data);
-      }
-    );
-  };
-
   useEffect(() => {
     if (id !== undefined) {
-      // const projects = async () => {
-      // await dispatch(projectThunk({ id }));
-      // };
-      // projects();
-      getImages();
+      const projects = async () => {
+        await dispatch(projectThunk({ id }));
+      };
+      projects();
     }
-  }, [id]);
+  }, [dispatch, id]);
 
   const handleClick = (e) => {
     if (e.key === "home") {
@@ -46,32 +35,23 @@ function ProjectImage() {
     }
   };
 
-  // if (!projectImages && projectImages.images === undefined) {
-  //   console.log("non ciao");
-  // } else {
-  //   console.log("ciao");
-  //   if (projectImages.images) {
-  //     console.log(projectImages.images.map((o) => o));
-  //   }
-  // }
+  const condition =
+    loading === false &&
+    projectData !== null &&
+    projectData !== undefined &&
+    projectData.images !== undefined &&
+    projectData.images !== null &&
+    projectData.description !== undefined &&
+    projectData.description !== null &&
+    projectData.title !== null &&
+    projectData.title !== undefined;
 
-  const condition = !projectImages;
-  // loading === false &&
-  // projectData !== null &&
-  // projectData !== undefined &&
-  // projectData.images !== undefined &&
-  // projectData.images !== null &&
-  // projectData.description !== undefined &&
-  // projectData.description !== null &&
-  // projectData.title !== null &&
-  // projectData.title !== undefined;
-
-  const condition2 = !projectImages;
-  // loading === false &&
-  // projectData !== null &&
-  // projectData !== undefined &&
-  // projectData.videos !== undefined &&
-  // projectData.videos !== null;
+  const condition2 =
+    loading === false &&
+    projectData !== null &&
+    projectData !== undefined &&
+    projectData.videos !== undefined &&
+    projectData.videos !== null;
 
   const showContent = () => {
     switch (menuSelected) {
@@ -147,7 +127,7 @@ function ProjectImage() {
                 <Row align="top" gutter={16}>
                   <Col md={8} sm={24}>
                     <Card loading={loading} bordered={false}>
-                      {!condition && (
+                      {condition && (
                         <div>
                           <div className={style.title}>
                             <div> {projectData.title} </div>
@@ -163,36 +143,23 @@ function ProjectImage() {
                   <Col md={16} sm={24}>
                     <Image.PreviewGroup>
                       <Card loading={loading} bordered={false}>
-                        {projectImages.images &&
-                          projectImages.images.slice(1).map((e) => (
-                            <LazyLoadComponent
-                              placeholder={
-                                <div className={style.images}>
-                                  <Row key={e}>
-                                    <Image
-                                      key={e}
-                                      preview={true}
-                                      alt={projectImages.title}
-                                      src={projectImages.images_lowres[0]}
-                                    />
-                                  </Row>
-                                </div>
-                              }
-                            >
-                              <div className={style.images}>
-                                <Row key={e}>
+                        {condition &&
+                          projectData.images.slice(1).map((e) => (
+                            <div className={style.images}>
+                              <Row key={e}>
+                                <LazyLoadComponent>
                                   <Image
                                     key={e}
                                     preview={true}
-                                    alt={projectImages.title}
+                                    alt={projectData.title}
                                     src={e}
                                   />
-                                </Row>
-                              </div>
-                            </LazyLoadComponent>
+                                </LazyLoadComponent>
+                              </Row>
+                            </div>
                           ))}
-                        {projectImages &&
-                          projectImages.videos.map((e) => (
+                        {condition2 &&
+                          projectData.videos.map((e) => (
                             <div className={style.images}>
                               <Row key={e}>
                                 <video width="100%" controls>

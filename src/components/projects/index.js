@@ -1,16 +1,20 @@
 import { Avatar, Card, Col, Image, Row } from "antd";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 // @ts-ignore
 import logo from "../../images/LOGO.jpg";
 import { projectsThunk } from "../../redux/actions";
-import LazyImage from "../lazyImage";
 import style from "./style.module.scss";
 
 function Projects() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const projectsData = useSelector((state) => state.projects.projects);
   const loading = useSelector((state) => state.projects.loading);
 
@@ -21,7 +25,37 @@ function Projects() {
       projectsData !== null
     ) {
       const proj = Object.keys(projectsData).map((key) => [projectsData[key]]);
-      return proj.map((e) => e.map((l) => <LazyImage data={l} />));
+      return proj.map((e) =>
+        e.map((data) => (
+          <Col md={8} sm={24} key={data._id}>
+            <div className={style.imageContainer}>
+              <div
+                className={style.image}
+                onClick={() => {
+                  history.push(`/project/${data._id}`);
+                }}
+              >
+                <LazyLoadImage
+                  alt={data.title}
+                  effect="blur"
+                  src={data.images[0]}
+                  width="250px"
+                  height="250px"
+                />
+                <div className={style.imageDescription}>
+                  <div>
+                    {data.subtitle !== "" ? (
+                      <div>{`${data.title} - ${data.subtitle}`}</div>
+                    ) : (
+                      <div>{data.title}</div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Col>
+        ))
+      );
     }
   };
 
