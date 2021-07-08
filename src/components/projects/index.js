@@ -1,4 +1,4 @@
-import { Avatar, Card, Col, Image, Row } from "antd";
+import { Avatar, Card, Col, Image, Row, Skeleton } from "antd";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -28,38 +28,36 @@ function Projects() {
       return proj.map((e) =>
         e.map((data) => (
           <Col md={8} sm={24} key={data._id}>
-            <Card loading={loading} bordered={false}>
-              <div className={style.imageContainer}>
-                <div
-                  className={style.image}
-                  onClick={() => {
-                    history.push(`/project/${data._id}`);
-                  }}
-                >
+            <div className={style.imageContainer}>
+              <div
+                className={style.image}
+                onClick={() => {
+                  history.push(`/project/${data._id}`);
+                }}
+              >
+                <div>
+                  {/* <Image key={data._id} alt={data.title} src={data.images[0]} /> */}
+                  <LazyLoadImage
+                    effect="blur"
+                    key={data._id}
+                    alt={data.title}
+                    scrollPosition={{ x: 0, y: 0 }}
+                    src={data.images[0]}
+                    width="100%"
+                    height="auto"
+                  />
+                </div>
+                <div className={style.imageDescription}>
                   <div>
-                    {/* <Image key={data._id} alt={data.title} src={data.images[0]} /> */}
-                    <LazyLoadImage
-                      effect="blur"
-                      key={data._id}
-                      alt={data.title}
-                      scrollPosition={{ x: 0, y: 0 }}
-                      src={data.images[0]}
-                      width="100%"
-                      height="auto"
-                    />
-                  </div>
-                  <div className={style.imageDescription}>
-                    <div>
-                      {data.subtitle !== "" ? (
-                        <div>{`${data.title} - ${data.subtitle}`}</div>
-                      ) : (
-                        <div>{data.title}</div>
-                      )}
-                    </div>
+                    {data.subtitle !== "" ? (
+                      <div>{`${data.title} - ${data.subtitle}`}</div>
+                    ) : (
+                      <div>{data.title}</div>
+                    )}
                   </div>
                 </div>
               </div>
-            </Card>
+            </div>
           </Col>
         ))
       );
@@ -76,7 +74,7 @@ function Projects() {
   return (
     <div className={style.mainContainer}>
       <Row style={{ justifyContent: "center" }}>
-        <Col sm={24} md={24} lg={6}>
+        <Col sm={24} md={24} lg={6} style={{ width: "100%" }}>
           <Row className={style.rowC}>
             <div className={style.rowC}>
               <Col xs={24} sm={24} md={24} style={{ textAlign: "center" }}>
@@ -104,9 +102,11 @@ function Projects() {
           </Row>
         </Col>
         <Col sm={24} md={24} lg={18}>
-          <div className={style.projectsContainer}>
-            <Row align="middle">{showProjects()}</Row>
-          </div>
+          <Card bordered={false}>
+            <Skeleton loading={loading} avatar active>
+              <Row align="middle">{showProjects()}</Row>
+            </Skeleton>
+          </Card>
         </Col>
       </Row>
     </div>

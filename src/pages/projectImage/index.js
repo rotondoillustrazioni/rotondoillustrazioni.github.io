@@ -119,7 +119,7 @@ function ProjectImage() {
             {
               <div className={style.container}>
                 <Row align="top" gutter={16}>
-                  <Col md={8} sm={24}>
+                  <Col md={8} sm={24} style={{ width: "100%" }}>
                     <Card loading={loading} bordered={false}>
                       {condition && (
                         <div>
@@ -134,7 +134,7 @@ function ProjectImage() {
                       )}
                     </Card>
                   </Col>
-                  <Col md={16} sm={24}>
+                  <Col md={16} sm={24} style={{ width: "100%" }}>
                     <Image.PreviewGroup>
                       <Card loading={loading} bordered={false}>
                         <LazyLoadComponent>
