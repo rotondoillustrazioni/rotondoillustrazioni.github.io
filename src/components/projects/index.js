@@ -1,4 +1,4 @@
-import { Avatar, Card, Col, Image, Row, Skeleton } from "antd";
+import { Avatar, Card, Col, Image, Row, Spin } from "antd";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -103,9 +103,9 @@ function Projects() {
         </Col>
         <Col sm={24} md={24} lg={18}>
           <Card bordered={false}>
-            <Skeleton loading={loading} avatar active>
+            <Spin spinning={loading}>
               <Row align="middle">{showProjects()}</Row>
-            </Skeleton>
+            </Spin>
           </Card>
         </Col>
       </Row>
