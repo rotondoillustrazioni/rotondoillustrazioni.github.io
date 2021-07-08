@@ -27,37 +27,39 @@ function Projects() {
       const proj = Object.keys(projectsData).map((key) => [projectsData[key]]);
       return proj.map((e) =>
         e.map((data) => (
-          <Col md={8} sm={24} /* key={data._id} */>
-            <div className={style.imageContainer}>
-              <div
-                className={style.image}
-                onClick={() => {
-                  history.push(`/project/${data._id}`);
-                }}
-              >
-                <div>
-                  {/* <Image key={data._id} alt={data.title} src={data.images[0]} /> */}
-                  <LazyLoadImage
-                    effect="blur"
-                    key={data._id}
-                    alt={data.title}
-                    scrollPosition={{ x: 0, y: 0 }}
-                    src={data.images[0]}
-                    width="100%"
-                    height="auto"
-                  />
-                </div>
-                <div className={style.imageDescription}>
+          <Col md={8} sm={24} key={data._id}>
+            <Card loading={loading} bordered={false}>
+              <div className={style.imageContainer}>
+                <div
+                  className={style.image}
+                  onClick={() => {
+                    history.push(`/project/${data._id}`);
+                  }}
+                >
                   <div>
-                    {data.subtitle !== "" ? (
-                      <div>{`${data.title} - ${data.subtitle}`}</div>
-                    ) : (
-                      <div>{data.title}</div>
-                    )}
+                    {/* <Image key={data._id} alt={data.title} src={data.images[0]} /> */}
+                    <LazyLoadImage
+                      effect="blur"
+                      key={data._id}
+                      alt={data.title}
+                      scrollPosition={{ x: 0, y: 0 }}
+                      src={data.images[0]}
+                      width="100%"
+                      height="auto"
+                    />
+                  </div>
+                  <div className={style.imageDescription}>
+                    <div>
+                      {data.subtitle !== "" ? (
+                        <div>{`${data.title} - ${data.subtitle}`}</div>
+                      ) : (
+                        <div>{data.title}</div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Card>
           </Col>
         ))
       );
@@ -103,9 +105,7 @@ function Projects() {
         </Col>
         <Col sm={24} md={24} lg={18}>
           <div className={style.projectsContainer}>
-            <Card loading={loading} bordered={false}>
-              <Row align="middle">{showProjects()}</Row>
-            </Card>
+            <Row align="middle">{showProjects()}</Row>
           </div>
         </Col>
       </Row>

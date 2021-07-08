@@ -47,13 +47,6 @@ function ProjectImage() {
     projectData.title !== null &&
     projectData.title !== undefined;
 
-  const condition2 =
-    loading === false &&
-    projectData !== null &&
-    projectData !== undefined &&
-    projectData.videos !== undefined &&
-    projectData.videos !== null;
-
   const showContent = () => {
     switch (menuSelected) {
       case "home":
@@ -147,7 +140,7 @@ function ProjectImage() {
                         <LazyLoadComponent>
                           {condition &&
                             projectData.images.slice(1).map((e) => (
-                              <div className={style.images}>
+                              <div className={style.images} key={e}>
                                 <Row key={e}>
                                   <VideoOrImage
                                     e={e}

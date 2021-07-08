@@ -8,7 +8,7 @@ function VideoOrImage({ e, title }) {
   return (
     <div>
       {condition ? (
-        <video width="100%" controls>
+        <video key={e} width="100%" controls>
           <source src={e} type="video/mp4" />
           <source src={e} type="video/mov" />
         </video>
