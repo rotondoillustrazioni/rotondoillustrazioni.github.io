@@ -26,12 +26,6 @@ function Projects() {
     ) {
       const proj = Object.keys(projectsData).map((key) => [projectsData[key]]);
       return proj.map((e) =>
-        //   <G
-        //   images={e.map((data) => (
-        //     <Image key={data._id} alt={data.title} src={data.images[0]} />
-        //   ))}
-        //   scrollPosition={{ x: 0, y: 0 }}
-        // />
         e.map((data) => (
           <Col md={8} sm={24} /* key={data._id} */>
             <div className={style.imageContainer}>
