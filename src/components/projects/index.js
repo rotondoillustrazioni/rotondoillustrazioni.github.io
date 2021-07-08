@@ -26,8 +26,14 @@ function Projects() {
     ) {
       const proj = Object.keys(projectsData).map((key) => [projectsData[key]]);
       return proj.map((e) =>
+        //   <G
+        //   images={e.map((data) => (
+        //     <Image key={data._id} alt={data.title} src={data.images[0]} />
+        //   ))}
+        //   scrollPosition={{ x: 0, y: 0 }}
+        // />
         e.map((data) => (
-          <Col md={8} sm={24} key={data._id}>
+          <Col md={8} sm={24} /* key={data._id} */>
             <div className={style.imageContainer}>
               <div
                 className={style.image}
@@ -35,13 +41,18 @@ function Projects() {
                   history.push(`/project/${data._id}`);
                 }}
               >
-                <LazyLoadImage
-                  alt={data.title}
-                  effect="blur"
-                  src={data.images[0]}
-                  width="250px"
-                  height="250px"
-                />
+                <div>
+                  {/* <Image key={data._id} alt={data.title} src={data.images[0]} /> */}
+                  <LazyLoadImage
+                    effect="blur"
+                    key={data._id}
+                    alt={data.title}
+                    scrollPosition={{ x: 0, y: 0 }}
+                    src={data.images[0]}
+                    width="100%"
+                    height="auto"
+                  />
+                </div>
                 <div className={style.imageDescription}>
                   <div>
                     {data.subtitle !== "" ? (

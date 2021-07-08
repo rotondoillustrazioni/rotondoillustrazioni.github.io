@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
+import VideoOrImage from "../../components/videoOrImage";
 import gif from "../../images/gif.gif";
 import { projectThunk } from "../../redux/actions";
 import style from "./style.module.scss";
@@ -143,32 +144,19 @@ function ProjectImage() {
                   <Col md={16} sm={24}>
                     <Image.PreviewGroup>
                       <Card loading={loading} bordered={false}>
-                        {condition &&
-                          projectData.images.slice(1).map((e) => (
-                            <div className={style.images}>
-                              <Row key={e}>
-                                <LazyLoadComponent>
-                                  <Image
-                                    key={e}
-                                    preview={true}
-                                    alt={projectData.title}
-                                    src={e}
+                        <LazyLoadComponent>
+                          {condition &&
+                            projectData.images.slice(1).map((e) => (
+                              <div className={style.images}>
+                                <Row key={e}>
+                                  <VideoOrImage
+                                    e={e}
+                                    title={projectData.title}
                                   />
-                                </LazyLoadComponent>
-                              </Row>
-                            </div>
-                          ))}
-                        {condition2 &&
-                          projectData.videos.map((e) => (
-                            <div className={style.images}>
-                              <Row key={e}>
-                                <video width="100%" controls>
-                                  <source src={e} type="video/mp4" />
-                                  <source src={e} type="video/mov" />
-                                </video>
-                              </Row>
-                            </div>
-                          ))}
+                                </Row>
+                              </div>
+                            ))}
+                        </LazyLoadComponent>
                       </Card>
                     </Image.PreviewGroup>
                   </Col>
