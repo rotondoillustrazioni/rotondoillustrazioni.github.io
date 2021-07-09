@@ -36,7 +36,6 @@ function Projects() {
                 }}
               >
                 <div>
-                  {/* <Image key={data._id} alt={data.title} src={data.images[0]} /> */}
                   <LazyLoadImage
                     effect="blur"
                     key={data._id}
