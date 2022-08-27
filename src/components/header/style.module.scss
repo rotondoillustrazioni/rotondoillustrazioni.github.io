@@ -17,6 +17,10 @@
   font-family: Circular-Black;
 }
 
+:global(.ant-menu > ::after) {
+  border-bottom: none !important;
+}
+
 @font-face {
   font-family: Circular-Medium;
   src: url("../../styles/fonts/Circular-Medium.otf") format("opentype");

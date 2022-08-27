@@ -91,12 +91,14 @@
 }
 
 .menuContainer {
-  padding-top: 30px;
-  padding-right: 100px;
+  padding-top: 0px;
+  padding-right: 50px;
   @media (max-width: 768px) {
     padding-top: 0px;
     padding-right: 10px;
   }
+  display: flex;
+  justify-content: right;
 }
 
 @font-face {

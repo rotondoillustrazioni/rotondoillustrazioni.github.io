@@ -91,7 +91,7 @@ function Header() {
           <Menu
             onClick={handleClick}
             mode="horizontal"
-            style={{ textAlign: "center" }}
+            style={{ display: "flex", justifyContent: "center" }}
             selectedKeys={[menuSelected]}
           >
             <Menu.Item className={style.menu} key="home">
