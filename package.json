@@ -1,7 +1,7 @@
 {
   "name": "rotondo-website",
   "version": "0.1.0",
-  "homepage": "https://vitlinda.github.io/rotondo-website/",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.0",
