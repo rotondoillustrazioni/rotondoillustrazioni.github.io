@@ -8,7 +8,7 @@
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^14.0.0",
-    "antd": "^4.15.1",
+    "antd": "^5.0.0",
     "axios": "^1.0.0",
     "i18next": "^22.0.0",
     "react": "^17.0.2",
