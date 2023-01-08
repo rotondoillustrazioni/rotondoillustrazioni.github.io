@@ -18,6 +18,13 @@ function Projects() {
   const projectsData = useSelector((state) => state.projects.projects);
   const loading = useSelector((state) => state.projects.loading);
 
+  useEffect(() => {
+    const projects = async () => {
+      await dispatch(projectsThunk());
+    };
+    projects();
+  }, [dispatch]);
+
   const showProjects = () => {
     if (
       loading === false &&
@@ -62,13 +69,6 @@ function Projects() {
       );
     }
   };
-
-  useEffect(() => {
-    const projects = async () => {
-      await dispatch(projectsThunk());
-    };
-    projects();
-  }, [dispatch]);
 
   return (
     <div className={style.mainContainer}>

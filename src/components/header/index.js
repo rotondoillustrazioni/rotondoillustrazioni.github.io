@@ -1,87 +1,16 @@
-import { Avatar, Card, Col, Menu, Row } from "antd";
+import { Col, Menu, Row } from "antd";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import gif from "../../images/gif.gif";
-import Projects from "../projects";
 import style from "./style.module.scss";
+import { useHistory } from "react-router";
 
 function Header() {
   const { t } = useTranslation();
-  const [menuSelected, setMenuSelected] = useState("home");
+  const [menuSelected, setMenuSelected] = useState("");
+  const history = useHistory();
 
   const handleClick = (e) => {
     setMenuSelected(e.key);
-  };
-
-  const showContent = () => {
-    switch (menuSelected) {
-      case "home":
-        return <Projects />;
-      case "about":
-        return (
-          <div className={style.about}>
-            <Card className={style.card}>
-              <Row>
-                <Col>
-                  <Row style={{ justifyContent: "center" }}>
-                    <Avatar shape="square" size={164} alt="gif" src={gif} />
-                  </Row>
-                  <Row>
-                    <div className={style.aboutTxt}>{t("aboutMe1")}</div>
-                    <div className={style.aboutTxt}>{t("aboutMe2")}</div>
-                    <div className={style.uni}>
-                      <div>{t("uniBA")}</div>
-                      <div>{t("uniMA")}</div>
-                    </div>
-                  </Row>
-                </Col>
-              </Row>
-            </Card>
-          </div>
-        );
-      case "contact":
-        return (
-          <div className={style.contact}>
-            <Card className={style.card}>
-              <div>
-                <div>Mail:</div>
-                <ul>
-                  <li>
-                    <a href="mailto:progetti.rotondo@gmail.com">
-                      {" "}
-                      progetti.rotondo@gmail.com
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <div>Instagram:</div>
-                <ul>
-                  <li>
-                    <a href="https://www.instagram.com/rotondo___/">
-                      {" "}
-                      rotondo___
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <div>Behance:</div>
-                <ul>
-                  <li>
-                    <a href="https://www.behance.net/rotondostudio/info">
-                      {" "}
-                      rotondostudio
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </Card>
-          </div>
-        );
-      default:
-        return <div />;
-    }
   };
 
   return (
@@ -94,19 +23,36 @@ function Header() {
             style={{ display: "flex", justifyContent: "center" }}
             selectedKeys={[menuSelected]}
           >
-            <Menu.Item className={style.menu} key="home">
+            <Menu.Item
+              className={style.menu}
+              key="home"
+              onClick={() => {
+                history.push("/");
+              }}
+            >
               {t("home")}
             </Menu.Item>
-            <Menu.Item className={style.menu} key="about">
+            <Menu.Item
+              className={style.menu}
+              key="aboutus"
+              onClick={() => {
+                history.push("aboutus");
+              }}
+            >
               {t("about")}
             </Menu.Item>
-            <Menu.Item className={style.menu} key="contact">
+            <Menu.Item
+              className={style.menu}
+              key="contacts"
+              onClick={() => {
+                history.push("contacts");
+              }}
+            >
               {t("contact")}
             </Menu.Item>
           </Menu>
         </Col>
       </Row>
-      {showContent()}
     </div>
   );
 }

@@ -1,0 +1,12 @@
+.contact {
+    margin: auto;
+    width: 50%;
+    padding: 20px;
+  
+    @media (max-width: 768px) {
+      width: 100%;
+      padding: 10px;
+      font-size: 17px;
+      text-align: left;
+    }
+  }
