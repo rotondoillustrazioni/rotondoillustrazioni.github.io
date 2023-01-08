@@ -5,7 +5,7 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 import "./App.css";
 import translationIT from "./locales/en";
 import Homepage from "./pages/homepage";
-import ProjectImage from "./pages/projectImage";
+import ProjectPage from "./pages/projectpage";
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
@@ -27,7 +27,7 @@ function App() {
     <div>
       <Switch>
         <Route exact path={`${path}/`} component={Homepage} />
-        <Route exact path={`${path}project/:id`} component={ProjectImage} />
+        <Route exact path={`${path}project/:id`} component={ProjectPage} />
       </Switch>
     </div>
   );

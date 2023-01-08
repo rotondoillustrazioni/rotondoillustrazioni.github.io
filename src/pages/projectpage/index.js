@@ -9,7 +9,7 @@ import gif from "../../images/gif.gif";
 import { projectThunk } from "../../redux/actions";
 import style from "./style.module.scss";
 
-function ProjectImage() {
+function ProjectPage() {
   const { t } = useTranslation();
   const { id } = useParams();
   const history = useHistory();
@@ -21,10 +21,10 @@ function ProjectImage() {
 
   useEffect(() => {
     if (id !== undefined) {
-      const projects = async () => {
+      const projectImages = async () => {
         await dispatch(projectThunk({ id }));
       };
-      projects();
+      projectImages();
     }
   }, [dispatch, id]);
 
@@ -189,4 +189,4 @@ function ProjectImage() {
     </>
   );
 }
-export default ProjectImage;
+export default ProjectPage;
