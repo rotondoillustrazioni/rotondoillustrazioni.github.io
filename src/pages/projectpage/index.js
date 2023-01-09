@@ -36,8 +36,10 @@ function ProjectPage() {
     projectData.title !== undefined;
 
   return (
-    <>
-      <Header />
+    <div>
+      <div className={style.header}>
+        <Header />
+      </div>
       <div className={style.container}>
         <Row align="top" gutter={16}>
           <Col md={8} sm={24} style={{ width: "100%" }}>
@@ -73,7 +75,7 @@ function ProjectPage() {
           </Col>
         </Row>
       </div>
-    </>
+    </div>
   );
 }
 export default ProjectPage;

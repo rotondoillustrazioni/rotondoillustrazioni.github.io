@@ -1,11 +1,26 @@
-:global(.ant-card-body) {
-  padding: 24px 24px 24px 24px;
+// :global(.ant-card-body) {
+//   padding: 24px 24px 24px 24px;
+// }
+
+:global(.ant-menu-horizontal) {
+  border-bottom: 0px;
 }
 
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  border-radius: 10px;
+:global(.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item) {
+  font-size: 13px;
+  padding: 0 !important;
+  margin: 5px !important;
+  color: gray;
+}
+
+:global(.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected) {
+  color: black !important;
+  border-bottom: 2px solid black !important;
+}
+
+:global(.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover) {
+  color: black !important;
+  border-bottom: 2px solid black !important;
 }
 
 @font-face {
@@ -25,8 +40,6 @@
   font-family: Circular-Medium;
   src: url("../../styles/fonts/Circular-Medium.otf") format("opentype");
 }
-
-
 
 .uni {
   font-family: Circular-Black;

@@ -2,6 +2,7 @@ import { Col, Menu, Row } from "antd";
 import { useTranslation } from "react-i18next";
 import style from "./style.module.scss";
 import { useHistory } from "react-router";
+import React from "react";
 
 function Header(props) {
   const { t } = useTranslation();
@@ -15,13 +16,21 @@ function Header(props) {
     }
   };
 
+  const menuPosition = () => {
+    if (props.projectPage) {
+      return "right";
+    } else {
+      return "center";
+    }
+  };
+
   return (
     <div>
       <Row>
         <Col span={24}>
           <Menu
             mode="horizontal"
-            style={{ display: "flex", justifyContent: "center" }}
+            style={{ display: "flex", justifyContent: `${menuPosition()}` }}
             selectedKeys={[`${selectKey()}`]}
           >
             <Menu.Item

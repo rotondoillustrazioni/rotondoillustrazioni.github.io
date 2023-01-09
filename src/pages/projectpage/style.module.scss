@@ -8,6 +8,15 @@
   src: url("../../styles/fonts/Peace-Sans.otf") format("opentype");
 }
 
+.header {
+   float: right;
+   padding-right: 50px;
+   @media (max-width: 1024px) {
+    float: none;
+    padding-right: 0px;
+  }
+}
+
 .container {
   padding-left: 195px;
   padding-right: 240px;
@@ -40,33 +49,6 @@
   padding-bottom: 30px;
 }
 
-:global(.ant-card-body) {
-  padding: 24px 24px 24px 24px;
-}
-
-:global(.ant-menu-horizontal) {
-  border-bottom: 0px;
-}
-
-:global(.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item) {
-  font-size: 13px;
-}
-
-:global(.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item) {
-  padding: 0 !important;
-  margin: 5px !important;
-  color: gray;
-}
-
-:global(.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected) {
-  color: black !important;
-  border-bottom: 2px solid black !important;
-}
-:global(.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover) {
-  color: black !important;
-  border-bottom: 2px solid black !important;
-}
-
 :global(.anticon-rotate-right) {
   display: none;
 }
@@ -75,30 +57,9 @@
   display: none;
 }
 
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  border-radius: 10px;
-}
-
 @font-face {
   font-family: Circular-Black;
   src: url("../../styles/fonts/Circular-Black.otf") format("opentype");
-}
-
-.menu {
-  font-family: Circular-Black;
-}
-
-.menuContainer {
-  padding-top: 0px;
-  padding-right: 50px;
-  @media (max-width: 768px) {
-    padding-top: 0px;
-    padding-right: 10px;
-  }
-  display: flex;
-  justify-content: right;
 }
 
 @font-face {
@@ -106,52 +67,3 @@
   src: url("../../styles/fonts/Circular-Medium.otf") format("opentype");
 }
 
-.contact {
-  margin: auto;
-  width: 50%;
-  padding: 20px;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    padding: 10px;
-    font-size: 17px;
-    text-align: left;
-  }
-}
-
-.about {
-  margin: auto;
-  width: 60%;
-  padding: 20px;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    font-size: 14px;
-  }
-}
-
-.aboutTxt {
-  padding-top: 30px;
-  font-family: Circular-Black;
-  font-size: 20px;
-  @media (max-width: 768px) {
-    font-size: 14px;
-  }
-}
-
-.uni {
-  font-family: Circular-Black;
-  font-size: 20px;
-  padding-top: 30px;
-
-  @media (max-width: 768px) {
-    font-size: 14px;
-  }
-}
-
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  border-radius: 10px;
-  font-size: 20px;
-}
