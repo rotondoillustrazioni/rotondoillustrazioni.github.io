@@ -3,10 +3,10 @@ import style from "./style.module.scss";
 import { Card } from "antd";
 import Header from "../../components/header";
 
-function Contacts() {
+function Contacts(props) {
   return (
     <>
-      <Header />
+      <Header {...props} />
       <div className={style.contact}>
         <Card className={style.card}>
           <div>

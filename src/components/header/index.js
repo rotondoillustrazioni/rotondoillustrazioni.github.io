@@ -1,16 +1,18 @@
 import { Col, Menu, Row } from "antd";
-import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import style from "./style.module.scss";
 import { useHistory } from "react-router";
 
-function Header() {
+function Header(props) {
   const { t } = useTranslation();
-  const [menuSelected, setMenuSelected] = useState("");
   const history = useHistory();
 
-  const handleClick = (e) => {
-    setMenuSelected(e.key);
+  const selectKey = () => {
+    if (Object.keys(props).length === 0) {
+      return "";
+    } else {
+      return props.location.pathname.split("/")[1] || "home";
+    }
   };
 
   return (
@@ -18,10 +20,9 @@ function Header() {
       <Row>
         <Col span={24}>
           <Menu
-            onClick={handleClick}
             mode="horizontal"
             style={{ display: "flex", justifyContent: "center" }}
-            selectedKeys={[menuSelected]}
+            selectedKeys={[`${selectKey()}`]}
           >
             <Menu.Item
               className={style.menu}
@@ -36,7 +37,7 @@ function Header() {
               className={style.menu}
               key="aboutus"
               onClick={() => {
-                history.push("aboutus");
+                history.push("/aboutus");
               }}
             >
               {t("about")}
@@ -45,7 +46,7 @@ function Header() {
               className={style.menu}
               key="contacts"
               onClick={() => {
-                history.push("contacts");
+                history.push("/contacts");
               }}
             >
               {t("contact")}

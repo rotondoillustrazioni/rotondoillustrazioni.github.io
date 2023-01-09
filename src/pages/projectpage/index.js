@@ -1,21 +1,16 @@
-import { Avatar, Card, Col, Image, Menu, Row } from "antd";
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { Card, Col, Image, Row } from "antd";
+import React, { useEffect } from "react";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router";
+import { useParams } from "react-router";
 import VideoOrImage from "../../components/videoOrImage";
-import gif from "../../images/gif.gif";
 import { projectThunk } from "../../redux/actions";
 import style from "./style.module.scss";
 import Header from "../../components/header";
 
 function ProjectPage() {
-  const { t } = useTranslation();
   const { id } = useParams();
-  const history = useHistory();
   const dispatch = useDispatch();
-  const [menuSelected, setMenuSelected] = useState();
 
   const projectData = useSelector((state) => state.project.project);
   const loading = useSelector((state) => state.project.loading);
@@ -28,14 +23,6 @@ function ProjectPage() {
       projectImages();
     }
   }, [dispatch, id]);
-
-  const handleClick = (e) => {
-    if (e.key === "home") {
-      history.push("/");
-    } else {
-      setMenuSelected(e.key);
-    }
-  };
 
   const condition =
     loading === false &&

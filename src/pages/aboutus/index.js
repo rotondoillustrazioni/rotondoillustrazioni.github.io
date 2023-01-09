@@ -5,12 +5,12 @@ import { useTranslation } from "react-i18next";
 import gif from "../../images/gif.gif";
 import Header from "../../components/header";
 
-function AboutUs() {
+function AboutUs(props) {
   const { t } = useTranslation();
 
   return (
     <>
-      <Header />
+      <Header {...props} />
       <div className={style.about}>
         <Card className={style.card}>
           <Row>
@@ -22,8 +22,8 @@ function AboutUs() {
                 <div className={style.aboutTxt}>{t("aboutMe1")}</div>
                 <div className={style.aboutTxt}>{t("aboutMe2")}</div>
                 <div className={style.uni}>
-                  <div>{t("uniBA")}</div>
-                  <div>{t("uniMA")}</div>
+                  <div className={style.aboutTxt}>{t("uniBA")}</div>
+                  <div className={style.aboutUni}>{t("uniMA")}</div>
                 </div>
               </Row>
             </Col>
