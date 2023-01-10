@@ -57,3 +57,27 @@
   border-radius: 10px;
   font-size: 20px;
 }
+
+.it {
+  padding-right: 7px!important;
+  padding-left: 5px !important;
+  border-right: 1px solid black;
+}
+
+
+:global(.ant-menu-overflow-item.ant-menu-item.ant-menu-item-selected.ant-menu-item-only-child:nth-of-type(4)) {
+  border-bottom: 0px !important
+}
+
+:global(.ant-menu-overflow-item.ant-menu-item.ant-menu-item-selected.ant-menu-item-only-child:nth-of-type(5)) {
+  border-bottom: 0px !important
+}
+
+:global(.ant-menu-overflow-item.ant-menu-item.ant-menu-item-active.ant-menu-item-only-child:nth-of-type(4)) {
+  border-bottom: 0px !important
+}
+
+:global(.ant-menu-overflow-item.ant-menu-item.ant-menu-item-active.ant-menu-item-only-child:nth-of-type(5)) {
+  border-bottom: 0px !important
+}
+

@@ -25,9 +25,9 @@ function MiniBio() {
                 <div className={style.miniBio}>{t("miniBio2")}</div>
                 <div className={style.miniBio}>{t("miniBio3")}</div>
                 <div className={style.miniBio}>
-                  <a href="mailto:progetti.rotondo@gmail.com">
+                  {/* <a href="mailto:progetti.rotondo@gmail.com">
                     progetti.rotondo@gmail.com
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>

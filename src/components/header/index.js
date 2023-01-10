@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import style from "./style.module.scss";
 import { useHistory } from "react-router";
 import React from "react";
+import i18next from "i18next";
 
 function Header(props) {
   const { t } = useTranslation();
@@ -31,7 +32,7 @@ function Header(props) {
           <Menu
             mode="horizontal"
             style={{ display: "flex", justifyContent: `${menuPosition()}` }}
-            selectedKeys={[`${selectKey()}`]}
+            selectedKeys={[`${selectKey()}`, `${i18next.language}`]}
           >
             <Menu.Item
               className={style.menu}
@@ -59,6 +60,22 @@ function Header(props) {
               }}
             >
               {t("contact")}
+            </Menu.Item>
+            <Menu.Item
+              key="it"
+              onClick={() => {
+                i18next.changeLanguage("it");
+              }}
+            >
+              <div className={style.it}>IT</div>
+            </Menu.Item>
+            <Menu.Item
+              key="en"
+              onClick={() => {
+                i18next.changeLanguage("en");
+              }}
+            >
+              EN
             </Menu.Item>
           </Menu>
         </Col>

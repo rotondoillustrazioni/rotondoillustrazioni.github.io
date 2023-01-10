@@ -3,7 +3,8 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import "./App.css";
-import translationIT from "./locales/en";
+import translationIT from "./locales/it";
+import translationEN from "./locales/en";
 import Homepage from "./pages/homepage";
 import ProjectPage from "./pages/projectpage";
 import Contacts from "./pages/contacts";
@@ -13,7 +14,8 @@ i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     resources: {
-      en: { translation: translationIT },
+      en: { translation: translationEN },
+      it: { translation: translationIT },
     },
     lng: "en",
     fallbackLng: "en",
