@@ -1,6 +1,5 @@
 import { Card, Col, Row, Spin } from "antd";
 import React, { useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +9,6 @@ import { projectsThunk } from "../../redux/actions";
 import style from "./style.module.scss";
 
 function Projects() {
-  const { t } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
 
