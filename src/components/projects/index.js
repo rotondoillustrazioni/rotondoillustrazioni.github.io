@@ -68,12 +68,16 @@ function Projects() {
   };
 
   return (
-    <div className={style.mainContainer}>
-      <Card bordered={false}>
+    <div>
+      {/* <Card  bordered={false}> */}
+      <div className={style.mainContainer}>
         <Spin spinning={loading}>
-          <Row align="middle">{showProjects()}</Row>
+          <Row className="projects" align="middle">
+            {showProjects()}
+          </Row>
         </Spin>
-      </Card>
+      </div>
+      {/* </Card> */}
     </div>
   );
 }

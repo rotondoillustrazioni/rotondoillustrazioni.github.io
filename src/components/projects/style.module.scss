@@ -6,15 +6,26 @@
 .mainContainer {
   // padding-left: 100px;
   // padding-right: 50px;
+  padding: 2%;
+  height: 100%;
   @media (max-width: 768px) {
     padding: 10px;
+   
   }
   @media (max-width: 600px) {
     padding: 10px;
+
   }
   @media (max-width: 1024px) {
     padding: 10px;
+    .affix {
+      display: none;
+    }
   }
+}
+
+.projects {
+  height: max-content !important;
 }
 
 .rowC {

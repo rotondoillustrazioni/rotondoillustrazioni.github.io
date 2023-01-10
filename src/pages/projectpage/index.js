@@ -1,4 +1,4 @@
-import { Card, Col, Image, Row } from "antd";
+import { Affix, Card, Col, Image, Row } from "antd";
 import React, { useEffect } from "react";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import VideoOrImage from "../../components/videoOrImage";
 import { projectThunk } from "../../redux/actions";
 import style from "./style.module.scss";
 import Header from "../../components/header";
+import { BrowserView, MobileView } from "react-device-detect";
 
 function ProjectPage() {
   const { id } = useParams();
@@ -46,13 +47,28 @@ function ProjectPage() {
             <Card loading={loading} bordered={false}>
               {condition && (
                 <div>
-                  <div className={style.title}>
-                    <div> {projectData.title} </div>
-                    <div> {projectData.subtitle}</div>
-                  </div>
-                  <div className={style.description}>
-                    {projectData.description}
-                  </div>
+                  <BrowserView>
+                    <Affix offsetTop={120}>
+                      <div className={style.title}>
+                        <div> {projectData.title} </div>
+                        <div> {projectData.subtitle}</div>
+                      </div>
+                      <div className={style.description}>
+                        {projectData.description}
+                      </div>
+                    </Affix>
+                  </BrowserView>
+                  <MobileView>
+                    <div>
+                      <div className={style.title}>
+                        <div> {projectData.title} </div>
+                        <div> {projectData.subtitle}</div>
+                      </div>
+                      <div className={style.description}>
+                        {projectData.description}
+                      </div>
+                    </div>
+                  </MobileView>
                 </div>
               )}
             </Card>
