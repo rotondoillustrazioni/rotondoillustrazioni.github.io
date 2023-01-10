@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/rotondoillustrazioni.github.io/static/css/main.ac0a4e1d.css",
+    "main.js": "/rotondoillustrazioni.github.io/static/js/main.105c8dcf.js",
+    "static/media/gif.gif": "/rotondoillustrazioni.github.io/static/media/gif.c19cdd3030be19f5a6df.gif",
+    "static/media/LOGO.jpg": "/rotondoillustrazioni.github.io/static/media/LOGO.d8beb1836b21a5f42672.jpg",
+    "static/media/Peace-Sans.otf": "/rotondoillustrazioni.github.io/static/media/Peace-Sans.f59a8de8357e6c25d47c.otf",
+    "static/media/Circular-Black.otf": "/rotondoillustrazioni.github.io/static/media/Circular-Black.3a2a518532ace60287e5.otf",
+    "static/media/Circular-Medium.otf": "/rotondoillustrazioni.github.io/static/media/Circular-Medium.0a617b877b0e6cd5413f.otf",
+    "index.html": "/rotondoillustrazioni.github.io/index.html",
+    "static/media/index.less": "/rotondoillustrazioni.github.io/static/media/index.512735b3dccd7d4b3088.less",
+    "main.ac0a4e1d.css.map": "/rotondoillustrazioni.github.io/static/css/main.ac0a4e1d.css.map",
+    "main.105c8dcf.js.map": "/rotondoillustrazioni.github.io/static/js/main.105c8dcf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ac0a4e1d.css",
+    "static/js/main.105c8dcf.js"
+  ]
+}
