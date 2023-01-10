@@ -1,0 +1,22 @@
+:global(.ant-btn-primary) {
+    background-color: black !important;
+    border-color: black;
+  }
+
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10%;
+}
+
+.loginForm {
+    max-width: 300px;
+  }
+  .loginFormForgot {
+    float: right;
+  }
+  .loginFormButton {
+    width: 100%;
+  }

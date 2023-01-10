@@ -9,6 +9,7 @@ import Homepage from "./pages/homepage";
 import ProjectPage from "./pages/projectpage";
 import Contacts from "./pages/contacts";
 import AboutUs from "./pages/aboutus";
+import Login from "./pages/login";
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
@@ -34,6 +35,7 @@ function App() {
         <Route exact path={`${path}project/:id`} component={ProjectPage} />
         <Route exact path={`${path}contacts`} component={Contacts} />
         <Route exact path={`${path}aboutus`} component={AboutUs} />
+        <Route exact path={`${path}login`} component={Login} />
       </Switch>
     </div>
   );
