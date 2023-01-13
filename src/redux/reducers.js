@@ -1,8 +1,46 @@
 import { createReducer, createSlice } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import { projectsThunk, projectThunk } from "./actions";
+import { projectsThunk, projectThunk, loginThunk } from "./actions";
 
 const mainReducer = createReducer({}, {});
+
+const authSlice = createSlice({
+  name: "auth",
+  initialState: { loading: false, loggedIn: false, token: null, error: null },
+  reducers: {
+    logout(state) {
+      state.loggedIn = false;
+      state.token = null;
+    },
+    cleanUpError(state) {
+      state.error = null;
+    },
+  },
+  extraReducers: {
+    // @ts-ignore
+    [loginThunk.pending]: (state, action) => {
+      state.loading = true;
+      state.loggedIn = false;
+      state.token = null;
+      state.error = null;
+    },
+    // @ts-ignore
+    [loginThunk.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.loggedIn = true;
+      state.token = action.payload.token;
+      state.error = null;
+    },
+    // @ts-ignore
+    [loginThunk.rejected]: (state, action) => {
+      state.loading = false;
+      state.loggedIn = false;
+      state.token = null;
+      state.error = action.error;
+    },
+  },
+});
+export const { logout, cleanUpError } = authSlice.actions;
 
 const projectsSlice = createSlice({
   name: "projects",
@@ -86,4 +124,5 @@ export default combineReducers({
   main: mainReducer,
   projects: projectsSlice.reducer,
   project: projectSlice.reducer,
+  auth: authSlice.reducer,
 });

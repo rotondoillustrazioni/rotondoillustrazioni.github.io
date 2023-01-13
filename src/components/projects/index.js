@@ -1,4 +1,4 @@
-import { Card, Col, Row, Spin } from "antd";
+import { Col, Row, Spin } from "antd";
 import React, { useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
