@@ -1,28 +1,3 @@
-// :global(.ant-card-body) {
-//   padding: 24px 24px 24px 24px;
-// }
-
-:global(.ant-menu-horizontal) {
-    border-bottom: 0px;
-  }
-  
-  :global(.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item) {
-    font-size: 13px;
-    padding: 0 !important;
-    margin: 5px !important;
-    color: gray;
-  }
-  
-  :global(.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected) {
-    color: black !important;
-    border-bottom: 2px solid black !important;
-  }
-  
-  :global(.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover) {
-    color: black !important;
-    border-bottom: 2px solid black !important;
-  }
-  
   @font-face {
     font-family: Circular-Black;
     src: url("../../styles/fonts/Circular-Black.otf") format("opentype");
@@ -30,10 +5,6 @@
   
   .menu {
     font-family: Circular-Black;
-  }
-  
-  :global(.ant-menu > ::after) {
-    border-bottom: none !important;
   }
   
   @font-face {
@@ -56,4 +27,12 @@
     transition: 0.3s;
     border-radius: 10px;
     font-size: 20px;
+  }
+
+  .rightSideMenuItem{
+    // doesn't work
+    font-family: Circular-Black;
+    position: "absolute";
+    top: 0;
+    right: 0;
   }

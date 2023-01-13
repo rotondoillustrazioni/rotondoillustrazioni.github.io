@@ -13,6 +13,7 @@ import IllustratorsHome from "./pages/illustratorspages/illustratorshome";
 import Login from "./pages/login";
 import { useSelector } from "react-redux";
 import React from "react";
+import IllustratorsProfile from "./pages/illustratorspages/illustratorsprofile";
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
@@ -43,6 +44,11 @@ function App() {
           exact
           path={`${path}illustrators-home`}
           component={IllustratorsHome}
+        />
+        <PrivateRoute
+          exact
+          path={`${path}illustrators-profile`}
+          component={IllustratorsProfile}
         />
         <Route exact path={`${path}/`} component={Homepage} />
         <Route exact path={`${path}project/:id`} component={ProjectPage} />

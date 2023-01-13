@@ -29,25 +29,36 @@ function IllustratorsHeader(props) {
             selectedKeys={[`${selectKey()}`]}
           >
             <Menu.Item className={style.menu} key="projects" onClick={() => {}}>
-              Progetti
-            </Menu.Item>
-            <Menu.Item className={style.menu} key="" onClick={() => {}}>
-              Bio e Contatti
+              PROGETTI
             </Menu.Item>
             <Menu.Item
               className={style.menu}
               key="notifications"
               onClick={() => {}}
             >
-              Notifiche
+              NOTIFICHE
             </Menu.Item>
-            <Menu.Item className={style.menu} key="profile" onClick={() => {}}>
-              Profilo
+            <Menu.Item
+              className={style.menu}
+              key="profile"
+              onClick={() => {
+                history.push("/illustrators-profile");
+              }}
+            >
+              PROFILO
+            </Menu.Item>
+            <Menu.Item
+              className={style.rightSideMenuItem}
+              key="logout"
+              onClick={() => {
+                dispatch(logout());
+              }}
+            >
+              Logout
             </Menu.Item>
           </Menu>
         </Col>
       </Row>
-      <Button onClick={() => dispatch(logout())}>Logout</Button>
     </div>
   );
 }
