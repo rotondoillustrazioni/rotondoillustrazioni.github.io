@@ -40,7 +40,7 @@ function IllustratorsProfile(props) {
                 <Col className={style.col} sm={24} md={24} lg={20}>
                   <TextArea
                     rows={4}
-                    autoSize={{ minRows: 6, maxRows: 6 }}
+                    autoSize={{ minRows: 7, maxRows: 7 }}
                     placeholder="Testo in italiano"
                     defaultValue={
                       t("aboutMe1") + t("aboutMe2") + t("uniBA") + t("uniMA")
