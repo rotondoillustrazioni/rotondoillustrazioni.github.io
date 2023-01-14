@@ -1,9 +1,9 @@
-import { default as React } from "react";
+import { default as React, useState } from "react";
 import style from "./style.module.scss";
 import gif from "../../../images/gif.gif";
-
+import { useTranslation } from "react-i18next";
 import IllustratorsHeader from "../../../components/illustratorsheader";
-import { Input, Avatar, Button, Row, Col, Card } from "antd";
+import { Input, Avatar, Button, Row, Col, Card, Radio } from "antd";
 import {
   InstagramOutlined,
   BehanceOutlined,
@@ -11,35 +11,83 @@ import {
 } from "@ant-design/icons";
 import TextArea from "antd/lib/input/TextArea";
 
-function IllustratorsProfile() {
+function IllustratorsProfile(props) {
+  const { t } = useTranslation();
+
+  const [radioValue, setRadioValue] = useState(1);
+
+  const onRadioChange = (e) => {
+    setRadioValue(e.target.value);
+  };
+
   return (
     <div>
-      <IllustratorsHeader />
+      <IllustratorsHeader {...props} />
       <div className={style.container}>
         <Card className={style.card}>
           <Row className={style.row}>
-            <Col col={24} className={style.col}>
-              <span className={style.title}>Modifica biografia e contatti</span>
-              <Row className={style.row}>
-                <Col span={4}>
-                  <Avatar shape="square" size={100} alt="gif" src={gif} />
+            <Col className={style.outerCol} span={24}>
+              <div className={style.title}>MODIFICA BIOGRAFIA E CONTATTI</div>
+              <Row style={{ paddingTop: "10px" }}>
+                <Col className={style.col} sm={24} md={24} lg={4}>
+                  <Avatar
+                    className={style.avatar}
+                    shape="square"
+                    alt="gif"
+                    src={gif}
+                  />
                 </Col>
-                <Col span={20}>
-                  <TextArea rows={4} autoSize={{ minRows: 6, maxRows: 6 }} />
+                <Col className={style.col} sm={24} md={24} lg={20}>
+                  <TextArea
+                    rows={4}
+                    autoSize={{ minRows: 6, maxRows: 6 }}
+                    placeholder="Testo in italiano"
+                    defaultValue={
+                      t("aboutMe1") + t("aboutMe2") + t("uniBA") + t("uniMA")
+                    }
+                  />
                 </Col>
               </Row>
-              <Input addonBefore={<MailOutlined />} defaultValue="mysite" />
+              <Row justify="end">
+                <Col>
+                  <Radio.Group
+                    className={style.radio}
+                    onChange={onRadioChange}
+                    value={radioValue}
+                  >
+                    <Radio value={1}>IT</Radio>
+                    <Radio value={2}>EN</Radio>
+                  </Radio.Group>
+                </Col>
+              </Row>
               <Input
-                addonBefore={<InstagramOutlined />}
-                defaultValue="mysite"
+                style={{ paddingBottom: "10px" }}
+                addonBefore={<MailOutlined />}
+                defaultValue="progetti.rotondo@gmail.com"
               />
-              <Input addonBefore={<BehanceOutlined />} defaultValue="mysite" />
-              <span className={style.title}>
-                Modifica informazioni di contatto
-              </span>
-              <Input.Password placeholder="Nuova Password" />
+              <Input
+                style={{ paddingBottom: "10px" }}
+                addonBefore={<InstagramOutlined />}
+                defaultValue="https://www.instagram.com/rotondo___"
+              />
+              <Input
+                style={{ paddingBottom: "10px" }}
+                addonBefore={<BehanceOutlined />}
+                defaultValue="https://www.behance.net/rotondostudio/info"
+              />
+              <div className={style.title}>
+                MODIFICA INFORMAZIONI DI CONTATTO
+              </div>
+              <div style={{ paddingBottom: "5px", paddingTop: "10px" }}>
+                <Input placeholder="Email" />
+              </div>
+              <div style={{ paddingBottom: "5px" }}>
+                <Input.Password placeholder="Nuova Password" />
+              </div>
               <Input.Password placeholder="Ripeti Password" />
-              <Button>Salva</Button>
+              <div style={{ paddingTop: "20px" }}>
+                <Button>Salva</Button>
+              </div>
             </Col>
           </Row>
         </Card>

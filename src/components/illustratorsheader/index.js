@@ -1,9 +1,7 @@
-import { Button, Col, Menu, Row } from "antd";
-import { useTranslation } from "react-i18next";
+import { Col, Menu, Row } from "antd";
 import style from "./style.module.scss";
 import { useHistory } from "react-router";
 import React from "react";
-import i18next from "i18next";
 import { logout } from "../../redux/reducers";
 import { useDispatch } from "react-redux";
 
@@ -28,13 +26,21 @@ function IllustratorsHeader(props) {
             style={{ display: "flex", justifyContent: "center" }}
             selectedKeys={[`${selectKey()}`]}
           >
-            <Menu.Item className={style.menu} key="projects" onClick={() => {}}>
+            <Menu.Item
+              className={style.menu}
+              key="i-projects"
+              onClick={() => {
+                history.push("i-projects");
+              }}
+            >
               PROGETTI
             </Menu.Item>
             <Menu.Item
               className={style.menu}
               key="notifications"
-              onClick={() => {}}
+              onClick={() => {
+                history.push("notifications");
+              }}
             >
               NOTIFICHE
             </Menu.Item>
@@ -42,7 +48,7 @@ function IllustratorsHeader(props) {
               className={style.menu}
               key="profile"
               onClick={() => {
-                history.push("/illustrators-profile");
+                history.push("profile");
               }}
             >
               PROFILO

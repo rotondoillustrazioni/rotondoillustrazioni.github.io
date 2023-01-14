@@ -47,7 +47,7 @@ function App() {
         />
         <PrivateRoute
           exact
-          path={`${path}illustrators-profile`}
+          path={`${path}profile`}
           component={IllustratorsProfile}
         />
         <Route exact path={`${path}/`} component={Homepage} />

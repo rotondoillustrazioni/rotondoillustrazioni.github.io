@@ -23,12 +23,62 @@
 .title {
     font-family: Peace-Sans;
     font-size: 20px;
+    padding-bottom: 30px;
+    padding-top: 30px;
 }
 
 .row{
+    display: flex;
     justify-content: center;
 }
 
-.col {
-    
+.outerCol {
+    text-align: center;
+    padding: 0px 50px 0px 50px;
+    @media (max-width: 768px) {
+        padding: 0px;
+    }
 }
+
+.col {
+    @media (max-width: 768px) {
+        padding: 0px;
+        width: 100%;
+    }
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    @media (max-width: 768px) {
+        width: 50%;
+    }
+}
+
+.radio {
+    padding-bottom: 30px;
+}
+
+:global(.ant-btn.ant-btn-default:hover) {
+    color: black;
+    border-color: black;
+}
+
+:global(.ant-btn.ant-btn-default:focus) {
+    color: black;
+    border-color: black;
+}
+
+:global(.ant-radio-checked .ant-radio-inner){
+    border-color: black !important ;
+  }
+  
+  :global( .ant-radio-checked .ant-radio-inner:after){
+    background-color: black;
+  }
+  
+  :global( .ant-radio:hover .ant-radio-inner){
+    border-color: black ;
+  }
+
