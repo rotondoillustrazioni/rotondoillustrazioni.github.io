@@ -26,7 +26,7 @@ function IllustratorsProfile(props) {
 
   const [radioValue, setRadioValue] = useState(1);
 
-  const [aboutMe, setAboutMe] = useState([]);
+  const [aboutUs, setAboutUs] = useState([]);
 
   const onRadioChange = (e) => {
     setRadioValue(e.target.value);
@@ -55,7 +55,7 @@ function IllustratorsProfile(props) {
                     />
                   </Col>
                   <Col className={style.col} sm={24} md={24} lg={20}>
-                    <Form.Item name="aboutMe" noStyle>
+                    <Form.Item name="aboutUs" noStyle>
                       <TextArea
                         rows={4}
                         autoSize={{ minRows: 7, maxRows: 7 }}

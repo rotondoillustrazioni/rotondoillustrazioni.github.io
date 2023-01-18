@@ -4,7 +4,7 @@ import {
   projectsThunk,
   projectThunk,
   loginThunk,
-  aboutMeThunk,
+  aboutUsThunk,
 } from "./actions";
 
 const mainReducer = createReducer({}, {});
@@ -125,14 +125,14 @@ const projectSlice = createSlice({
 
 export const { getProject } = projectSlice.actions;
 
-const aboutMeSlice = createSlice({
-  name: "aboutMe",
-  initialState: { isReady: false, error: null, aboutMe: null, loading: false },
+const aboutUsSlice = createSlice({
+  name: "aboutUs",
+  initialState: { isReady: false, error: null, aboutUs: null, loading: false },
   reducers: {
     // @ts-ignore
     getProject(state, action) {
       return {
-        aboutMe: action.payload,
+        aboutUs: action.payload,
         loading: false,
         error: null,
       };
@@ -140,34 +140,34 @@ const aboutMeSlice = createSlice({
   },
   extraReducers: {
     // @ts-ignore
-    [aboutMeThunk.pending]: (state, action) => {
-      state.aboutMe = action.meta.arg;
+    [aboutUsThunk.pending]: (state, action) => {
+      state.aboutUs = action.meta.arg;
       state.loading = true;
       state.error = null;
     },
     // @ts-ignore
-    [aboutMeThunk.fulfilled]: (state, action) => {
-      state.aboutMe = {
-        ...state.aboutMe,
+    [aboutUsThunk.fulfilled]: (state, action) => {
+      state.aboutUs = {
+        ...state.aboutUs,
         ...action.payload,
       };
       state.loading = false;
       state.error = null;
     },
     // @ts-ignore
-    [aboutMeThunk.rejected]: (state, action) => {
+    [aboutUsThunk.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.error;
     },
   },
 });
 
-export const { getAboutMe } = projectSlice.actions;
+export const { getAboutUs } = projectSlice.actions;
 
 export default combineReducers({
   main: mainReducer,
   projects: projectsSlice.reducer,
   project: projectSlice.reducer,
   auth: authSlice.reducer,
-  aboutMe: aboutMeSlice.reducer,
+  aboutUs: aboutUsSlice.reducer,
 });

@@ -5,20 +5,20 @@ import gif from "../../images/gif.gif";
 import Header from "../../components/header";
 import { useDispatch, useSelector } from "react-redux";
 import i18next from "i18next";
-import { aboutMeThunk } from "../../redux/actions";
+import { aboutUsThunk } from "../../redux/actions";
 
 function AboutUs(props) {
   const dispatch = useDispatch();
   const [language, setLanguage] = useState(i18next.language);
-  const aboutMe = useSelector((state) => state.aboutMe);
-  const loading = useSelector((state) => state.aboutMe.loading);
+  const aboutUs = useSelector((state) => state.aboutUs);
+  const loading = useSelector((state) => state.aboutUs.loading);
 
   useEffect(() => {
     if (language !== undefined) {
-      const aboutMeDesc = async () => {
-        await dispatch(aboutMeThunk({ language }));
+      const aboutUsDesc = async () => {
+        await dispatch(aboutUsThunk({ language }));
       };
-      aboutMeDesc();
+      aboutUsDesc();
     }
   }, [dispatch, language]);
 
@@ -29,7 +29,7 @@ function AboutUs(props) {
   }, []);
 
   const condition =
-    loading === false && aboutMe !== null && aboutMe !== undefined;
+    loading === false && aboutUs !== null && aboutUs !== undefined;
 
   return (
     <>
@@ -42,11 +42,9 @@ function AboutUs(props) {
                 <Row style={{ justifyContent: "center" }}>
                   <Avatar shape="square" size={164} alt="gif" src={gif} />
                 </Row>
-                <Row>
-                  <div className={style.aboutTxt}>
-                    {aboutMe.aboutMe.description}
-                  </div>
-                </Row>
+                <div className={style.aboutTxt}>
+                  {aboutUs.aboutUs.description}
+                </div>
               </Col>
             </Row>
           )}
