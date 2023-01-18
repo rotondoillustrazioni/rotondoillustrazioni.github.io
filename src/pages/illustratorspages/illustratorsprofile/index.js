@@ -1,7 +1,6 @@
 import { default as React, useEffect, useState } from "react";
 import style from "./style.module.scss";
 import gif from "../../../images/gif.gif";
-import { useTranslation } from "react-i18next";
 import IllustratorsHeader from "../../../components/illustratorsheader";
 import {
   Input,
@@ -20,16 +19,28 @@ import {
   MailOutlined,
 } from "@ant-design/icons";
 import TextArea from "antd/lib/input/TextArea";
+import { aboutUsThunk } from "../../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 function IllustratorsProfile(props) {
-  const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const [radioValue, setRadioValue] = useState("en");
+  const [language, setLanguage] = useState(radioValue);
 
-  const [radioValue, setRadioValue] = useState(1);
+  const aboutUs = useSelector((state) => state.aboutUs);
 
-  const [aboutUs, setAboutUs] = useState([]);
+  useEffect(() => {
+    if (language !== undefined) {
+      const aboutUsDesc = async () => {
+        await dispatch(aboutUsThunk({ language }));
+      };
+      aboutUsDesc();
+    }
+  }, [dispatch, language]);
 
   const onRadioChange = (e) => {
     setRadioValue(e.target.value);
+    setLanguage(e.target.value);
   };
 
   const onFinish = (values) => {
@@ -60,12 +71,7 @@ function IllustratorsProfile(props) {
                         rows={4}
                         autoSize={{ minRows: 7, maxRows: 7 }}
                         placeholder="Testo in italiano"
-                        defaultValue={
-                          t("aboutMe1") +
-                          t("aboutMe2") +
-                          t("uniBA") +
-                          t("uniMA")
-                        }
+                        defaultValue={aboutUs.aboutUs.description}
                       />
                     </Form.Item>
                   </Col>
@@ -77,8 +83,8 @@ function IllustratorsProfile(props) {
                       onChange={onRadioChange}
                       value={radioValue}
                     >
-                      <Radio value={1}>IT</Radio>
-                      <Radio value={2}>EN</Radio>
+                      <Radio value={"en"}>EN</Radio>
+                      <Radio value={"it"}>IT</Radio>
                     </Radio.Group>
                   </Col>
                 </Row>
