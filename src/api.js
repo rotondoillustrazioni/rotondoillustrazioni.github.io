@@ -28,7 +28,16 @@ export const getProject = async ({ id }) => {
 
 export const getAboutUs = async ({ language }) => {
   const response = await axios.get(
-    process.env.REACT_APP_BASE_URL + `/aboutUs/${language}`
+    process.env.REACT_APP_BASE_URL + `/aboutus/${language}`
+  );
+  return response.data;
+};
+
+export const editAboutUs = async ({ language, description }) => {
+  console.log("editAboutUs", language, description);
+  const response = await axios.post(
+    process.env.REACT_APP_BASE_URL + `/aboutus/edit/${language}`,
+    { description }
   );
   return response.data;
 };

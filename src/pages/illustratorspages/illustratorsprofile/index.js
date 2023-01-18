@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { default as React, useEffect, useState } from "react";
 import style from "./style.module.scss";
 import gif from "../../../images/gif.gif";
@@ -19,7 +20,7 @@ import {
   MailOutlined,
 } from "@ant-design/icons";
 import TextArea from "antd/lib/input/TextArea";
-import { aboutUsThunk } from "../../../redux/actions";
+import { aboutUsThunk, editAboutUsThunk } from "../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 function IllustratorsProfile(props) {
@@ -31,7 +32,6 @@ function IllustratorsProfile(props) {
   const loading = useSelector((state) => state.aboutUs.loading);
 
   useEffect(() => {
-    console.log("radio change");
     if (language !== undefined) {
       const aboutUsDesc = async () => {
         await dispatch(aboutUsThunk({ language }));
@@ -46,7 +46,10 @@ function IllustratorsProfile(props) {
   };
 
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+    console.log("values :", values);
+    if (values.aboutUs !== undefined) {
+      dispatch(editAboutUsThunk({ language, description: values.aboutUs }));
+    }
   };
 
   const textAreaCondition =

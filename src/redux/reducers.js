@@ -162,7 +162,47 @@ const aboutUsSlice = createSlice({
   },
 });
 
-export const { getAboutUs } = projectSlice.actions;
+export const { getAboutUs } = aboutUsSlice.actions;
+
+// maybe not needed
+const editAboutUsSlice = createSlice({
+  name: "editAboutUs",
+  initialState: { isReady: false, error: null, aboutUs: null, loading: false },
+  reducers: {
+    // @ts-ignore
+    getProject(state, action) {
+      return {
+        aboutUs: action.payload,
+        loading: false,
+        error: null,
+      };
+    },
+  },
+  extraReducers: {
+    // @ts-ignore
+    [aboutUsThunk.pending]: (state, action) => {
+      state.aboutUs = action.meta.arg;
+      state.loading = true;
+      state.error = null;
+    },
+    // @ts-ignore
+    [aboutUsThunk.fulfilled]: (state, action) => {
+      state.aboutUs = {
+        ...state.aboutUs,
+        ...action.payload,
+      };
+      state.loading = false;
+      state.error = null;
+    },
+    // @ts-ignore
+    [aboutUsThunk.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.error;
+    },
+  },
+});
+
+export const { editAboutUs } = editAboutUsSlice.actions;
 
 export default combineReducers({
   main: mainReducer,
@@ -170,4 +210,5 @@ export default combineReducers({
   project: projectSlice.reducer,
   auth: authSlice.reducer,
   aboutUs: aboutUsSlice.reducer,
+  editAboutUs: editAboutUsSlice.reducer,
 });
