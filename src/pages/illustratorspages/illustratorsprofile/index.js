@@ -28,8 +28,10 @@ function IllustratorsProfile(props) {
   const [language, setLanguage] = useState(radioValue);
 
   const aboutUs = useSelector((state) => state.aboutUs);
+  const loading = useSelector((state) => state.aboutUs.loading);
 
   useEffect(() => {
+    console.log("radio change");
     if (language !== undefined) {
       const aboutUsDesc = async () => {
         await dispatch(aboutUsThunk({ language }));
@@ -46,6 +48,9 @@ function IllustratorsProfile(props) {
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
+
+  const textAreaCondition =
+    loading === false && aboutUs !== null && aboutUs !== undefined;
 
   return (
     <div>
@@ -66,14 +71,15 @@ function IllustratorsProfile(props) {
                     />
                   </Col>
                   <Col className={style.col} sm={24} md={24} lg={20}>
-                    <Form.Item name="aboutUs" noStyle>
-                      <TextArea
-                        rows={4}
-                        autoSize={{ minRows: 7, maxRows: 7 }}
-                        placeholder="Testo in italiano"
-                        defaultValue={aboutUs.aboutUs.description}
-                      />
-                    </Form.Item>
+                    {textAreaCondition && (
+                      <Form.Item name="aboutUs" noStyle>
+                        <TextArea
+                          rows={4}
+                          autoSize={{ minRows: 7, maxRows: 7 }}
+                          defaultValue={aboutUs.aboutUs.description}
+                        />
+                      </Form.Item>
+                    )}
                   </Col>
                 </Row>
                 <Row justify="end">
