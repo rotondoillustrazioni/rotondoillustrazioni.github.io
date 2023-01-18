@@ -1,6 +1,4 @@
-// :global(.ant-card-body) {
-//   padding: 24px 24px 24px 24px;
-// }
+@import '../../styles/scss/theme';
 
 :global(.ant-menu-horizontal) {
   border-bottom: 0px;
@@ -23,26 +21,22 @@
   border-bottom: 2px solid black !important;
 }
 
-@font-face {
-  font-family: Circular-Black;
-  src: url("../../styles/fonts/Circular-Black.otf") format("opentype");
+:global(.ant-menu-overflow .ant-menu .ant-menu-root .ant-menu-horizontal .ant-menu-light) {
+  background-color: rgb(252, 252, 255) !important;
 }
 
 .menu {
-  font-family: Circular-Black;
+  font-family: $circular-black;
 }
 
 :global(.ant-menu > ::after) {
   border-bottom: none !important;
 }
 
-@font-face {
-  font-family: Circular-Medium;
-  src: url("../../styles/fonts/Circular-Medium.otf") format("opentype");
-}
+
 
 .uni {
-  font-family: Circular-Black;
+  font-family: $circular-black;
   font-size: 20px;
   padding-top: 30px;
 

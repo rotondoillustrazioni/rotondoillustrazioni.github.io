@@ -1,7 +1,4 @@
-@font-face {
-    font-family: Circular-Medium;
-    src: url("../../styles/fonts/Circular-Medium.otf") format("opentype");
-  }
+@import '../../styles/scss/theme';
 
 .miniBioContainer {
     display: flex;
@@ -16,7 +13,7 @@
   }
 
   .miniBio {
-    font-family: Circular-Medium;
+    font-family: $circular-medium;
   }
 
   .rowC {

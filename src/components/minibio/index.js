@@ -1,7 +1,7 @@
 import { default as React } from "react";
 import style from "./style.module.scss";
 import { Avatar, Image, Col, Row } from "antd";
-import logo from "../../images/LOGO.jpg";
+import logo from "../../images/LOGO.png";
 import { useTranslation } from "react-i18next";
 
 function MiniBio() {

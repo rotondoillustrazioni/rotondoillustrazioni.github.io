@@ -1,0 +1,20 @@
+@font-face {
+    font-family: Circular-Black;
+    src: url("../../styles/fonts/Circular-Black.otf") format("opentype");
+}
+
+@font-face {
+    font-family: Circular-Medium;
+    src: url("../../styles/fonts/Circular-Medium.otf") format("opentype");
+}
+
+@font-face {
+    font-family: Peace-Sans;
+    src: url("../../styles/fonts/Peace-Sans.otf") format("opentype");
+  }
+
+$circular-black: Circular-Black;
+$circular-medium: Circular-Medium;
+$peace-sans: Peace-Sans;
+
+$card-background: rgb(252, 252, 255);

@@ -1,12 +1,4 @@
-@font-face {
-  font-family: Circular-Medium;
-  src: url("../../styles/fonts/Circular-Medium.otf") format("opentype");
-}
-
-@font-face {
-  font-family: Peace-Sans;
-  src: url("../../styles/fonts/Peace-Sans.otf") format("opentype");
-}
+@import '../../styles/scss/theme';
 
 .header {
    float: right;
@@ -36,7 +28,7 @@
 }
 
 .title {
-  font-family: Peace-Sans;
+  font-family: $peace-sans;
   font-size: 20px;
   padding-bottom: 30px;
   border-bottom: 1px solid black;
@@ -45,7 +37,7 @@
 
 .description {
   font-size: 15px;
-  font-family: Circular-Medium;
+  font-family: $circular-medium;
   padding-bottom: 30px;
 }
 
@@ -57,13 +49,4 @@
   display: none;
 }
 
-@font-face {
-  font-family: Circular-Black;
-  src: url("../../styles/fonts/Circular-Black.otf") format("opentype");
-}
-
-@font-face {
-  font-family: Circular-Medium;
-  src: url("../../styles/fonts/Circular-Medium.otf") format("opentype");
-}
 
