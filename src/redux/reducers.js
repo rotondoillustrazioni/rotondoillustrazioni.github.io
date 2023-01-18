@@ -1,6 +1,11 @@
 import { createReducer, createSlice } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import { projectsThunk, projectThunk, loginThunk } from "./actions";
+import {
+  projectsThunk,
+  projectThunk,
+  loginThunk,
+  aboutMeThunk,
+} from "./actions";
 
 const mainReducer = createReducer({}, {});
 
@@ -120,9 +125,49 @@ const projectSlice = createSlice({
 
 export const { getProject } = projectSlice.actions;
 
+const aboutMeSlice = createSlice({
+  name: "aboutMe",
+  initialState: { isReady: false, error: null, aboutMe: null, loading: false },
+  reducers: {
+    // @ts-ignore
+    getProject(state, action) {
+      return {
+        aboutMe: action.payload,
+        loading: false,
+        error: null,
+      };
+    },
+  },
+  extraReducers: {
+    // @ts-ignore
+    [aboutMeThunk.pending]: (state, action) => {
+      state.aboutMe = action.meta.arg;
+      state.loading = true;
+      state.error = null;
+    },
+    // @ts-ignore
+    [aboutMeThunk.fulfilled]: (state, action) => {
+      state.aboutMe = {
+        ...state.aboutMe,
+        ...action.payload,
+      };
+      state.loading = false;
+      state.error = null;
+    },
+    // @ts-ignore
+    [aboutMeThunk.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.error;
+    },
+  },
+});
+
+export const { getAboutMe } = projectSlice.actions;
+
 export default combineReducers({
   main: mainReducer,
   projects: projectsSlice.reducer,
   project: projectSlice.reducer,
   auth: authSlice.reducer,
+  aboutMe: aboutMeSlice.reducer,
 });

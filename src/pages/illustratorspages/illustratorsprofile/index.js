@@ -26,11 +26,7 @@ function IllustratorsProfile(props) {
 
   const [radioValue, setRadioValue] = useState(1);
 
-  const [bio, setBio] = useState([]);
-
-  useEffect(() => {
-    localStorage.setItem("aboutMe1", JSON.stringify(bio));
-  }, [bio]);
+  const [aboutMe, setAboutMe] = useState([]);
 
   const onRadioChange = (e) => {
     setRadioValue(e.target.value);
@@ -59,7 +55,7 @@ function IllustratorsProfile(props) {
                     />
                   </Col>
                   <Col className={style.col} sm={24} md={24} lg={20}>
-                    <Form.Item name="bio" noStyle>
+                    <Form.Item name="aboutMe" noStyle>
                       <TextArea
                         rows={4}
                         autoSize={{ minRows: 7, maxRows: 7 }}
@@ -128,71 +124,6 @@ function IllustratorsProfile(props) {
               </Form>
             </Col>
           </Row>
-          {/* <Row className={style.row}>
-            <Col className={style.outerCol} span={24}>
-              <div className={style.title}>MODIFICA BIOGRAFIA E CONTATTI</div>
-              <Row style={{ paddingTop: "10px" }}>
-                <Col className={style.col} sm={24} md={24} lg={4}>
-                  <Avatar
-                    className={style.avatar}
-                    shape="square"
-                    alt="gif"
-                    src={gif}
-                  />
-                </Col>
-                <Col className={style.col} sm={24} md={24} lg={20}>
-                  <TextArea
-                    rows={4}
-                    autoSize={{ minRows: 7, maxRows: 7 }}
-                    placeholder="Testo in italiano"
-                    defaultValue={
-                      t("aboutMe1") + t("aboutMe2") + t("uniBA") + t("uniMA")
-                    }
-                  />
-                </Col>
-              </Row>
-              <Row justify="end">
-                <Col>
-                  <Radio.Group
-                    className={style.radio}
-                    onChange={onRadioChange}
-                    value={radioValue}
-                  >
-                    <Radio value={1}>IT</Radio>
-                    <Radio value={2}>EN</Radio>
-                  </Radio.Group>
-                </Col>
-              </Row>
-              <Input
-                style={{ paddingBottom: "10px" }}
-                addonBefore={<MailOutlined />}
-                defaultValue="progetti.rotondo@gmail.com"
-              />
-              <Input
-                style={{ paddingBottom: "10px" }}
-                addonBefore={<InstagramOutlined />}
-                defaultValue="https://www.instagram.com/rotondo___"
-              />
-              <Input
-                style={{ paddingBottom: "10px" }}
-                addonBefore={<BehanceOutlined />}
-                defaultValue="https://www.behance.net/rotondostudio/info"
-              />
-              <div className={style.title}>
-                MODIFICA INFORMAZIONI DI CONTATTO
-              </div>
-              <div style={{ paddingBottom: "5px", paddingTop: "10px" }}>
-                <Input placeholder="Email" />
-              </div>
-              <div style={{ paddingBottom: "5px" }}>
-                <Input.Password placeholder="Nuova Password" />
-              </div>
-              <Input.Password placeholder="Ripeti Password" />
-              <div style={{ paddingTop: "20px" }}>
-                <Button>Salva</Button>
-              </div>
-            </Col>
-          </Row> */}
         </Card>
       </div>
     </div>
