@@ -4,5 +4,14 @@
   "miniBio3": "based in Italy",
   "home": "HOME",
   "about": "ABOUT US",
-  "contact": "CONTACTS"
+  "contact": "CONTACTS",
+  "contact-follow": "follow us on social media",
+  "contact-email": "write us an email at",
+  "contact-or": "write us directly using the form below",
+  "send": "SEND",
+  "email": "Email",
+  "title": "Title",
+  "description": "Description",
+  "required": "is required",
+  "invalid-email": "is not a valid email!"
 }

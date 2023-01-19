@@ -27,7 +27,6 @@ export const getContacts = async () => {
 };
 
 export const editContacts = async ({ contact, content }) => {
-  console.log(contact, content);
   const response = await axios.post(
     process.env.REACT_APP_BASE_URL + `/contacts/${contact}`,
     { content }

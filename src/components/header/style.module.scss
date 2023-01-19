@@ -1,5 +1,19 @@
 @import '../../styles/scss/theme';
 
+.menu{
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: right !important;
+  }
+}
+
+:global(.anticon.anticon-ellipsis){
+  color: black;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 3px;
+}
+
 :global(.ant-menu-horizontal) {
   border-bottom: 0px;
 }

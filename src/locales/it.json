@@ -4,5 +4,14 @@
     "miniBio3": "sede in Italia",
     "home": "HOME",
     "about": "SU DI NOI",
-    "contact": "CONTATTI"
+    "contact": "CONTATTI",
+    "contact-follow": "seguici sui social",
+    "contact-email": "scrivici una mail all'indirizzo",
+    "contact-or": "scrivici direttamente compilando il form sottostante",
+    "send": "INVIA",
+    "email": "Email",
+    "title": "Titolo",
+    "description": "Descrizione",
+    "required": "il campo è obbligatorio",
+    "invalid-email": "l' email non è valida!"
   }
