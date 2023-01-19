@@ -12,7 +12,7 @@ import {
   Card,
   Radio,
   Form,
-  Space,
+  Alert,
 } from "antd";
 import {
   InstagramOutlined,
@@ -20,16 +20,26 @@ import {
   MailOutlined,
 } from "@ant-design/icons";
 import TextArea from "antd/lib/input/TextArea";
-import { aboutUsThunk, editAboutUsThunk } from "../../../redux/actions";
+import {
+  aboutUsThunk,
+  contactsThunk,
+  editAboutUsThunk,
+  editContactsThunk,
+} from "../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import i18next from "i18next";
+import { resetEditAboutUs, resetEditContacts } from "../../../redux/reducers";
 
 function IllustratorsProfile(props) {
   const dispatch = useDispatch();
-  const [radioValue, setRadioValue] = useState("en");
+  const [radioValue, setRadioValue] = useState(i18next.language);
   const [language, setLanguage] = useState(radioValue);
 
   const aboutUs = useSelector((state) => state.aboutUs);
+  const contacts = useSelector((state) => state.contacts.contacts);
   const loading = useSelector((state) => state.aboutUs.loading);
+  const editAboutUs = useSelector((state) => state.editAboutUs);
+  const editContacts = useSelector((state) => state.editContacts);
 
   useEffect(() => {
     if (language !== undefined) {
@@ -40,17 +50,43 @@ function IllustratorsProfile(props) {
     }
   }, [dispatch, language]);
 
+  useEffect(() => {
+    const getContacts = async () => {
+      await dispatch(contactsThunk());
+    };
+    getContacts();
+  }, [dispatch]);
+
   const onRadioChange = (e) => {
     setRadioValue(e.target.value);
     setLanguage(e.target.value);
   };
 
   const onFinish = (values) => {
-    console.log("values :", values);
     if (values.aboutUs !== undefined) {
       dispatch(editAboutUsThunk({ language, description: values.aboutUs }));
     }
+    if (values.email !== undefined) {
+      const contact = "email";
+      const content = { email: values.email };
+      dispatch(editContactsThunk({ contact, content }));
+    }
+    if (values.instagram !== undefined) {
+      const contact = "instagram";
+      const content = { instagram: values.instagram };
+      dispatch(editContactsThunk({ contact, content }));
+    }
+    if (values.behance !== undefined) {
+      const contact = "behance";
+      const content = { behance: values.behance };
+      dispatch(editContactsThunk({ contact, content }));
+    }
   };
+
+  useEffect(() => {
+    dispatch(resetEditAboutUs());
+    dispatch(resetEditContacts());
+  }, [dispatch]);
 
   const textAreaCondition =
     loading === false && aboutUs !== null && aboutUs !== undefined;
@@ -80,7 +116,8 @@ function IllustratorsProfile(props) {
                           rows={4}
                           autoSize={{ minRows: 7, maxRows: 7 }}
                           defaultValue={aboutUs.aboutUs.description}
-                        />
+                          value={aboutUs.aboutUs.description}
+                        ></TextArea>
                       </Form.Item>
                     )}
                   </Col>
@@ -97,27 +134,31 @@ function IllustratorsProfile(props) {
                     </Radio.Group>
                   </Col>
                 </Row>
-                <Form.Item name="mail" noStyle>
-                  <Input
-                    style={{ paddingBottom: "10px" }}
-                    addonBefore={<MailOutlined />}
-                    defaultValue="progetti.rotondo@gmail.com"
-                  />
-                </Form.Item>
-                <Form.Item name="instagram" noStyle>
-                  <Input
-                    style={{ paddingBottom: "10px" }}
-                    addonBefore={<InstagramOutlined />}
-                    defaultValue="https://www.instagram.com/rotondo___"
-                  />
-                </Form.Item>
-                <Form.Item name="behance" noStyle>
-                  <Input
-                    style={{ paddingBottom: "10px" }}
-                    addonBefore={<BehanceOutlined />}
-                    defaultValue="https://www.behance.net/rotondostudio/info"
-                  />
-                </Form.Item>
+                {contacts && (
+                  <>
+                    <Form.Item name="email" noStyle>
+                      <Input
+                        style={{ paddingBottom: "10px" }}
+                        addonBefore={<MailOutlined />}
+                        defaultValue={contacts.email}
+                      />
+                    </Form.Item>
+                    <Form.Item name="instagram" noStyle>
+                      <Input
+                        style={{ paddingBottom: "10px" }}
+                        addonBefore={<InstagramOutlined />}
+                        defaultValue={contacts.instagram}
+                      />
+                    </Form.Item>
+                    <Form.Item name="behance" noStyle>
+                      <Input
+                        style={{ paddingBottom: "10px" }}
+                        addonBefore={<BehanceOutlined />}
+                        defaultValue={contacts.behance}
+                      />
+                    </Form.Item>
+                  </>
+                )}
                 <div className={style.title}>
                   MODIFICA INFORMAZIONI DI CONTATTO
                 </div>
@@ -136,6 +177,15 @@ function IllustratorsProfile(props) {
                     <Button htmlType="submit">Salva</Button>
                   </div>
                 </Form.Item>
+                {(editAboutUs.aboutUsEdited || editContacts.contactsEdited) && (
+                  <Alert message="Modifiche salvate" type="success" />
+                )}
+                {(editAboutUs.error || editContacts.error) && (
+                  <Alert
+                    message="Errore nel salvataggio delle modifiche"
+                    type="error"
+                  />
+                )}
               </Form>
             </Col>
           </Row>

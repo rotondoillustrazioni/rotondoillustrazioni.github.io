@@ -19,6 +19,22 @@ export const getProjects = async () => {
   return response.data;
 };
 
+export const getContacts = async () => {
+  const response = await axios.get(
+    process.env.REACT_APP_BASE_URL + "/contacts"
+  );
+  return response.data;
+};
+
+export const editContacts = async ({ contact, content }) => {
+  console.log(contact, content);
+  const response = await axios.post(
+    process.env.REACT_APP_BASE_URL + `/contacts/${contact}`,
+    { content }
+  );
+  return response.data;
+};
+
 export const getProject = async ({ id }) => {
   const response = await axios.get(
     process.env.REACT_APP_BASE_URL + `/project/${id}`
@@ -34,7 +50,6 @@ export const getAboutUs = async ({ language }) => {
 };
 
 export const editAboutUs = async ({ language, description }) => {
-  console.log("editAboutUs", language, description);
   const response = await axios.post(
     process.env.REACT_APP_BASE_URL + `/aboutus/edit/${language}`,
     { description }

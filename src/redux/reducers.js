@@ -5,6 +5,9 @@ import {
   projectThunk,
   loginThunk,
   aboutUsThunk,
+  editAboutUsThunk,
+  contactsThunk,
+  editContactsThunk,
 } from "./actions";
 
 const mainReducer = createReducer({}, {});
@@ -130,7 +133,7 @@ const aboutUsSlice = createSlice({
   initialState: { isReady: false, error: null, aboutUs: null, loading: false },
   reducers: {
     // @ts-ignore
-    getProject(state, action) {
+    getAboutUs(state, action) {
       return {
         aboutUs: action.payload,
         loading: false,
@@ -164,15 +167,14 @@ const aboutUsSlice = createSlice({
 
 export const { getAboutUs } = aboutUsSlice.actions;
 
-// maybe not needed
-const editAboutUsSlice = createSlice({
-  name: "editAboutUs",
-  initialState: { isReady: false, error: null, aboutUs: null, loading: false },
+const contactsSlice = createSlice({
+  name: "contacts",
+  initialState: { isReady: false, error: null, contacts: null, loading: false },
   reducers: {
     // @ts-ignore
-    getProject(state, action) {
+    getContacts(state, action) {
       return {
-        aboutUs: action.payload,
+        contacts: action.payload,
         loading: false,
         error: null,
       };
@@ -180,29 +182,107 @@ const editAboutUsSlice = createSlice({
   },
   extraReducers: {
     // @ts-ignore
-    [aboutUsThunk.pending]: (state, action) => {
-      state.aboutUs = action.meta.arg;
+    [contactsThunk.pending]: (state, action) => {
+      state.contacts = action.meta.arg;
       state.loading = true;
       state.error = null;
     },
     // @ts-ignore
-    [aboutUsThunk.fulfilled]: (state, action) => {
-      state.aboutUs = {
-        ...state.aboutUs,
+    [contactsThunk.fulfilled]: (state, action) => {
+      state.contacts = {
+        ...state.contacts,
         ...action.payload,
       };
       state.loading = false;
       state.error = null;
     },
     // @ts-ignore
-    [aboutUsThunk.rejected]: (state, action) => {
+    [contactsThunk.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.error;
     },
   },
 });
 
-export const { editAboutUs } = editAboutUsSlice.actions;
+export const { getContacts } = contactsSlice.actions;
+
+const editAboutUsSlice = createSlice({
+  name: "editAboutUs",
+  initialState: {
+    error: null,
+    aboutUsEdited: null,
+    loading: false,
+  },
+  reducers: {
+    // @ts-ignore
+    resetEditAboutUs(state) {
+      state.aboutUsEdited = null;
+      state.loading = false;
+      state.error = null;
+    },
+  },
+  extraReducers: {
+    // @ts-ignore
+    [editAboutUsThunk.pending]: (state, action) => {
+      state.aboutUsEdited = null;
+      state.loading = true;
+      state.error = null;
+    },
+    // @ts-ignore
+    [editAboutUsThunk.fulfilled]: (state, action) => {
+      state.aboutUsEdited = true;
+      state.loading = false;
+      state.error = null;
+    },
+    // @ts-ignore
+    [editAboutUsThunk.rejected]: (state, action) => {
+      state.aboutUsEdited = null;
+      state.loading = false;
+      state.error = action.error;
+    },
+  },
+});
+
+export const { resetEditAboutUs } = editAboutUsSlice.actions;
+
+const editContactsSlice = createSlice({
+  name: "editContacts",
+  initialState: {
+    error: null,
+    contactsEdited: null,
+    loading: false,
+  },
+  reducers: {
+    // @ts-ignore
+    resetEditContacts(state) {
+      state.contactsEdited = null;
+      state.loading = false;
+      state.error = null;
+    },
+  },
+  extraReducers: {
+    // @ts-ignore
+    [editContactsThunk.pending]: (state, action) => {
+      state.contactsEdited = null;
+      state.loading = true;
+      state.error = null;
+    },
+    // @ts-ignore
+    [editContactsThunk.fulfilled]: (state, action) => {
+      state.contactsEdited = true;
+      state.loading = false;
+      state.error = null;
+    },
+    // @ts-ignore
+    [editContactsThunk.rejected]: (state, action) => {
+      state.contactsEdited = null;
+      state.loading = false;
+      state.error = action.error;
+    },
+  },
+});
+
+export const { resetEditContacts } = editContactsSlice.actions;
 
 export default combineReducers({
   main: mainReducer,
@@ -211,4 +291,6 @@ export default combineReducers({
   auth: authSlice.reducer,
   aboutUs: aboutUsSlice.reducer,
   editAboutUs: editAboutUsSlice.reducer,
+  contacts: contactsSlice.reducer,
+  editContacts: editContactsSlice.reducer,
 });
