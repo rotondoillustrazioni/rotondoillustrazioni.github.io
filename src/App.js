@@ -14,6 +14,7 @@ import Login from "./pages/login";
 import { useSelector } from "react-redux";
 import React from "react";
 import IllustratorsProfile from "./pages/illustratorspages/illustratorsprofile";
+import Notifications from "./pages/illustratorspages/notifications";
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
@@ -42,13 +43,18 @@ function App() {
       <Switch>
         <PrivateRoute
           exact
-          path={`${path}illustrators-home`}
+          path={`${path}i-projects`}
           component={IllustratorsHome}
         />
         <PrivateRoute
           exact
           path={`${path}profile`}
           component={IllustratorsProfile}
+        />
+        <PrivateRoute
+          exact
+          path={`${path}notifications`}
+          component={Notifications}
         />
         <Route exact path={`${path}/`} component={Homepage} />
         <Route exact path={`${path}project/:id`} component={ProjectPage} />

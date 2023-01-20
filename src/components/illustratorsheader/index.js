@@ -22,12 +22,12 @@ function IllustratorsHeader(props) {
       <Row>
         <Col span={24}>
           <Menu
-            mode="horizontal"
+            className={style.menu}
             style={{ display: "flex", justifyContent: "center" }}
+            mode="horizontal"
             selectedKeys={[`${selectKey()}`]}
           >
             <Menu.Item
-              className={style.menu}
               key="i-projects"
               onClick={() => {
                 history.push("i-projects");
@@ -36,7 +36,6 @@ function IllustratorsHeader(props) {
               PROGETTI
             </Menu.Item>
             <Menu.Item
-              className={style.menu}
               key="notifications"
               onClick={() => {
                 history.push("notifications");
@@ -45,7 +44,6 @@ function IllustratorsHeader(props) {
               NOTIFICHE
             </Menu.Item>
             <Menu.Item
-              className={style.menu}
               key="profile"
               onClick={() => {
                 history.push("profile");

@@ -26,10 +26,15 @@ export const getContacts = async () => {
   return response.data;
 };
 
-export const editContacts = async ({ contact, content }) => {
+export const editContacts = async ({ contact, content, token }) => {
   const response = await axios.post(
-    process.env.REACT_APP_BASE_URL + `/contacts/${contact}`,
-    { content }
+    process.env.REACT_APP_BASE_URL + `/contacts/edit/${contact}`,
+    { content },
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
   );
   return response.data;
 };
@@ -48,10 +53,15 @@ export const getAboutUs = async ({ language }) => {
   return response.data;
 };
 
-export const editAboutUs = async ({ language, description }) => {
+export const editAboutUs = async ({ language, description, token }) => {
   const response = await axios.post(
     process.env.REACT_APP_BASE_URL + `/aboutus/edit/${language}`,
-    { description }
+    { description },
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
   );
   return response.data;
 };

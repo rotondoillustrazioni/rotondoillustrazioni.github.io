@@ -1,9 +1,33 @@
 @import '../../styles/scss/theme';
 
 .menu{
+  font-family: $circular-black;
   @media (max-width: 768px) {
-    width: 100%;
-    justify-content: right !important;
+    width: 100% !important;
+    justify-content: left !important;
+  }
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.it {
+  padding-right: 7px!important;
+  padding-left: 5px !important;
+  border-right: 1px solid black;
+}
+
+.uni {
+  font-family: $circular-black;
+  font-size: 20px;
+  padding-top: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
   }
 }
 
@@ -39,39 +63,9 @@
   background-color: rgb(252, 252, 255) !important;
 }
 
-.menu {
-  font-family: $circular-black;
-}
-
 :global(.ant-menu > ::after) {
   border-bottom: none !important;
 }
-
-
-
-.uni {
-  font-family: $circular-black;
-  font-size: 20px;
-  padding-top: 30px;
-
-  @media (max-width: 768px) {
-    font-size: 14px;
-  }
-}
-
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  border-radius: 10px;
-  font-size: 20px;
-}
-
-.it {
-  padding-right: 7px!important;
-  padding-left: 5px !important;
-  border-right: 1px solid black;
-}
-
 
 :global(.ant-menu-overflow-item.ant-menu-item.ant-menu-item-selected.ant-menu-item-only-child:nth-of-type(4)) {
   border-bottom: 0px !important

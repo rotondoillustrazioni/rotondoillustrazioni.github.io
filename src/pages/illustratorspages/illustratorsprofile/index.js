@@ -40,6 +40,7 @@ function IllustratorsProfile(props) {
   const loading = useSelector((state) => state.aboutUs.loading);
   const editAboutUs = useSelector((state) => state.editAboutUs);
   const editContacts = useSelector((state) => state.editContacts);
+  const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
     if (language !== undefined) {
@@ -64,22 +65,24 @@ function IllustratorsProfile(props) {
 
   const onFinish = (values) => {
     if (values.aboutUs !== undefined) {
-      dispatch(editAboutUsThunk({ language, description: values.aboutUs }));
+      dispatch(
+        editAboutUsThunk({ language, description: values.aboutUs, token })
+      );
     }
     if (values.email !== undefined) {
       const contact = "email";
       const content = { email: values.email };
-      dispatch(editContactsThunk({ contact, content }));
+      dispatch(editContactsThunk({ contact, content, token }));
     }
     if (values.instagram !== undefined) {
       const contact = "instagram";
       const content = { instagram: values.instagram };
-      dispatch(editContactsThunk({ contact, content }));
+      dispatch(editContactsThunk({ contact, content, token }));
     }
     if (values.behance !== undefined) {
       const contact = "behance";
       const content = { behance: values.behance };
-      dispatch(editContactsThunk({ contact, content }));
+      dispatch(editContactsThunk({ contact, content, token }));
     }
   };
 

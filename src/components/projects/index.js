@@ -69,7 +69,6 @@ function Projects() {
 
   return (
     <div>
-      {/* <Card  bordered={false}> */}
       <div className={style.mainContainer}>
         <Spin spinning={loading}>
           <Row className="projects" align="middle">
@@ -77,7 +76,6 @@ function Projects() {
           </Row>
         </Spin>
       </div>
-      {/* </Card> */}
     </div>
   );
 }

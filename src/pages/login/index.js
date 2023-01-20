@@ -20,7 +20,7 @@ function LoginPage() {
   };
 
   if (loggedIn) {
-    return <Redirect to="/illustrators-home" />;
+    return <Redirect to="/i-projects" />;
   }
 
   return (
