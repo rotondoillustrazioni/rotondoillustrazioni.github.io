@@ -28,9 +28,9 @@ function IllustratorsHeader(props) {
             selectedKeys={[`${selectKey()}`]}
           >
             <Menu.Item
-              key="i-projects"
+              key="projects"
               onClick={() => {
-                history.push("i-projects");
+                history.push("/projects");
               }}
             >
               PROGETTI
@@ -38,7 +38,7 @@ function IllustratorsHeader(props) {
             <Menu.Item
               key="notifications"
               onClick={() => {
-                history.push("notifications");
+                history.push("/notifications");
               }}
             >
               NOTIFICHE
@@ -46,7 +46,7 @@ function IllustratorsHeader(props) {
             <Menu.Item
               key="profile"
               onClick={() => {
-                history.push("profile");
+                history.push("/profile");
               }}
             >
               PROFILO

@@ -43,7 +43,7 @@ function App() {
       <Switch>
         <PrivateRoute
           exact
-          path={`${path}i-projects`}
+          path={`${path}projects`}
           component={IllustratorsHome}
         />
         <PrivateRoute

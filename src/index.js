@@ -11,7 +11,13 @@ import { logoutMiddleware } from "./redux/middlewares";
 
 const store = configureStore({
   reducer: reducers,
-  middleware: [save(), logoutMiddleware, ...getDefaultMiddleware()],
+  middleware: [
+    save(),
+    logoutMiddleware,
+    ...getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+  ],
   preloadedState: load(),
 });
 

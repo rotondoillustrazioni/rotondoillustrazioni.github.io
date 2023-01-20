@@ -7,6 +7,8 @@ import {
   editAboutUs,
   getContacts,
   editContacts,
+  deleteProject,
+  newProject,
 } from "../api";
 
 export const projectsThunk = createAsyncThunk("projects", getProjects);
@@ -16,3 +18,8 @@ export const aboutUsThunk = createAsyncThunk("aboutUs", getAboutUs);
 export const editAboutUsThunk = createAsyncThunk("editAboutUs", editAboutUs);
 export const contactsThunk = createAsyncThunk("contacts", getContacts);
 export const editContactsThunk = createAsyncThunk("editContacts", editContacts);
+export const deleteProjectThunk = createAsyncThunk(
+  "deleteProject",
+  deleteProject
+);
+export const newProjectThunk = createAsyncThunk("newProject", newProject);

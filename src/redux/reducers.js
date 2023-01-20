@@ -8,6 +8,8 @@ import {
   editAboutUsThunk,
   contactsThunk,
   editContactsThunk,
+  deleteProjectThunk,
+  newProjectThunk,
 } from "./actions";
 
 const mainReducer = createReducer({}, {});
@@ -127,6 +129,87 @@ const projectSlice = createSlice({
 });
 
 export const { getProject } = projectSlice.actions;
+
+const deleteProjectSlice = createSlice({
+  name: "deleteProject",
+  initialState: {
+    isReady: false,
+    error: null,
+    projectDeleted: null,
+    loading: false,
+  },
+  reducers: {
+    // @ts-ignore
+    deleteProject(state, action) {
+      return {
+        projectDeleted: null,
+        loading: false,
+        error: null,
+      };
+    },
+  },
+  extraReducers: {
+    // @ts-ignore
+    [deleteProjectThunk.pending]: (state, action) => {
+      state.projectDeleted = action.meta.arg;
+      state.loading = true;
+      state.error = null;
+    },
+    // @ts-ignore
+    [deleteProjectThunk.fulfilled]: (state, action) => {
+      state.projectDeleted = true;
+      state.loading = false;
+      state.error = null;
+    },
+    // @ts-ignore
+    [deleteProjectThunk.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.error;
+    },
+  },
+});
+
+export const { deleteProject } = deleteProjectSlice.actions;
+
+const newProjectSlice = createSlice({
+  name: "newProject",
+  initialState: {
+    error: null,
+    projectAdded: null,
+    loading: false,
+  },
+  reducers: {
+    // @ts-ignore
+    deleteProject(state, action) {
+      return {
+        projectAdded: null,
+        loading: false,
+        error: null,
+      };
+    },
+  },
+  extraReducers: {
+    // @ts-ignore
+    [newProjectThunk.pending]: (state, action) => {
+      state.projectAdded = action.meta.arg;
+      state.loading = true;
+      state.error = null;
+    },
+    // @ts-ignore
+    [newProjectThunk.fulfilled]: (state, action) => {
+      state.projectAdded = true;
+      state.loading = false;
+      state.error = null;
+    },
+    // @ts-ignore
+    [newProjectThunk.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.error;
+    },
+  },
+});
+
+export const { newProject } = newProjectSlice.actions;
 
 const aboutUsSlice = createSlice({
   name: "aboutUs",
@@ -293,4 +376,6 @@ export default combineReducers({
   editAboutUs: editAboutUsSlice.reducer,
   contacts: contactsSlice.reducer,
   editContacts: editContactsSlice.reducer,
+  deleteProject: deleteProjectSlice.reducer,
+  newProject: newProjectSlice.reducer,
 });

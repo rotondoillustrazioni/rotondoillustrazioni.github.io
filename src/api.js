@@ -65,3 +65,28 @@ export const editAboutUs = async ({ language, description, token }) => {
   );
   return response.data;
 };
+
+export const deleteProject = async ({ id, token }) => {
+  const response = await axios.delete(
+    process.env.REACT_APP_BASE_URL + `/project/delete/${id}`,
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
+  );
+  return response.data;
+};
+
+export const newProject = async ({ newProject, token }) => {
+  const response = await axios.put(
+    process.env.REACT_APP_BASE_URL + "/project/new",
+    { newProject },
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
+  );
+  return response.data;
+};
