@@ -20,7 +20,7 @@ function LoginPage() {
   };
 
   if (loggedIn) {
-    return <Redirect to="/i-projects" />;
+    return <Redirect to="/projects" />;
   }
 
   return (
@@ -89,7 +89,7 @@ function LoginPage() {
           {/* Or <a href="">register now!</a> */}
         </Form.Item>
       </Form>
-      {error && <span style={{ color: "red" }}>Credenziali errate</span>}
+      {error && <span style={{ color: "red" }}>Errore</span>}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { default as React, useEffect, useState } from "react";
+import { default as React, useEffect } from "react";
 import style from "./style.module.scss";
 import { Col, Row, Spin, Card, Form, Input, Upload, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
@@ -28,12 +28,15 @@ function IllustratorsHome(props) {
   }, [dispatch, projectDeleted]);
 
   const onFinish = (values) => {
-    let newProject = {
-      title: values.title,
-      subtitle: values.subtitle,
-      description: values.description,
-      images: values.images.fileList,
-    };
+    const newProject = new FormData();
+    newProject.append("title", values.title);
+    newProject.append("subtitle", values.subtitle);
+    newProject.append("description", values.description);
+
+    values.images.fileList
+      .map((i) => i.originFileObj)
+      .map((f) => newProject.append("images", f));
+
     dispatch(newProjectThunk({ newProject, token }));
   };
 

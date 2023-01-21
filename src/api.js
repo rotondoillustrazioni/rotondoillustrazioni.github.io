@@ -79,12 +79,14 @@ export const deleteProject = async ({ id, token }) => {
 };
 
 export const newProject = async ({ newProject, token }) => {
+  console.log(newProject);
   const response = await axios.put(
     process.env.REACT_APP_BASE_URL + "/project/new",
-    { newProject },
+    newProject,
     {
       headers: {
         Authorization: "Bearer " + token,
+        "Content-Type": "multipart/form-data",
       },
     }
   );
