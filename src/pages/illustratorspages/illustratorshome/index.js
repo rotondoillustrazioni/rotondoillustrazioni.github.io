@@ -9,23 +9,34 @@ import IllustratorsHeader from "../../../components/illustratorsheader";
 import { useDispatch, useSelector } from "react-redux";
 import { newProjectThunk, projectsThunk } from "../../../redux/actions";
 import EditableProject from "../../../components/editableProject";
+import { resetDeleteProject, resetNewProject } from "../../../redux/reducers";
 
 function IllustratorsHome(props) {
   const dispatch = useDispatch();
+  const [form] = Form.useForm();
 
   const projectsData = useSelector((state) => state.projects.projects);
   const loading = useSelector((state) => state.projects.loading);
-  const projectDeleted = useSelector(
-    (state) => state.deleteProject.projectDeleted
+  const projectDeleted = useSelector((state) => state.deleteProject.isDeleted);
+  const projectDeletedLoading = useSelector(
+    (state) => state.deleteProject.loading
   );
+  const newProjectAdded = useSelector((state) => state.newProject.isAdded);
+  const newProjectAddedLoading = useSelector(
+    (state) => state.newProject.loading
+  );
+
   const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
+    dispatch(resetNewProject());
+    dispatch(resetDeleteProject());
+
     const projects = async () => {
       await dispatch(projectsThunk());
     };
     projects();
-  }, [dispatch, projectDeleted]);
+  }, [dispatch, projectDeleted, newProjectAdded]);
 
   const onFinish = (values) => {
     const newProject = new FormData();
@@ -37,6 +48,7 @@ function IllustratorsHome(props) {
       .map((i) => i.originFileObj)
       .map((f) => newProject.append("images", f));
 
+    form.resetFields();
     dispatch(newProjectThunk({ newProject, token }));
   };
 
@@ -64,12 +76,15 @@ function IllustratorsHome(props) {
     <>
       <IllustratorsHeader {...props} />
       <div className={style.container}>
-        <Spin spinning={loading}>
+        <Spin
+          spinning={loading || projectDeletedLoading || newProjectAddedLoading}
+        >
           <Row className="projects" align="middle" style={{ height: "600px" }}>
             <Col sm={24} md={24} lg={8} className={style.col}>
               <Card className={style.card}>
                 <div className={style.title}>Aggiungi un nuovo progetto</div>
                 <Form
+                  form={form}
                   labelCol={{ span: 4 }}
                   wrapperCol={{ span: 20 }}
                   onFinish={onFinish}

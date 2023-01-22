@@ -133,83 +133,88 @@ export const { getProject } = projectSlice.actions;
 const deleteProjectSlice = createSlice({
   name: "deleteProject",
   initialState: {
-    isReady: false,
+    isDeleted: false,
     error: null,
     projectDeleted: null,
     loading: false,
   },
   reducers: {
     // @ts-ignore
-    deleteProject(state, action) {
-      return {
-        projectDeleted: null,
-        loading: false,
-        error: null,
-      };
+    resetDeleteProject(state) {
+      state.isDeleted = false;
+      state.projectDeleted = null;
+      state.loading = false;
+      state.error = null;
     },
   },
   extraReducers: {
     // @ts-ignore
     [deleteProjectThunk.pending]: (state, action) => {
+      state.isDeleted = false;
       state.projectDeleted = action.meta.arg;
       state.loading = true;
       state.error = null;
     },
     // @ts-ignore
     [deleteProjectThunk.fulfilled]: (state, action) => {
+      state.isDeleted = true;
       state.projectDeleted = true;
       state.loading = false;
       state.error = null;
     },
     // @ts-ignore
     [deleteProjectThunk.rejected]: (state, action) => {
+      state.isDeleted = false;
       state.loading = false;
       state.error = action.error;
     },
   },
 });
 
-export const { deleteProject } = deleteProjectSlice.actions;
+export const { resetDeleteProject } = deleteProjectSlice.actions;
 
 const newProjectSlice = createSlice({
   name: "newProject",
   initialState: {
+    isAdded: false,
     error: null,
     projectAdded: null,
     loading: false,
   },
   reducers: {
     // @ts-ignore
-    deleteProject(state, action) {
-      return {
-        projectAdded: null,
-        loading: false,
-        error: null,
-      };
+    resetNewProject(state) {
+      state.isAdded = false;
+      state.projectAdded = null;
+      state.loading = false;
+      state.error = null;
     },
   },
   extraReducers: {
     // @ts-ignore
     [newProjectThunk.pending]: (state, action) => {
+      state.isAdded = false;
       state.projectAdded = action.meta.arg;
       state.loading = true;
       state.error = null;
     },
     // @ts-ignore
     [newProjectThunk.fulfilled]: (state, action) => {
+      state.isAdded = true;
       state.projectAdded = true;
       state.loading = false;
       state.error = null;
     },
     // @ts-ignore
     [newProjectThunk.rejected]: (state, action) => {
+      state.isAdded = false;
       state.loading = false;
       state.error = action.error;
     },
   },
 });
 
-export const { newProject } = newProjectSlice.actions;
+export const { resetNewProject } = newProjectSlice.actions;
 
 const aboutUsSlice = createSlice({
   name: "aboutUs",

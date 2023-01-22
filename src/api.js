@@ -80,7 +80,6 @@ export const deleteProject = async ({ id, projectTitle, token }) => {
 };
 
 export const newProject = async ({ newProject, token }) => {
-  console.log(newProject);
   const response = await axios.put(
     process.env.REACT_APP_BASE_URL + "/project/new",
     newProject,
