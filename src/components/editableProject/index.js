@@ -39,8 +39,8 @@ function EditableProject({ projectData }) {
 
   const handleDeleteImage = (f) => {};
 
-  const handleDeleteProject = (id) => {
-    dispatch(deleteProjectThunk({ id, token }));
+  const handleDeleteProject = (id, projectTitle) => {
+    dispatch(deleteProjectThunk({ id, projectTitle, token }));
   };
 
   const handlePreview = async (file) => {
@@ -115,7 +115,7 @@ function EditableProject({ projectData }) {
             <Button
               danger
               onClick={() => {
-                handleDeleteProject(data._id);
+                handleDeleteProject(data._id, data.title);
               }}
             >
               Elimina Progetto

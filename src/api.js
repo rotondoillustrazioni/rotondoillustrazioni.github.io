@@ -66,13 +66,14 @@ export const editAboutUs = async ({ language, description, token }) => {
   return response.data;
 };
 
-export const deleteProject = async ({ id, token }) => {
+export const deleteProject = async ({ id, projectTitle, token }) => {
   const response = await axios.delete(
     process.env.REACT_APP_BASE_URL + `/project/delete/${id}`,
     {
       headers: {
         Authorization: "Bearer " + token,
       },
+      data: { projectTitle: projectTitle },
     }
   );
   return response.data;
