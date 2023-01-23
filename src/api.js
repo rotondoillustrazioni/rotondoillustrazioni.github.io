@@ -92,3 +92,17 @@ export const newProject = async ({ newProject, token }) => {
   );
   return response.data;
 };
+
+export const editProject = async ({ id, project, token }) => {
+  const response = await axios.post(
+    process.env.REACT_APP_BASE_URL + `/project/edit/${id}`,
+    project,
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return response.data;
+};

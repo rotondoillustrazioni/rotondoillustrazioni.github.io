@@ -1,20 +1,10 @@
 // @ts-nocheck
-import { default as React, useEffect, useState } from "react";
+import { default as React, useState } from "react";
 import style from "./style.module.scss";
-import {
-  Avatar,
-  Card,
-  Col,
-  Row,
-  Form,
-  Input,
-  Upload,
-  Modal,
-  Button,
-} from "antd";
+import { Card, Row, Form, Input, Upload, Modal, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProjectThunk } from "../../redux/actions";
+import { deleteProjectThunk, editProjectThunk } from "../../redux/actions";
 import TextArea from "antd/lib/input/TextArea";
 
 function EditableProject({ projectData }) {
@@ -27,8 +17,9 @@ function EditableProject({ projectData }) {
 
   const data = projectData.data;
   const images = data.images.map((image, index) => ({
-    uid: data._id + " " + index,
-    name: data.title,
+    uid: data._id + " " + index, // for Form.Item key
+    projectName: data.title,
+    originalFilename: image.split("/")[image.split("/").length - 1],
     status: "done",
     url: image,
   }));
@@ -37,7 +28,8 @@ function EditableProject({ projectData }) {
 
   const handleCancel = () => setPreviewOpen(false);
 
-  const handleDeleteImage = (f) => {};
+  const handleChange = ({ fileList: newFileList }) =>
+    setImagesList(newFileList);
 
   const handleDeleteProject = (id, projectTitle) => {
     dispatch(deleteProjectThunk({ id, projectTitle, token }));
@@ -60,19 +52,52 @@ function EditableProject({ projectData }) {
       reader.onerror = (error) => reject(error);
     });
 
+  const onFinish = (values) => {
+    let id = data._id.split(" ")[0]; // remove the Form.Item's key from the id
+    const project = new FormData();
+    project.append("title", data.title);
+    project.append("subtitle", values.subtitle);
+    project.append("description", values.description);
+
+    if (imagesList.length < images.length) {
+      let deletedImages = images.filter(
+        (i) => !imagesList.find((il) => il.uid === i.uid)
+      );
+      deletedImages.map((i) =>
+        project.append("deletedImages", JSON.stringify(i))
+      );
+    }
+
+    if (imagesList.length > images.length) {
+      imagesList
+        .map((i) => i.originFileObj)
+        .map((f) => project.append("images", f));
+    }
+
+    dispatch(editProjectThunk({ id, project, token }));
+  };
+
   return (
     <Card className={style.card}>
       <div className={style.title}>{data.title}</div>
-      <Form labelCol={{ span: 4 }} wrapperCol={{ span: 20 }}>
+      <Form
+        labelCol={{ span: 4 }}
+        wrapperCol={{ span: 20 }}
+        onFinish={onFinish}
+      >
         <div className={style.formitems}>
-          <Form.Item label="Titolo">
-            <Input value={data.title} />
+          {/* <Form.Item name="title" label="Titolo">
+            <Input defaultValue={data.title} value={data.title} />
+          </Form.Item> */}
+          <Form.Item name="subtitle" label="Sottotit.">
+            <Input
+              defaultValue={data.subtitle !== undefined ? data.subtitle : ""}
+              value={data.subtitle !== undefined ? data.subtitle : ""}
+            />
           </Form.Item>
-          <Form.Item label="Sottotit.">
-            <Input value={data.subtitle} />
-          </Form.Item>
-          <Form.Item label="Desc.">
+          <Form.Item name="description" label="Desc.">
             <TextArea
+              defaultValue={data.description}
               value={data.description}
               rows={3}
               autoSize={{ minRows: 3, maxRows: 3 }}
@@ -84,7 +109,7 @@ function EditableProject({ projectData }) {
               listType="picture-card"
               fileList={imagesList}
               onPreview={handlePreview}
-              onRemove={handleDeleteImage}
+              onChange={handleChange}
             >
               <div>
                 <PlusOutlined />

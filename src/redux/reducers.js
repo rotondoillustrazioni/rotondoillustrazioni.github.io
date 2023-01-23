@@ -10,6 +10,7 @@ import {
   editContactsThunk,
   deleteProjectThunk,
   newProjectThunk,
+  editProjectThunk,
 } from "./actions";
 
 const mainReducer = createReducer({}, {});
@@ -216,6 +217,49 @@ const newProjectSlice = createSlice({
 
 export const { resetNewProject } = newProjectSlice.actions;
 
+const editProjectSlice = createSlice({
+  name: "editProject",
+  initialState: {
+    isEdited: false,
+    error: null,
+    projectEdited: null,
+    loading: false,
+  },
+  reducers: {
+    // @ts-ignore
+    resetEditProject(state) {
+      state.isEdited = false;
+      state.projectEdited = null;
+      state.loading = false;
+      state.error = null;
+    },
+  },
+  extraReducers: {
+    // @ts-ignore
+    [editProjectThunk.pending]: (state, action) => {
+      state.isEdited = false;
+      state.projectEdited = action.meta.arg;
+      state.loading = true;
+      state.error = null;
+    },
+    // @ts-ignore
+    [editProjectThunk.fulfilled]: (state, action) => {
+      state.isEdited = true;
+      state.projectEdited = true;
+      state.loading = false;
+      state.error = null;
+    },
+    // @ts-ignore
+    [editProjectThunk.rejected]: (state, action) => {
+      state.isEdited = false;
+      state.loading = false;
+      state.error = action.error;
+    },
+  },
+});
+
+export const { resetEditProject } = editProjectSlice.actions;
+
 const aboutUsSlice = createSlice({
   name: "aboutUs",
   initialState: { isReady: false, error: null, aboutUs: null, loading: false },
@@ -383,4 +427,5 @@ export default combineReducers({
   editContacts: editContactsSlice.reducer,
   deleteProject: deleteProjectSlice.reducer,
   newProject: newProjectSlice.reducer,
+  editProject: editProjectSlice.reducer,
 });
