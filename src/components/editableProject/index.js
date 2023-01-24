@@ -24,8 +24,6 @@ function EditableProject({ projectData }) {
     url: image.url,
   }));
 
-  console.log(images);
-
   const [imagesList, setImagesList] = useState(images);
 
   const handleCancel = () => setPreviewOpen(false);
