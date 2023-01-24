@@ -51,8 +51,13 @@ function IllustratorsHome(props) {
   const onFinish = (values) => {
     const newProject = new FormData();
     newProject.append("title", values.title);
-    newProject.append("subtitle", values.subtitle);
     newProject.append("description", values.description);
+
+    if (values.subtitle) {
+      newProject.append("subtitle", values.subtitle);
+    } else {
+      newProject.append("subtitle", "");
+    }
 
     values.images.fileList
       .map((i) => i.originFileObj)
