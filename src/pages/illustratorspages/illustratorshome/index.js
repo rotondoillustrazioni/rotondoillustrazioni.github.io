@@ -9,7 +9,11 @@ import IllustratorsHeader from "../../../components/illustratorsheader";
 import { useDispatch, useSelector } from "react-redux";
 import { newProjectThunk, projectsThunk } from "../../../redux/actions";
 import EditableProject from "../../../components/editableProject";
-import { resetDeleteProject, resetNewProject } from "../../../redux/reducers";
+import {
+  resetDeleteProject,
+  resetNewProject,
+  resetEditProject,
+} from "../../../redux/reducers";
 
 function IllustratorsHome(props) {
   const dispatch = useDispatch();
@@ -26,17 +30,23 @@ function IllustratorsHome(props) {
     (state) => state.newProject.loading
   );
 
+  const projectEdited = useSelector((state) => state.editProject.isEdited);
+  const projectEditedLoading = useSelector(
+    (state) => state.editProject.loading
+  );
+
   const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
     dispatch(resetNewProject());
     dispatch(resetDeleteProject());
+    dispatch(resetEditProject());
 
     const projects = async () => {
       await dispatch(projectsThunk());
     };
     projects();
-  }, [dispatch, projectDeleted, newProjectAdded]);
+  }, [dispatch, projectDeleted, newProjectAdded, projectEdited]);
 
   const onFinish = (values) => {
     const newProject = new FormData();
@@ -77,7 +87,12 @@ function IllustratorsHome(props) {
       <IllustratorsHeader {...props} />
       <div className={style.container}>
         <Spin
-          spinning={loading || projectDeletedLoading || newProjectAddedLoading}
+          spinning={
+            loading ||
+            projectDeletedLoading ||
+            newProjectAddedLoading ||
+            projectEditedLoading
+          }
         >
           <Row className="projects" align="middle" style={{ height: "600px" }}>
             <Col sm={24} md={24} lg={8} className={style.col}>

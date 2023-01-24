@@ -17,11 +17,11 @@ function EditableProject({ projectData }) {
 
   const data = projectData.data;
   const images = data.images.map((image, index) => ({
-    uid: data._id + " " + index, // for Form.Item key
+    uid: image._id,
     projectName: data.title,
-    originalFilename: image.split("/")[image.split("/").length - 1],
+    originalFilename: image.fileName,
+    url: image.url,
     status: "done",
-    url: image,
   }));
 
   const [imagesList, setImagesList] = useState(images);
@@ -41,7 +41,7 @@ function EditableProject({ projectData }) {
     }
     setPreviewImage(file.url || file.preview);
     setPreviewOpen(true);
-    setPreviewTitle(file.name);
+    setPreviewTitle(file.originalFilename);
   };
 
   const getBase64 = (file) =>
@@ -53,7 +53,9 @@ function EditableProject({ projectData }) {
     });
 
   const onFinish = (values) => {
-    let id = data._id.split(" ")[0]; // remove the Form.Item's key from the id
+    console.log(values);
+    console.log(imagesList);
+    let id = data._id;
     const project = new FormData();
     project.append("title", data.title);
     project.append("subtitle", values.subtitle);
