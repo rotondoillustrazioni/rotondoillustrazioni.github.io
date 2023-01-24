@@ -80,8 +80,8 @@ function ProjectPage() {
                   {condition &&
                     projectData.images.slice(1).map((e) => (
                       <div className={style.images} key={e}>
-                        <Row key={e}>
-                          <VideoOrImage e={e} title={projectData.title} />
+                        <Row key={e._id}>
+                          <VideoOrImage e={e.url} title={projectData.title} />
                         </Row>
                       </div>
                     ))}

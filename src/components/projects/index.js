@@ -15,6 +15,15 @@ function Projects() {
   const projectsData = useSelector((state) => state.projects.projects);
   const loading = useSelector((state) => state.projects.loading);
 
+  const cover = (images) => {
+    const cover = images.find((i) => i.fileName === "copertina.jpg");
+    if (cover !== undefined) {
+      return cover.url;
+    } else {
+      return images[0].url;
+    }
+  };
+
   useEffect(() => {
     const projects = async () => {
       await dispatch(projectsThunk());
@@ -45,7 +54,7 @@ function Projects() {
                     key={data._id}
                     alt={data.title}
                     scrollPosition={{ x: 0, y: 0 }}
-                    src={data.images[0]}
+                    src={cover(data.images)}
                     width="100%"
                     height="auto"
                   />

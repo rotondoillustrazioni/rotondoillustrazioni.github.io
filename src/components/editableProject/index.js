@@ -20,9 +20,11 @@ function EditableProject({ projectData }) {
     uid: image._id,
     projectName: data.title,
     originalFilename: image.fileName,
-    url: image.url,
     status: "done",
+    url: image.url,
   }));
+
+  console.log(images);
 
   const [imagesList, setImagesList] = useState(images);
 
@@ -53,8 +55,6 @@ function EditableProject({ projectData }) {
     });
 
   const onFinish = (values) => {
-    console.log(values);
-    console.log(imagesList);
     let id = data._id;
     const project = new FormData();
     project.append("title", data.title);
