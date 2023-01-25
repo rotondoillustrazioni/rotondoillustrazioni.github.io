@@ -1,13 +1,18 @@
-import { Col, Menu, Row } from "antd";
+// @ts-nocheck
+import { Col, Menu, Row, Badge } from "antd";
 import style from "./style.module.scss";
 import { useHistory } from "react-router";
 import React from "react";
 import { logout } from "../../redux/reducers";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function IllustratorsHeader(props) {
   const history = useHistory();
   const dispatch = useDispatch();
+  const notReadNumber = useSelector(
+    (state) => state.notifications.notReadNumber
+  );
+  const notificationsBadge = notReadNumber > 0 ? true : false;
 
   const selectKey = () => {
     if (Object.keys(props).length === 0) {
@@ -41,7 +46,9 @@ function IllustratorsHeader(props) {
                 history.push("/notifications");
               }}
             >
-              NOTIFICHE
+              <Badge dot={notificationsBadge} size="small" color="black">
+                NOTIFICHE
+              </Badge>
             </Menu.Item>
             <Menu.Item
               key="profile"

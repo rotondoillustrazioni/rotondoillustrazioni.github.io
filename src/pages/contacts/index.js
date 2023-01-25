@@ -93,6 +93,17 @@ function Contacts(props) {
             wrapperCol={{ span: 18 }}
           >
             <Form.Item
+              name="name"
+              label={t("name")}
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
               name="email"
               label={t("email")}
               rules={[

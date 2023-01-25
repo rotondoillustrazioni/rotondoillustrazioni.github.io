@@ -106,3 +106,15 @@ export const editProject = async ({ id, project, token }) => {
   );
   return response.data;
 };
+
+export const getNotifications = async ({ token }) => {
+  const response = await axios.get(
+    process.env.REACT_APP_BASE_URL + "/notifications",
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
+  );
+  return response.data;
+};

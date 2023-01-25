@@ -11,6 +11,7 @@ import {
   deleteProjectThunk,
   newProjectThunk,
   editProjectThunk,
+  notificationsThunk,
 } from "./actions";
 
 const mainReducer = createReducer({}, {});
@@ -91,6 +92,50 @@ const projectsSlice = createSlice({
 });
 
 export const { getProjects } = projectsSlice.actions;
+
+const notificationsSlice = createSlice({
+  name: "notifications",
+  initialState: {
+    notReadNumber: 0,
+    error: null,
+    notifications: null,
+    loading: false,
+  },
+  reducers: {
+    // @ts-ignore
+    getNotifications(state, action) {
+      return {
+        notifications: action.payload,
+        loading: false,
+        error: null,
+      };
+    },
+  },
+  extraReducers: {
+    // @ts-ignore
+    [notificationsThunk.pending]: (state, action) => {
+      state.notifications = action.meta.arg;
+      state.loading = true;
+      state.error = null;
+    },
+    // @ts-ignore
+    [notificationsThunk.fulfilled]: (state, action) => {
+      state.notifications = action.payload;
+      state.notReadNumber = action.payload.filter(
+        (item) => item.read === false
+      ).length;
+      state.loading = false;
+      state.error = null;
+    },
+    // @ts-ignore
+    [notificationsThunk.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.error;
+    },
+  },
+});
+
+export const { getNotifications } = notificationsSlice.actions;
 
 const projectSlice = createSlice({
   name: "project",
@@ -428,4 +473,5 @@ export default combineReducers({
   deleteProject: deleteProjectSlice.reducer,
   newProject: newProjectSlice.reducer,
   editProject: editProjectSlice.reducer,
+  notifications: notificationsSlice.reducer,
 });
