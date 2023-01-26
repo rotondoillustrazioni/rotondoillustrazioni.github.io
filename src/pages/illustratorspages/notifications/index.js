@@ -8,10 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { notificationsThunk } from "../../../redux/actions";
 import { wsConnect } from "../../../websocket";
 import Notification from "../../../components/notification";
+import { resetNewNotificationWS } from "../../../redux/reducers";
 
 function Notifications(props) {
   const dispatch = useDispatch();
-  const [showNewN, setShowNewN] = React.useState(false);
   const notifications = true;
   const notificationsData = useSelector(
     (state) => state.notifications.notifications
@@ -36,14 +36,6 @@ function Notifications(props) {
     projects();
     dispatch(wsConnect(process.env.REACT_APP_SOCKET_ORIGIN));
   }, [dispatch, token, notificationDeleted]);
-
-  useEffect(() => {
-    if (newNotification !== null && newNotification !== undefined) {
-      setShowNewN(true);
-    } else {
-      setShowNewN(false);
-    }
-  }, [newNotification]);
 
   const showNewNotification = () => {
     return <Notification notification={newNotification[0]} />;
@@ -74,7 +66,7 @@ function Notifications(props) {
       <IllustratorsHeader {...props} notifications={notifications} />
       <div className={style.title}>NOTIFICHE</div>
       <Row>
-        {showNewN && (
+        {newNotification !== null && newNotification !== undefined && (
           <div className={style.notification}>{showNewNotification()}</div>
         )}
         <div className={style.notification}>{showNotifications()}</div>
