@@ -98,68 +98,70 @@ function Contacts(props) {
           <Row className={style.row}>
             <div className={style.title}>{t("contact-or")}</div>
           </Row>
-          <Form
-            name="nest-messages"
-            onFinish={onFinish}
-            validateMessages={validateMessages}
-            labelCol={{ span: 4 }}
-            wrapperCol={{ span: 18 }}
-            form={form}
-          >
-            <Form.Item
-              name="name"
-              label={t("name")}
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
+          <div className={style.form}>
+            <Form
+              name="nest-messages"
+              onFinish={onFinish}
+              validateMessages={validateMessages}
+              labelCol={{ span: 4 }}
+              wrapperCol={{ span: 18 }}
+              form={form}
             >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              name="email"
-              label={t("email")}
-              rules={[
-                {
-                  required: true,
-                  type: "email",
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label={t("title")}
-              name="title"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label={t("description")}
-              name="description"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-            >
-              <Input.TextArea
-                rows={4}
-                autoSize={{ minRows: 6, maxRows: 6 }}
-              ></Input.TextArea>
-            </Form.Item>
-            <Row className={style.row}>
-              <Form.Item>
-                <Button htmlType="submit">{t("send")}</Button>
+              <Form.Item
+                name="name"
+                label={t("name")}
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Input />
               </Form.Item>
-            </Row>
-          </Form>
+              <Form.Item
+                name="email"
+                label={t("email")}
+                rules={[
+                  {
+                    required: true,
+                    type: "email",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
+                label={t("title")}
+                name="title"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
+                label={t("description")}
+                name="description"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Input.TextArea
+                  rows={4}
+                  autoSize={{ minRows: 6, maxRows: 6 }}
+                ></Input.TextArea>
+              </Form.Item>
+              <Row className={style.row}>
+                <Form.Item>
+                  <Button htmlType="submit">{t("send")}</Button>
+                </Form.Item>
+              </Row>
+            </Form>
+          </div>
         </Card>
       </div>
     </>

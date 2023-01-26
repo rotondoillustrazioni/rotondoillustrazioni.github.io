@@ -78,7 +78,15 @@ function IllustratorsHome(props) {
       return pjs.map((e) => {
         return e.map((data) => {
           return (
-            <Col sm={24} md={24} lg={8} key={data._id} className={style.col}>
+            <Col
+              sx={24}
+              sm={24}
+              md={24}
+              lg={24}
+              xl={8}
+              key={data._id}
+              className={style.col}
+            >
               <EditableProject projectData={{ data }} />
             </Col>
           );
@@ -100,7 +108,7 @@ function IllustratorsHome(props) {
           }
         >
           <Row className="projects" align="middle" style={{ height: "600px" }}>
-            <Col sm={24} md={24} lg={8} className={style.col}>
+            <Col sx={24} sm={24} md={24} lg={24} xl={8} className={style.col}>
               <Card className={style.card}>
                 <div className={style.title}>Aggiungi un nuovo progetto</div>
                 <Form
