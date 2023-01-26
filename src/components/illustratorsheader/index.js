@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Col, Menu, Row, Badge } from "antd";
+import { Col, Menu, Row } from "antd";
 import style from "./style.module.scss";
 import { useHistory } from "react-router";
 import React from "react";
@@ -46,9 +46,8 @@ function IllustratorsHeader(props) {
                 history.push("/notifications");
               }}
             >
-              <Badge dot={notificationsBadge} size="small" color="black">
-                NOTIFICHE
-              </Badge>
+              NOTIFICHE{" "}
+              {notificationsBadge && <span className={style.badge}>•</span>}
             </Menu.Item>
             <Menu.Item
               key="profile"

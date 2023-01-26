@@ -7,13 +7,14 @@ import { load, save } from "redux-localstorage-simple";
 import App from "./App";
 import ScrollToTop from "./components/routerScrollToTop";
 import reducers from "./redux/reducers";
-import { logoutMiddleware } from "./redux/middlewares";
+import { logoutMiddleware, notificationsMiddleware } from "./redux/middlewares";
 
 const store = configureStore({
   reducer: reducers,
   middleware: [
     save(),
     logoutMiddleware,
+    notificationsMiddleware,
     ...getDefaultMiddleware({
       serializableCheck: false,
     }),

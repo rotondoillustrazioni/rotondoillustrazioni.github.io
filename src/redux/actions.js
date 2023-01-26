@@ -31,3 +31,10 @@ export const notificationsThunk = createAsyncThunk(
   "notifications",
   getNotifications
 );
+
+// export const wsConnectThunk = createAsyncThunk("wsConnect", wsConnect);
+// export const wsDisconnectThunk = createAsyncThunk("wsDisconnect", wsDisconnect);
+// export const wsSendMessageThunk = createAsyncThunk(
+//   "wsSendMessage",
+//   wsSendMessage
+// );

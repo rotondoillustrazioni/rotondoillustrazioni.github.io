@@ -6,6 +6,8 @@ import Header from "../../components/header";
 import { contactsThunk } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { wsConnect, wsDisconnect, wsSendMessage } from "../../websocket";
+
 import {
   InstagramOutlined,
   BehanceOutlined,
@@ -13,6 +15,7 @@ import {
 } from "@ant-design/icons";
 
 function Contacts(props) {
+  const [form] = Form.useForm();
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const contacts = useSelector((state) => state.contacts.contacts);
@@ -24,6 +27,14 @@ function Contacts(props) {
     getContacts();
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(wsConnect(process.env.REACT_APP_SOCKET_ORIGIN));
+
+    return () => {
+      dispatch(wsDisconnect());
+    };
+  }, []);
+
   const validateMessages = {
     required: t("required"),
     types: {
@@ -32,7 +43,9 @@ function Contacts(props) {
   };
 
   const onFinish = (values) => {
-    console.log(values);
+    const message = values;
+    form.resetFields();
+    dispatch(wsSendMessage(message));
   };
 
   return (
@@ -91,6 +104,7 @@ function Contacts(props) {
             validateMessages={validateMessages}
             labelCol={{ span: 4 }}
             wrapperCol={{ span: 18 }}
+            form={form}
           >
             <Form.Item
               name="name"

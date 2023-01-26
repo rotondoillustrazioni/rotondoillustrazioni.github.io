@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createReducer, createSlice } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import {
@@ -13,6 +14,7 @@ import {
   editProjectThunk,
   notificationsThunk,
 } from "./actions";
+import { wsNewNotification } from "../websocket";
 
 const mainReducer = createReducer({}, {});
 
@@ -461,6 +463,32 @@ const editContactsSlice = createSlice({
 
 export const { resetEditContacts } = editContactsSlice.actions;
 
+const notificationsWSSlice = createSlice({
+  name: "notificationsWS",
+  initialState: {
+    connected: false,
+    receivedNotification: null,
+  },
+  reducers: {
+    connectWS(state) {
+      // not used for now
+      state.connected = true;
+    },
+    resetNewNotificationWS(state) {
+      state.receivedNotification = null;
+    },
+    newNotificationWS: (state, action) => {
+      state.receivedNotification = {
+        ...state.receivedNotification,
+        ...action.payload,
+      };
+    },
+  },
+});
+
+export const { connectWS, newNotificationWS, resetNewNotificationWS } =
+  notificationsWSSlice.actions;
+
 export default combineReducers({
   main: mainReducer,
   projects: projectsSlice.reducer,
@@ -474,4 +502,5 @@ export default combineReducers({
   newProject: newProjectSlice.reducer,
   editProject: editProjectSlice.reducer,
   notifications: notificationsSlice.reducer,
+  notificationsWS: notificationsWSSlice.reducer,
 });
