@@ -13,8 +13,8 @@ import {
   newProjectThunk,
   editProjectThunk,
   notificationsThunk,
+  deleteNotificationThunk,
 } from "./actions";
-import { wsNewNotification } from "../websocket";
 
 const mainReducer = createReducer({}, {});
 
@@ -94,50 +94,6 @@ const projectsSlice = createSlice({
 });
 
 export const { getProjects } = projectsSlice.actions;
-
-const notificationsSlice = createSlice({
-  name: "notifications",
-  initialState: {
-    notReadNumber: 0,
-    error: null,
-    notifications: null,
-    loading: false,
-  },
-  reducers: {
-    // @ts-ignore
-    getNotifications(state, action) {
-      return {
-        notifications: action.payload,
-        loading: false,
-        error: null,
-      };
-    },
-  },
-  extraReducers: {
-    // @ts-ignore
-    [notificationsThunk.pending]: (state, action) => {
-      state.notifications = action.meta.arg;
-      state.loading = true;
-      state.error = null;
-    },
-    // @ts-ignore
-    [notificationsThunk.fulfilled]: (state, action) => {
-      state.notifications = action.payload;
-      state.notReadNumber = action.payload.filter(
-        (item) => item.read === false
-      ).length;
-      state.loading = false;
-      state.error = null;
-    },
-    // @ts-ignore
-    [notificationsThunk.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.error;
-    },
-  },
-});
-
-export const { getNotifications } = notificationsSlice.actions;
 
 const projectSlice = createSlice({
   name: "project",
@@ -489,6 +445,85 @@ const notificationsWSSlice = createSlice({
 export const { connectWS, newNotificationWS, resetNewNotificationWS } =
   notificationsWSSlice.actions;
 
+const notificationsSlice = createSlice({
+  name: "notifications",
+  initialState: {
+    notReadNumber: 0,
+    error: null,
+    notifications: null,
+    loading: false,
+  },
+  reducers: {
+    // @ts-ignore
+    getNotifications(state, action) {
+      return {
+        notifications: action.payload,
+        loading: false,
+        error: null,
+      };
+    },
+  },
+  extraReducers: {
+    // @ts-ignore
+    [notificationsThunk.pending]: (state, action) => {
+      state.notifications = action.meta.arg;
+      state.loading = true;
+      state.error = null;
+    },
+    // @ts-ignore
+    [notificationsThunk.fulfilled]: (state, action) => {
+      state.notifications = action.payload;
+      state.notReadNumber = action.payload.filter(
+        (item) => item.read === false
+      ).length;
+      state.loading = false;
+      state.error = null;
+    },
+    // @ts-ignore
+    [notificationsThunk.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.error;
+    },
+  },
+});
+
+export const { getNotifications } = notificationsSlice.actions;
+
+const deleteNotificationSlice = createSlice({
+  name: "deleteNotification",
+  initialState: {
+    isDeleted: false,
+    error: null,
+    loading: false,
+  },
+  reducers: {
+    resetDeleteNotification(state) {
+      state.isDeleted = false;
+      state.loading = false;
+      state.error = null;
+    },
+  },
+  extraReducers: {
+    [deleteNotificationThunk.pending]: (state, action) => {
+      state.isDeleted = false;
+      state.loading = true;
+      state.error = null;
+    },
+    [deleteNotificationThunk.fulfilled]: (state, action) => {
+      state.isDeleted = true;
+      state.loading = false;
+      state.error = null;
+    },
+    [deleteNotificationThunk.rejected]: (state, action) => {
+      state.isDeleted = false;
+      state.loading = false;
+      state.error = action.error;
+    },
+  },
+});
+
+export const { resetDeleteNotification } = deleteNotificationSlice.actions;
+
 export default combineReducers({
   main: mainReducer,
   projects: projectsSlice.reducer,
@@ -503,4 +538,5 @@ export default combineReducers({
   editProject: editProjectSlice.reducer,
   notifications: notificationsSlice.reducer,
   notificationsWS: notificationsWSSlice.reducer,
+  deleteNotification: deleteNotificationSlice.reducer,
 });

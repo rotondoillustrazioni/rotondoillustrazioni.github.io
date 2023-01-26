@@ -118,3 +118,15 @@ export const getNotifications = async ({ token }) => {
   );
   return response.data;
 };
+
+export const deleteNotification = async ({ id, token }) => {
+  const response = await axios.delete(
+    process.env.REACT_APP_BASE_URL + `/notifications/delete/${id}`,
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
+  );
+  return response.data;
+};

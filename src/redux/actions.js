@@ -11,6 +11,7 @@ import {
   newProject,
   editProject,
   getNotifications,
+  deleteNotification,
 } from "../api";
 
 export const projectsThunk = createAsyncThunk("projects", getProjects);
@@ -32,9 +33,7 @@ export const notificationsThunk = createAsyncThunk(
   getNotifications
 );
 
-// export const wsConnectThunk = createAsyncThunk("wsConnect", wsConnect);
-// export const wsDisconnectThunk = createAsyncThunk("wsDisconnect", wsDisconnect);
-// export const wsSendMessageThunk = createAsyncThunk(
-//   "wsSendMessage",
-//   wsSendMessage
-// );
+export const deleteNotificationThunk = createAsyncThunk(
+  "deleteNotification",
+  deleteNotification
+);

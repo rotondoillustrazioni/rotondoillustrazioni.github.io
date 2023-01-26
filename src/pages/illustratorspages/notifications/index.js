@@ -21,6 +21,10 @@ function Notifications(props) {
     (state) => state.notificationsWS.receivedNotification
   );
 
+  const notificationDeleted = useSelector(
+    (state) => state.deleteNotification.isDeleted
+  );
+
   const loading = useSelector((state) => state.notifications.loading);
 
   const token = useSelector((state) => state.auth.token);
@@ -31,7 +35,7 @@ function Notifications(props) {
     };
     projects();
     dispatch(wsConnect(process.env.REACT_APP_SOCKET_ORIGIN));
-  }, [dispatch, token]);
+  }, [dispatch, token, notificationDeleted]);
 
   useEffect(() => {
     if (newNotification !== null && newNotification !== undefined) {

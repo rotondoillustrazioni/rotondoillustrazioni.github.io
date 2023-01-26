@@ -1,14 +1,30 @@
+// @ts-nocheck
 import { default as React } from "react";
 import style from "./style.module.scss";
+import { useDispatch, useSelector } from "react-redux";
 import { Badge, Button, Card, Descriptions, Row } from "antd";
+import { deleteNotificationThunk } from "../../redux/actions";
 
 function Notification({ notification }) {
+  const token = useSelector((state) => state.auth.token);
+  const dispatch = useDispatch();
+
+  const notificationLoading = useSelector(
+    (state) => state.deleteNotification.loading
+  );
+
   const markAsRead = () => {};
 
-  const onDelete = () => {};
+  const onDelete = () => {
+    dispatch(deleteNotificationThunk({ id: notification._id, token }));
+  };
 
   return (
-    <Card className={style.card} key={notification._id}>
+    <Card
+      className={style.card}
+      key={notification._id}
+      loading={notificationLoading}
+    >
       <Badge dot={!notification.read}>
         <Descriptions title={notification.name} bordered column={1}>
           <Descriptions.Item label="Email" span={4}>
