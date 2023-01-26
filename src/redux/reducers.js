@@ -14,6 +14,7 @@ import {
   editProjectThunk,
   notificationsThunk,
   deleteNotificationThunk,
+  editNotificationThunk,
 } from "./actions";
 
 const mainReducer = createReducer({}, {});
@@ -524,6 +525,41 @@ const deleteNotificationSlice = createSlice({
 
 export const { resetDeleteNotification } = deleteNotificationSlice.actions;
 
+const editNotificationSlice = createSlice({
+  name: "editNotification",
+  initialState: {
+    isEdited: false,
+    error: null,
+    loading: false,
+  },
+  reducers: {
+    resetEditNotification(state) {
+      state.isEdited = false;
+      state.loading = false;
+      state.error = null;
+    },
+  },
+  extraReducers: {
+    [editNotificationThunk.pending]: (state, action) => {
+      state.isEdited = false;
+      state.loading = true;
+      state.error = null;
+    },
+    [editNotificationThunk.fulfilled]: (state, action) => {
+      state.isEdited = true;
+      state.loading = false;
+      state.error = null;
+    },
+    [editNotificationThunk.rejected]: (state, action) => {
+      state.isEdited = false;
+      state.loading = false;
+      state.error = action.error;
+    },
+  },
+});
+
+export const { resetEditNotification } = editNotificationSlice.actions;
+
 export default combineReducers({
   main: mainReducer,
   projects: projectsSlice.reducer,
@@ -539,4 +575,5 @@ export default combineReducers({
   notifications: notificationsSlice.reducer,
   notificationsWS: notificationsWSSlice.reducer,
   deleteNotification: deleteNotificationSlice.reducer,
+  editNotification: editNotificationSlice.reducer,
 });

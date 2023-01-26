@@ -6,9 +6,7 @@ import IllustratorsHeader from "../../../components/illustratorsheader";
 import { Row } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { notificationsThunk } from "../../../redux/actions";
-import { wsConnect } from "../../../websocket";
 import Notification from "../../../components/notification";
-import { resetNewNotificationWS } from "../../../redux/reducers";
 
 function Notifications(props) {
   const dispatch = useDispatch();
@@ -25,6 +23,10 @@ function Notifications(props) {
     (state) => state.deleteNotification.isDeleted
   );
 
+  const notificationEdited = useSelector(
+    (state) => state.editNotification.isEdited
+  );
+
   const loading = useSelector((state) => state.notifications.loading);
 
   const token = useSelector((state) => state.auth.token);
@@ -34,8 +36,8 @@ function Notifications(props) {
       await dispatch(notificationsThunk({ token }));
     };
     projects();
-    dispatch(wsConnect(process.env.REACT_APP_SOCKET_ORIGIN));
-  }, [dispatch, token, notificationDeleted]);
+    // dispatch(wsConnect(process.env.REACT_APP_SOCKET_ORIGIN));
+  }, [dispatch, token, notificationDeleted, notificationEdited]);
 
   const showNewNotification = () => {
     return <Notification notification={newNotification[0]} />;

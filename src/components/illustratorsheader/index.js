@@ -2,9 +2,10 @@
 import { Col, Menu, Row } from "antd";
 import style from "./style.module.scss";
 import { useHistory } from "react-router";
-import React from "react";
+import { default as React, useEffect } from "react";
 import { logout } from "../../redux/reducers";
 import { useDispatch, useSelector } from "react-redux";
+import { wsConnect } from "../../websocket";
 
 function IllustratorsHeader(props) {
   const history = useHistory();
@@ -12,7 +13,15 @@ function IllustratorsHeader(props) {
   const notReadNumber = useSelector(
     (state) => state.notifications.notReadNumber
   );
-  const notificationsBadge = notReadNumber > 0 ? true : false;
+  const newNotification = useSelector(
+    (state) => state.notificationsWS.receivedNotification
+  );
+  const notificationsBadge =
+    notReadNumber > 0 ? true : false || newNotification;
+
+  useEffect(() => {
+    dispatch(wsConnect(process.env.REACT_APP_SOCKET_ORIGIN));
+  }, [dispatch]);
 
   const selectKey = () => {
     if (Object.keys(props).length === 0) {

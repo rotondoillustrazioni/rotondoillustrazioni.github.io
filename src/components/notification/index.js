@@ -1,11 +1,15 @@
 // @ts-nocheck
-import { default as React } from "react";
+import { default as React, useEffect, useState } from "react";
 import style from "./style.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Badge, Button, Card, Descriptions, Row } from "antd";
-import { deleteNotificationThunk } from "../../redux/actions";
+import {
+  deleteNotificationThunk,
+  editNotificationThunk,
+} from "../../redux/actions";
 
 function Notification({ notification }) {
+  const [readUnread, setReadUnread] = useState();
   const token = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
 
@@ -13,7 +17,23 @@ function Notification({ notification }) {
     (state) => state.deleteNotification.loading
   );
 
-  const markAsRead = () => {};
+  useEffect(() => {
+    if (notification.read === true) {
+      setReadUnread("Segna come non letta");
+    } else {
+      setReadUnread("Segna come letta");
+    }
+  }, [notification.read]);
+
+  const markAsRead = () => {
+    dispatch(
+      editNotificationThunk({
+        id: notification._id,
+        token,
+        read: !notification.read,
+      })
+    );
+  };
 
   const onDelete = () => {
     dispatch(deleteNotificationThunk({ id: notification._id, token }));
@@ -36,8 +56,13 @@ function Notification({ notification }) {
           <Descriptions.Item label="Descrizione">
             {notification.description}
           </Descriptions.Item>
-          <Descriptions.Item label="Data">
-            {new Date(notification.date).toISOString().split("T")[0]}
+          <Descriptions.Item label="Data e ora">
+            {new Date(notification.date).toISOString().split("T")[0] +
+              ", " +
+              new Date(notification.date)
+                .toISOString()
+                .split("T")[1]
+                .split(".")[0]}
           </Descriptions.Item>
         </Descriptions>
       </Badge>
@@ -55,7 +80,7 @@ function Notification({ notification }) {
         </div>
         <div className={style.button}>
           <Button onClick={markAsRead} size="large">
-            Segna come letta
+            {readUnread}
           </Button>
         </div>
       </Row>

@@ -130,3 +130,17 @@ export const deleteNotification = async ({ id, token }) => {
   );
   return response.data;
 };
+
+export const editNotification = async ({ id, read, token }) => {
+  const response = await axios.post(
+    process.env.REACT_APP_BASE_URL + `/notifications/edit/${id}`,
+    { read },
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  return response.data;
+};

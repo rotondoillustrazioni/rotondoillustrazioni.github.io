@@ -12,6 +12,7 @@ import {
   editProject,
   getNotifications,
   deleteNotification,
+  editNotification,
 } from "../api";
 
 export const projectsThunk = createAsyncThunk("projects", getProjects);
@@ -36,4 +37,9 @@ export const notificationsThunk = createAsyncThunk(
 export const deleteNotificationThunk = createAsyncThunk(
   "deleteNotification",
   deleteNotification
+);
+
+export const editNotificationThunk = createAsyncThunk(
+  "editNotification",
+  editNotification
 );
