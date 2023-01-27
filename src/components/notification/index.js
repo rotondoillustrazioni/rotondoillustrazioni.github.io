@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { default as React, useEffect, useState } from "react";
+import { default as React, useState } from "react";
 import style from "./style.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Badge, Button, Card, Descriptions, Row } from "antd";
@@ -76,18 +76,28 @@ function Notification({ notification }) {
       </Badge>
       <Row align="middle" className={style.buttons}>
         <div className={style.button}>
-          <Button style= {{width: "200px"}} onClick={onDelete} danger size="large">
+          <Button
+            style={{ width: "200px" }}
+            onClick={onDelete}
+            danger
+            size="large"
+          >
             Elimina
           </Button>
         </div>
 
         <div className={style.button}>
-          <Button style= {{width: "200px"}}  type="primary" size="large" href={`mailto:${notification.email}`}>
+          <Button
+            style={{ width: "200px" }}
+            type="primary"
+            size="large"
+            href={`mailto:${notification.email}`}
+          >
             Rispondi
           </Button>
         </div>
         <div className={style.button}>
-          <Button style= {{width: "200px"}}  onClick={markAsRead} size="large">
+          <Button style={{ width: "200px" }} onClick={markAsRead} size="large">
             {readUnreadText}
           </Button>
         </div>

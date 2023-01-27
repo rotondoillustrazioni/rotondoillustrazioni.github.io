@@ -58,6 +58,7 @@ function EditableProject({ projectData }) {
     project.append("title", data.title);
     project.append("subtitle", values.subtitle);
     project.append("description", values.description);
+    project.append("descriptionIT", values.descriptionIT);
 
     if (imagesList.length < images.length) {
       let deletedImages = images.filter(
@@ -95,10 +96,18 @@ function EditableProject({ projectData }) {
               value={data.subtitle !== undefined ? data.subtitle : ""}
             />
           </Form.Item>
-          <Form.Item name="description" label="Desc.">
+          <Form.Item name="description" label="Desc. EN">
             <TextArea
               defaultValue={data.description}
               value={data.description}
+              rows={3}
+              autoSize={{ minRows: 3, maxRows: 3 }}
+            />
+          </Form.Item>
+          <Form.Item name="descriptionIT" label="Desc. IT">
+            <TextArea
+              defaultValue={data.descriptionIT}
+              value={data.descriptionIT}
               rows={3}
               autoSize={{ minRows: 3, maxRows: 3 }}
             />
@@ -139,14 +148,20 @@ function EditableProject({ projectData }) {
           <Row className={style.buttons}>
             <Button
               danger
-              style= {{width: "200px", marginTop: "5px"}}
+              style={{ width: "200px", marginTop: "5px" }}
               onClick={() => {
                 handleDeleteProject(data._id, data.title);
               }}
             >
               Elimina Progetto
             </Button>
-            <Button style= {{width: "200px", marginTop: "5px"}} type="primary" htmlType="submit">Salva Modifiche</Button>
+            <Button
+              style={{ width: "200px", marginTop: "5px" }}
+              type="primary"
+              htmlType="submit"
+            >
+              Salva Modifiche
+            </Button>
           </Row>
         </Form.Item>
       </Form>

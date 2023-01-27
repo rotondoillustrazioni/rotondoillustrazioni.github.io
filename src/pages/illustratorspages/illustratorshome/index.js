@@ -52,6 +52,7 @@ function IllustratorsHome(props) {
     const newProject = new FormData();
     newProject.append("title", values.title);
     newProject.append("description", values.description);
+    newProject.append("descriptionIT", values.descriptionIT);
 
     if (values.subtitle) {
       newProject.append("subtitle", values.subtitle);
@@ -124,9 +125,16 @@ function IllustratorsHome(props) {
                     <Form.Item name="subtitle" label="Sottotit.">
                       <Input placeholder="Sottotitolo del progetto" />
                     </Form.Item>
-                    <Form.Item name="description" label="Desc.">
+                    <Form.Item name="description" label="Desc. EN">
                       <TextArea
-                        placeholder="Descrizione del progetto"
+                        placeholder="Descrizione del progetto in inglese"
+                        rows={3}
+                        autoSize={{ minRows: 3, maxRows: 3 }}
+                      />
+                    </Form.Item>
+                    <Form.Item name="descriptionIT" label="Desc. IT">
+                      <TextArea
+                        placeholder="Descrizione del progetto in italiano"
                         rows={3}
                         autoSize={{ minRows: 3, maxRows: 3 }}
                       />
@@ -142,7 +150,13 @@ function IllustratorsHome(props) {
                   </div>
                   <div style={{ textAlign: "center", margin: "26px" }}>
                     <Form.Item wrapperCol={{ span: 24 }}>
-                      <Button type="primary" style= {{width: "200px"}} htmlType="submit">Aggiungi</Button>
+                      <Button
+                        type="primary"
+                        style={{ width: "200px" }}
+                        htmlType="submit"
+                      >
+                        Aggiungi
+                      </Button>
                     </Form.Item>
                   </div>
                 </Form>

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Col, Row, Spin } from "antd";
 import React, { useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";

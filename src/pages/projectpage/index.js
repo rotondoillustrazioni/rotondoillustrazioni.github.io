@@ -1,5 +1,6 @@
+// @ts-nocheck
 import { Affix, Card, Col, Image, Row } from "antd";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -8,11 +9,12 @@ import { projectThunk } from "../../redux/actions";
 import style from "./style.module.scss";
 import Header from "../../components/header";
 import { BrowserView, MobileView } from "react-device-detect";
+import i18next from "i18next";
 
 function ProjectPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
-
+  const [language, setLanguage] = useState(i18next.language);
   const projectData = useSelector((state) => state.project.project);
   const loading = useSelector((state) => state.project.loading);
 
@@ -24,6 +26,12 @@ function ProjectPage() {
       projectImages();
     }
   }, [dispatch, id]);
+
+  useEffect(() => {
+    i18next.on("languageChanged", (lng) => {
+      setLanguage(lng);
+    });
+  }, []);
 
   const condition =
     loading === false &&
@@ -53,9 +61,15 @@ function ProjectPage() {
                         <div> {projectData.title} </div>
                         <div> {projectData.subtitle}</div>
                       </div>
-                      <div className={style.description}>
-                        {projectData.description}
-                      </div>
+                      {language === "en" ? (
+                        <div className={style.description}>
+                          {projectData.description}
+                        </div>
+                      ) : (
+                        <div className={style.description}>
+                          {projectData.descriptionIT}
+                        </div>
+                      )}
                     </Affix>
                   </BrowserView>
                   <MobileView>
@@ -64,9 +78,15 @@ function ProjectPage() {
                         <div> {projectData.title} </div>
                         <div> {projectData.subtitle}</div>
                       </div>
-                      <div className={style.description}>
-                        {projectData.description}
-                      </div>
+                      {language === "en" ? (
+                        <div className={style.description}>
+                          {projectData.description}
+                        </div>
+                      ) : (
+                        <div className={style.description}>
+                          {projectData.descriptionIT}
+                        </div>
+                      )}
                     </div>
                   </MobileView>
                 </div>
