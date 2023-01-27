@@ -144,3 +144,16 @@ export const editNotification = async ({ id, read, token }) => {
   );
   return response.data;
 };
+
+export const changePassword = async ({ newPassword, token }) => {
+  const response = await axios.post(
+    process.env.REACT_APP_BASE_URL + "/password/change",
+    { newPassword },
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
+  );
+  return response.data;
+};

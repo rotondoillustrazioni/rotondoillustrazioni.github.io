@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { default as React, useState } from "react";
 import style from "./style.module.scss";
 import { Button, Form, Input } from "antd";

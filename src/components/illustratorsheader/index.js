@@ -32,7 +32,6 @@ function IllustratorsHeader(props) {
   }, [newNotification, dispatch]);
 
   useEffect(() => {
-    console.log("notReadNumber", notReadNumber);
     if (notReadNumber > 0) {
       setNotificationsBadge(true);
     } else {

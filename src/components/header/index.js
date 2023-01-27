@@ -1,10 +1,9 @@
-import { Button, Col, Menu, Row } from "antd";
+import { Col, Menu, Row } from "antd";
 import { useTranslation } from "react-i18next";
 import style from "./style.module.scss";
 import { useHistory } from "react-router";
-import React, { useState } from "react";
+import React from "react";
 import i18next from "i18next";
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 
 function Header(props) {
   const { t } = useTranslation();

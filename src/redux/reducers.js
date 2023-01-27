@@ -15,6 +15,7 @@ import {
   notificationsThunk,
   deleteNotificationThunk,
   editNotificationThunk,
+  changePasswordThunk,
 } from "./actions";
 
 const mainReducer = createReducer({}, {});
@@ -56,6 +57,41 @@ const authSlice = createSlice({
   },
 });
 export const { logout, cleanUpError } = authSlice.actions;
+
+const passwordChangeSlice = createSlice({
+  name: "passwordChange",
+  initialState: {
+    isChanged: false,
+    error: null,
+    loading: false,
+  },
+  reducers: {
+    resetPasswordChange(state) {
+      state.isChanged = false;
+      state.loading = false;
+      state.error = null;
+    },
+  },
+  extraReducers: {
+    [changePasswordThunk.pending]: (state, action) => {
+      state.isChanged = false;
+      state.loading = true;
+      state.error = null;
+    },
+    [changePasswordThunk.fulfilled]: (state, action) => {
+      state.isChanged = true;
+      state.loading = false;
+      state.error = null;
+    },
+    [changePasswordThunk.rejected]: (state, action) => {
+      state.isChanged = false;
+      state.loading = false;
+      state.error = action.error;
+    },
+  },
+});
+
+export const { resetPasswordChange } = passwordChangeSlice.actions;
 
 const projectsSlice = createSlice({
   name: "projects",
@@ -586,4 +622,5 @@ export default combineReducers({
   notificationsWS: notificationsWSSlice.reducer,
   deleteNotification: deleteNotificationSlice.reducer,
   editNotification: editNotificationSlice.reducer,
+  passwordChange: passwordChangeSlice.reducer,
 });

@@ -2,7 +2,7 @@ import { default as React } from "react";
 import Header from "../../components/header";
 import Projects from "../../components/projects";
 import MiniBio from "../../components/minibio";
-import { Affix, Card, Col, Row } from "antd";
+import { Affix, Col, Row } from "antd";
 import { BrowserView, MobileView } from "react-device-detect";
 
 function Homepage(props) {

@@ -22,6 +22,7 @@ import {
 import TextArea from "antd/lib/input/TextArea";
 import {
   aboutUsThunk,
+  changePasswordThunk,
   contactsThunk,
   editAboutUsThunk,
   editContactsThunk,
@@ -34,6 +35,7 @@ function IllustratorsProfile(props) {
   const dispatch = useDispatch();
   const [radioValue, setRadioValue] = useState(i18next.language);
   const [language, setLanguage] = useState(radioValue);
+  const [form] = Form.useForm();
 
   const aboutUs = useSelector((state) => state.aboutUs);
   const contacts = useSelector((state) => state.contacts.contacts);
@@ -86,6 +88,12 @@ function IllustratorsProfile(props) {
     }
   };
 
+  const onChangePassword = (values) => {
+    let newPassword = values.confirm;
+    dispatch(changePasswordThunk({ newPassword, token }));
+    form.resetFields();
+  };
+
   useEffect(() => {
     dispatch(resetEditAboutUs());
     dispatch(resetEditContacts());
@@ -101,7 +109,7 @@ function IllustratorsProfile(props) {
         <Card className={style.card}>
           <Row className={style.row}>
             <Col className={style.outerCol} span={24}>
-              <Form name="complex-form" onFinish={onFinish}>
+              <Form name="bio" onFinish={onFinish}>
                 <div className={style.title}>MODIFICA BIOGRAFIA E CONTATTI</div>
                 <Row style={{ paddingTop: "10px" }}>
                   <Col className={style.col} sm={24} md={24} lg={4}>
@@ -162,19 +170,6 @@ function IllustratorsProfile(props) {
                     </Form.Item>
                   </>
                 )}
-                <div className={style.title}>
-                  MODIFICA INFORMAZIONI DI CONTATTO
-                </div>
-                <Form.Item name="newpassword" noStyle>
-                  <div style={{ paddingBottom: "5px" }}>
-                    <Input.Password placeholder="Nuova Password" />
-                  </div>
-                </Form.Item>
-                <Form.Item name="repeatpassword" noStyle>
-                  <div style={{ paddingBottom: "5px" }}>
-                    <Input.Password placeholder="Ripeti Password" />
-                  </div>
-                </Form.Item>
                 <Form.Item>
                   <div style={{ paddingTop: "20px" }}>
                     <Button htmlType="submit">Salva</Button>
@@ -189,6 +184,61 @@ function IllustratorsProfile(props) {
                     type="error"
                   />
                 )}
+              </Form>
+              <div className={style.title}>
+                MODIFICA INFORMAZIONI DI CONTATTO
+              </div>
+            </Col>
+          </Row>
+          <Row className={style.row}>
+            <Col className={style.outerCol} span={24}>
+              <Form
+                name="psw"
+                onFinish={onChangePassword}
+                form={form}
+                labelCol={{ span: 4 }}
+                wrapperCol={{ span: 24 }}
+              >
+                <Form.Item
+                  name="password"
+                  label="Password"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Per favore inserisci la password!",
+                    },
+                  ]}
+                  hasFeedback
+                >
+                  <Input.Password />
+                </Form.Item>
+                <Form.Item
+                  name="confirm"
+                  label="Conferma Password"
+                  dependencies={["password"]}
+                  hasFeedback
+                  rules={[
+                    {
+                      required: true,
+                      message: "Per favore conferma la password!",
+                    },
+                    ({ getFieldValue }) => ({
+                      validator(_, value) {
+                        if (!value || getFieldValue("password") === value) {
+                          return Promise.resolve();
+                        }
+                        return Promise.reject(
+                          new Error("Le due password non corrispondono!")
+                        );
+                      },
+                    }),
+                  ]}
+                >
+                  <Input.Password />
+                </Form.Item>
+                <Form.Item>
+                  <Button htmlType="submit">Salva</Button>
+                </Form.Item>
               </Form>
             </Col>
           </Row>
