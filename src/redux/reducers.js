@@ -463,6 +463,12 @@ const notificationsSlice = createSlice({
         error: null,
       };
     },
+    increaseNotReadNumber(state, action) {
+      state.notReadNumber = state.notReadNumber + 1;
+    },
+    decreaseNotReadNumber(state, action) {
+      state.notReadNumber = state.notReadNumber - 1;
+    },
   },
   extraReducers: {
     // @ts-ignore
@@ -488,7 +494,11 @@ const notificationsSlice = createSlice({
   },
 });
 
-export const { getNotifications } = notificationsSlice.actions;
+export const {
+  getNotifications,
+  increaseNotReadNumber,
+  decreaseNotReadNumber,
+} = notificationsSlice.actions;
 
 const deleteNotificationSlice = createSlice({
   name: "deleteNotification",

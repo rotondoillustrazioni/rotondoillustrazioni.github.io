@@ -7,9 +7,15 @@ import {
   deleteNotificationThunk,
   editNotificationThunk,
 } from "../../redux/actions";
+import {
+  decreaseNotReadNumber,
+  increaseNotReadNumber,
+} from "../../redux/reducers";
 
 function Notification({ notification }) {
-  const [readUnread, setReadUnread] = useState();
+  const [readUnreadText, setReadUnreadText] = useState(
+    notification.read === true ? "Segna come non letta" : "Segna come letta"
+  );
   const token = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
 
@@ -17,20 +23,22 @@ function Notification({ notification }) {
     (state) => state.deleteNotification.loading
   );
 
-  useEffect(() => {
-    if (notification.read === true) {
-      setReadUnread("Segna come non letta");
-    } else {
-      setReadUnread("Segna come letta");
-    }
-  }, [notification.read]);
+  const [notificationRead, setNotificationRead] = useState(notification.read);
 
   const markAsRead = () => {
+    if (notificationRead === true) {
+      setReadUnreadText("Segna come letta");
+      dispatch(increaseNotReadNumber());
+    } else {
+      setReadUnreadText("Segna come non letta");
+      dispatch(decreaseNotReadNumber());
+    }
+    setNotificationRead(!notificationRead);
     dispatch(
       editNotificationThunk({
         id: notification._id,
         token,
-        read: !notification.read,
+        read: !notificationRead,
       })
     );
   };
@@ -45,7 +53,7 @@ function Notification({ notification }) {
       key={notification._id}
       loading={notificationLoading}
     >
-      <Badge dot={!notification.read}>
+      <Badge dot={!notificationRead}>
         <Descriptions title={notification.name} bordered column={1}>
           <Descriptions.Item label="Email" span={4}>
             {notification.email}
@@ -80,7 +88,7 @@ function Notification({ notification }) {
         </div>
         <div className={style.button}>
           <Button onClick={markAsRead} size="large">
-            {readUnread}
+            {readUnreadText}
           </Button>
         </div>
       </Row>

@@ -2,8 +2,8 @@
 import { Col, Menu, Row } from "antd";
 import style from "./style.module.scss";
 import { useHistory } from "react-router";
-import { default as React, useEffect } from "react";
-import { logout } from "../../redux/reducers";
+import { default as React, useEffect, useState } from "react";
+import { increaseNotReadNumber, logout } from "../../redux/reducers";
 import { useDispatch, useSelector } from "react-redux";
 import { wsConnect } from "../../websocket";
 
@@ -13,11 +13,32 @@ function IllustratorsHeader(props) {
   const notReadNumber = useSelector(
     (state) => state.notifications.notReadNumber
   );
+
   const newNotification = useSelector(
     (state) => state.notificationsWS.receivedNotification
   );
-  const notificationsBadge =
-    notReadNumber > 0 ? true : false || newNotification;
+
+  const [notificationsBadge, setNotificationsBadge] = useState(
+    notReadNumber > 0 ? true : false
+  );
+  const notificationEdited = useSelector(
+    (state) => state.editNotification.isEdited
+  );
+
+  useEffect(() => {
+    if (newNotification !== null && newNotification !== undefined) {
+      dispatch(increaseNotReadNumber());
+    }
+  }, [newNotification, dispatch]);
+
+  useEffect(() => {
+    console.log("notReadNumber", notReadNumber);
+    if (notReadNumber > 0) {
+      setNotificationsBadge(true);
+    } else {
+      setNotificationsBadge(false);
+    }
+  }, [notReadNumber, newNotification, notificationEdited]);
 
   useEffect(() => {
     dispatch(wsConnect(process.env.REACT_APP_SOCKET_ORIGIN));
