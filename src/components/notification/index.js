@@ -74,20 +74,20 @@ function Notification({ notification }) {
           </Descriptions.Item>
         </Descriptions>
       </Badge>
-      <Row align="middle" style={{ justifyContent: "space-between" }}>
+      <Row align="middle" className={style.buttons}>
         <div className={style.button}>
-          <Button onClick={onDelete} danger size="large">
+          <Button style= {{width: "200px"}} onClick={onDelete} danger size="large">
             Elimina
           </Button>
         </div>
 
         <div className={style.button}>
-          <Button size="large" href={`mailto:${notification.email}`}>
+          <Button style= {{width: "200px"}}  type="primary" size="large" href={`mailto:${notification.email}`}>
             Rispondi
           </Button>
         </div>
         <div className={style.button}>
-          <Button onClick={markAsRead} size="large">
+          <Button style= {{width: "200px"}}  onClick={markAsRead} size="large">
             {readUnreadText}
           </Button>
         </div>

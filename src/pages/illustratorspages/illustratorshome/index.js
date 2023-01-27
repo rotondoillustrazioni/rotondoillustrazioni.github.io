@@ -142,7 +142,7 @@ function IllustratorsHome(props) {
                   </div>
                   <div style={{ textAlign: "center", margin: "26px" }}>
                     <Form.Item wrapperCol={{ span: 24 }}>
-                      <Button htmlType="submit">Aggiungi</Button>
+                      <Button type="primary" style= {{width: "200px"}} htmlType="submit">Aggiungi</Button>
                     </Form.Item>
                   </div>
                 </Form>

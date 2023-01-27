@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { notificationsThunk } from "../../../redux/actions";
 import Notification from "../../../components/notification";
 import {
-  increaseNotReadNumber,
   resetEditNotification,
 } from "../../../redux/reducers";
 
@@ -26,10 +25,6 @@ function Notifications(props) {
   const notificationDeleted = useSelector(
     (state) => state.deleteNotification.isDeleted
   );
-
-  // const notificationEdited = useSelector(
-  //   (state) => state.editNotification.isEdited
-  // );
 
   const loading = useSelector((state) => state.notifications.loading);
 

@@ -139,13 +139,14 @@ function EditableProject({ projectData }) {
           <Row className={style.buttons}>
             <Button
               danger
+              style= {{width: "200px", marginTop: "5px"}}
               onClick={() => {
                 handleDeleteProject(data._id, data.title);
               }}
             >
               Elimina Progetto
             </Button>
-            <Button htmlType="submit">Salva Modifiche</Button>
+            <Button style= {{width: "200px", marginTop: "5px"}} type="primary" htmlType="submit">Salva Modifiche</Button>
           </Row>
         </Form.Item>
       </Form>

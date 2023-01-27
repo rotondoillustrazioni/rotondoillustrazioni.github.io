@@ -9,8 +9,25 @@
     margin-bottom: 20px;
 }
 
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 768px) {
+        justify-content: center;
+       
+      }
+      @media (max-width: 600px) {
+        justify-content: center;
+    
+      }
+      @media (max-width: 1024px) {
+        justify-content: center;
+      }
+}
+
 .button {
     padding-top: 20px;
+    min-width: 100px;
 }
 
 :global(.ant-badge){
