@@ -40,39 +40,43 @@ function Projects() {
     ) {
       const proj = Object.keys(projectsData).map((key) => [projectsData[key]]);
       return proj.map((e) =>
-        e.map((data) => (
-          <Col md={8} sm={24} key={data._id}>
-            <div className={style.imageContainer}>
-              <div
-                className={style.image}
-                onClick={() => {
-                  history.push(`/project/${data._id}`);
-                }}
-              >
-                <div>
-                  <LazyLoadImage
-                    effect="blur"
-                    key={data._id}
-                    alt={data.title}
-                    scrollPosition={{ x: 0, y: 0 }}
-                    src={cover(data.images)}
-                    width="100%"
-                    height="auto"
-                  />
-                </div>
-                <div className={style.imageDescription}>
-                  <div>
-                    {data.subtitle !== "" ? (
-                      <div>{`${data.title} - ${data.subtitle}`}</div>
-                    ) : (
-                      <div>{data.title}</div>
-                    )}
+        e.map((data) => {
+          if (data.description !== "" && data.images.length > 0) {
+            return (
+              <Col md={8} sm={24} key={data._id}>
+                <div className={style.imageContainer}>
+                  <div
+                    className={style.image}
+                    onClick={() => {
+                      history.push(`/project/${data._id}`);
+                    }}
+                  >
+                    <div>
+                      <LazyLoadImage
+                        effect="blur"
+                        key={data._id}
+                        alt={data.title}
+                        scrollPosition={{ x: 0, y: 0 }}
+                        src={cover(data.images)}
+                        width="100%"
+                        height="auto"
+                      />
+                    </div>
+                    <div className={style.imageDescription}>
+                      <div>
+                        {data.subtitle !== "" ? (
+                          <div>{`${data.title} - ${data.subtitle}`}</div>
+                        ) : (
+                          <div>{data.title}</div>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </Col>
-        ))
+              </Col>
+            );
+          }
+        })
       );
     }
   };
