@@ -52,8 +52,11 @@ function IllustratorsHome(props) {
     const newProject = new FormData();
     newProject.append("title", values.title);
     newProject.append("description", values.description);
-    newProject.append("descriptionIT", values.descriptionIT);
-
+    if (values.descriptionIT) {
+      newProject.append("descriptionIT", values.descriptionIT);
+    } else {
+      newProject.append("descriptionIT", "");
+    }
     if (values.subtitle) {
       newProject.append("subtitle", values.subtitle);
     } else {
@@ -119,13 +122,40 @@ function IllustratorsHome(props) {
                   onFinish={onFinish}
                 >
                   <div className={style.formitems}>
-                    <Form.Item name="title" label="Titolo">
+                    <Form.Item
+                      name="title"
+                      label="Titolo"
+                      rules={[
+                        {
+                          required: true,
+                        },
+                        () => ({
+                          validator(_, value) {
+                            if (value && value.includes("/")) {
+                              return Promise.reject(
+                                new Error("Il titolo non può contenere / !")
+                              );
+                            } else {
+                              return Promise.resolve();
+                            }
+                          },
+                        }),
+                      ]}
+                    >
                       <Input placeholder="Titolo del progetto" />
                     </Form.Item>
                     <Form.Item name="subtitle" label="Sottotit.">
                       <Input placeholder="Sottotitolo del progetto" />
                     </Form.Item>
-                    <Form.Item name="description" label="Desc. EN">
+                    <Form.Item
+                      name="description"
+                      label="Desc. EN"
+                      rules={[
+                        {
+                          required: true,
+                        },
+                      ]}
+                    >
                       <TextArea
                         placeholder="Descrizione del progetto in inglese"
                         rows={3}
@@ -139,7 +169,15 @@ function IllustratorsHome(props) {
                         autoSize={{ minRows: 3, maxRows: 3 }}
                       />
                     </Form.Item>
-                    <Form.Item name="images" label="Immagini">
+                    <Form.Item
+                      name="images"
+                      label="Immagini"
+                      rules={[
+                        {
+                          required: true,
+                        },
+                      ]}
+                    >
                       <Upload action="/upload.do" listType="picture-card">
                         <div>
                           <PlusOutlined />
