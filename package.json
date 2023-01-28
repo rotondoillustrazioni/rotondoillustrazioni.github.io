@@ -1,7 +1,6 @@
 {
   "name": "rotondoillustrazioni.github.io",
   "version": "0.1.0",
-  "homepage": "https://rotondoillustrazioni.github.io/rotondoillustrazioni.github.io/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.0",
