@@ -1,7 +1,7 @@
 # Rotondo website
 
 This repository provides a `Dockerfile` that let you build the Rotondo website client.
-Please check the [Rotondo server repository](https://github.com/rotondoillustrazioni/rotondo-server) for the server side.
+Please check the [Rotondo server repository](https://github.com/rotondoillustrazioni/rotondo-server/tree/asw) for the server side.
 
 In order to build the docker you have to provide in the `.env` file:
 ```bash
