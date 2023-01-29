@@ -217,7 +217,7 @@ function IllustratorsProfile(props) {
                 </Form.Item>
                 <Form.Item
                   name="confirm"
-                  label="Conferma Password"
+                  label="Conferma"
                   dependencies={["password"]}
                   hasFeedback
                   rules={[

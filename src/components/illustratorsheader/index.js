@@ -1,7 +1,8 @@
 // @ts-nocheck
-import { Col, Menu, Row } from "antd";
+import { Avatar, Col, Menu, Row, Button } from "antd";
 import style from "./style.module.scss";
 import { useHistory } from "react-router";
+import logo from "../../images/LOGO.png";
 import { default as React, useEffect, useState } from "react";
 import {
   decreaseNotReadNumber,
@@ -72,6 +73,15 @@ function IllustratorsHeader(props) {
             mode="horizontal"
             selectedKeys={[`${selectKey()}`]}
           >
+            <div
+              key="home"
+              className={style.logo}
+              onClick={() => {
+                history.push("/");
+              }}
+            >
+              <Avatar src={logo} size="medium" />
+            </div>
             <Menu.Item
               key="projects"
               onClick={() => {
@@ -97,7 +107,7 @@ function IllustratorsHeader(props) {
             >
               PROFILO
             </Menu.Item>
-            <Menu.Item
+            <Button
               className={style.rightSideMenuItem}
               key="logout"
               onClick={() => {
@@ -105,7 +115,7 @@ function IllustratorsHeader(props) {
               }}
             >
               Logout
-            </Menu.Item>
+            </Button>
           </Menu>
         </Col>
       </Row>

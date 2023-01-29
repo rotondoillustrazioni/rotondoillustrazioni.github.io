@@ -64,6 +64,7 @@ function Header(props) {
             </Menu.Item>
             <Menu.Item
               key="it"
+              style={{ marginLeft: "200px !important" }}
               onClick={() => {
                 i18next.changeLanguage("it");
               }}

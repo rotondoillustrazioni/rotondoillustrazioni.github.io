@@ -82,8 +82,8 @@ function EditableProject({ projectData }) {
     <Card className={style.card}>
       <div className={style.title}>{data.title}</div>
       <Form
-        labelCol={{ span: 4 }}
-        wrapperCol={{ span: 20 }}
+        labelCol={{ span: 5 }}
+        wrapperCol={{ span: 17 }}
         onFinish={onFinish}
       >
         <div className={style.formitems}>

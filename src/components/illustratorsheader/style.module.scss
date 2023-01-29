@@ -26,12 +26,28 @@
 }
 
 .rightSideMenuItem{
-  position: "absolute";
-  top: 0;
+  position: absolute;
   right: 0;
+  margin: 13px;
+  @media (max-width: 768px) {
+    position: relative;
+    display: none;
+    margin: 0px;
+  }
+}
+
+.logo{
+  position: absolute;
+  left: 0;
+  margin-left: 30px !important;
+  cursor: pointer;
+  @media (max-width: 768px) {
+    position: relative;
+    display: none;
+    margin: 0px;
+  }
 }
 
 .badge {
   color: #ff4d4f;
 }
-

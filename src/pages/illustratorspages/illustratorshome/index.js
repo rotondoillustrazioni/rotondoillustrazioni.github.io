@@ -117,8 +117,8 @@ function IllustratorsHome(props) {
                 <div className={style.title}>Aggiungi un nuovo progetto</div>
                 <Form
                   form={form}
-                  labelCol={{ span: 4 }}
-                  wrapperCol={{ span: 20 }}
+                  labelCol={{ span: 6 }}
+                  wrapperCol={{ span: 18 }}
                   onFinish={onFinish}
                 >
                   <div className={style.formitems}>
