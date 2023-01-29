@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { default as React, useEffect } from "react";
+import { default as React, useEffect, useState } from "react";
 import style from "./style.module.scss";
 
 import IllustratorsHeader from "../../../components/illustratorsheader";
@@ -8,7 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { notificationsThunk } from "../../../redux/actions";
 import Notification from "../../../components/notification";
 import {
+  resetDeleteNotification,
   resetEditNotification,
+  resetNewNotificationWS,
 } from "../../../redux/reducers";
 
 function Notifications(props) {
@@ -17,6 +19,7 @@ function Notifications(props) {
   const notificationsData = useSelector(
     (state) => state.notifications.notifications
   );
+  const [newNotifications, setNewNotifications] = useState([]);
 
   const newNotification = useSelector(
     (state) => state.notificationsWS.receivedNotification
@@ -31,14 +34,33 @@ function Notifications(props) {
   const token = useSelector((state) => state.auth.token);
   useEffect(() => {
     dispatch(resetEditNotification());
-    const projects = async () => {
+    dispatch(resetDeleteNotification());
+    dispatch(resetNewNotificationWS());
+    setNewNotifications([]);
+
+    const notifications = async () => {
       await dispatch(notificationsThunk({ token }));
     };
-    projects();
+    notifications();
   }, [dispatch, token, notificationDeleted]);
 
+  useEffect(() => {
+    if (newNotification !== null && newNotification !== undefined) {
+      setNewNotifications([...newNotifications, newNotification]);
+    }
+  }, [newNotification]);
+
   const showNewNotification = () => {
-    return <Notification notification={newNotification[0]} />;
+    if (newNotifications.length > 0) {
+      return newNotifications
+        .reverse()
+        .map((notification) => (
+          <Notification
+            notification={notification[0]}
+            key={notification[0]._id}
+          />
+        ));
+    }
   };
 
   const showNotifications = () => {

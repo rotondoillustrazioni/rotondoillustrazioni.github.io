@@ -3,7 +3,11 @@ import { Col, Menu, Row } from "antd";
 import style from "./style.module.scss";
 import { useHistory } from "react-router";
 import { default as React, useEffect, useState } from "react";
-import { increaseNotReadNumber, logout } from "../../redux/reducers";
+import {
+  decreaseNotReadNumber,
+  increaseNotReadNumber,
+  logout,
+} from "../../redux/reducers";
 import { useDispatch, useSelector } from "react-redux";
 import { wsConnect } from "../../websocket";
 
@@ -25,11 +29,18 @@ function IllustratorsHeader(props) {
     (state) => state.editNotification.isEdited
   );
 
+  const notificationDeleted = useSelector(
+    (state) => state.deleteNotification.isDeleted
+  );
+
   useEffect(() => {
     if (newNotification !== null && newNotification !== undefined) {
       dispatch(increaseNotReadNumber());
     }
-  }, [newNotification, dispatch]);
+    if (notificationDeleted) {
+      dispatch(decreaseNotReadNumber());
+    }
+  }, [newNotification, dispatch, notificationDeleted]);
 
   useEffect(() => {
     if (notReadNumber > 0) {
@@ -37,7 +48,7 @@ function IllustratorsHeader(props) {
     } else {
       setNotificationsBadge(false);
     }
-  }, [notReadNumber, newNotification, notificationEdited]);
+  }, [notReadNumber, newNotification, notificationEdited, notificationDeleted]);
 
   useEffect(() => {
     dispatch(wsConnect(process.env.REACT_APP_SOCKET_ORIGIN));

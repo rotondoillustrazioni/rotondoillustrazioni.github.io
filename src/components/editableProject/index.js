@@ -148,7 +148,7 @@ function EditableProject({ projectData }) {
           <Row className={style.buttons}>
             <Button
               danger
-              style={{ width: "200px", marginTop: "5px" }}
+              style={{ width: "200px", margin: "5px" }}
               onClick={() => {
                 handleDeleteProject(data._id, data.title);
               }}
@@ -156,7 +156,7 @@ function EditableProject({ projectData }) {
               Elimina Progetto
             </Button>
             <Button
-              style={{ width: "200px", marginTop: "5px" }}
+              style={{ width: "200px", margin: "5px" }}
               type="primary"
               htmlType="submit"
             >

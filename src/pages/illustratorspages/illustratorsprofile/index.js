@@ -100,7 +100,10 @@ function IllustratorsProfile(props) {
   }, [dispatch]);
 
   const textAreaCondition =
-    loading === false && aboutUs !== null && aboutUs !== undefined;
+    loading === false &&
+    aboutUs !== null &&
+    aboutUs !== undefined &&
+    aboutUs.aboutUs.description !== undefined;
 
   return (
     <div>

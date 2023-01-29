@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { default as React, useState } from "react";
+import { default as React, useEffect, useState } from "react";
 import style from "./style.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Badge, Button, Card, Descriptions, Row } from "antd";
@@ -10,6 +10,7 @@ import {
 import {
   decreaseNotReadNumber,
   increaseNotReadNumber,
+  resetDeleteNotification,
 } from "../../redux/reducers";
 
 function Notification({ notification }) {
@@ -24,6 +25,10 @@ function Notification({ notification }) {
   );
 
   const [notificationRead, setNotificationRead] = useState(notification.read);
+
+  useEffect(() => {
+    dispatch(resetDeleteNotification());
+  }, [dispatch]);
 
   const markAsRead = () => {
     if (notificationRead === true) {
