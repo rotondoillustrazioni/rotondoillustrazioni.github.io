@@ -70,12 +70,13 @@ function Notification({ notification }) {
             {notification.description}
           </Descriptions.Item>
           <Descriptions.Item label="Data e ora">
-            {new Date(notification.date).toISOString().split("T")[0] +
-              ", " +
-              new Date(notification.date)
-                .toISOString()
-                .split("T")[1]
-                .split(".")[0]}
+            {notification.date !== undefined &&
+              new Date(notification.date).toISOString().split("T")[0] +
+                ", " +
+                new Date(notification.date)
+                  .toISOString()
+                  .split("T")[1]
+                  .split(".")[0]}
           </Descriptions.Item>
         </Descriptions>
       </Badge>
