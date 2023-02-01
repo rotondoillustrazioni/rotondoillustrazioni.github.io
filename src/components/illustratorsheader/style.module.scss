@@ -1,10 +1,10 @@
 @import '../../styles/scss/theme';
 
-.menu {
+.menu{
   font-family: $circular-black;
   @media (max-width: 768px) {
-    width: 10%;
-    justify-content: center !important;
+    width: 100% !important;
+    justify-content: left !important;
   }
 }
 

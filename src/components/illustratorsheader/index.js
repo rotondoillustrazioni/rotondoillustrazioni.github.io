@@ -83,6 +83,7 @@ function IllustratorsHeader(props) {
               <Avatar src={logo} size="medium" />
             </div>
             <Menu.Item
+              className={style.menu}
               key="projects"
               onClick={() => {
                 history.push("/projects");
@@ -91,6 +92,7 @@ function IllustratorsHeader(props) {
               PROGETTI
             </Menu.Item>
             <Menu.Item
+              className={style.menu}
               key="notifications"
               onClick={() => {
                 history.push("/notifications");
@@ -100,6 +102,7 @@ function IllustratorsHeader(props) {
               {notificationsBadge && <span className={style.badge}>•</span>}
             </Menu.Item>
             <Menu.Item
+              className={style.menu}
               key="profile"
               onClick={() => {
                 history.push("/profile");
