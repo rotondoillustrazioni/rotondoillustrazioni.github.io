@@ -29,7 +29,11 @@ function AboutUs(props) {
   }, []);
 
   const condition =
-    loading === false && aboutUs !== null && aboutUs !== undefined;
+    loading === false &&
+    aboutUs !== null &&
+    aboutUs !== undefined &&
+    aboutUs.aboutUs !== undefined &&
+    aboutUs.aboutUs !== null;
 
   return (
     <>
